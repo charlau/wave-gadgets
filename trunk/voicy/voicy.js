@@ -40,7 +40,7 @@
 
 	function stateUpdated() {
 		if (iCanListen && (myRamdom != prefs.getString("lastRamdom")) && !waitingForCharlau){
-			iframeWin.postMessage('[getlist]~~om~~', '*');
+			iframeWin.postMessage('[getlist]~~om~~', 'http://www.charlau.com');
 		}
 	}
 
@@ -58,7 +58,7 @@
 		if(!waitingForCharlau){
 			clearInterval(wooYayIntervalId);
 		}else{
-			iframeWin.postMessage('[ping]~~om~~', '*');
+			iframeWin.postMessage('[ping]~~om~~', 'http://www.charlau.com');
 		}
 	}
 	
@@ -125,7 +125,7 @@
 		Connected=true;
 		msg.dismissMessage(loadMessage);
 				msg.createDismissibleMessage("ppp");
-				msg.createDismissibleMessage(e.data);
+				msg.createDismissibleMessage(e.origin);
 
 		if(e.origin == 'http://www.charlau.com') {
 			var messages = e.data.split("~~om~~");
@@ -235,7 +235,7 @@
 
 	function rifflyFinishedRecording (riffly_id, riffly_type) {
 
-		iframeWin.postMessage('[addrec]~~om~~' + myID + '|||' + riffly_id, '*');		
+		iframeWin.postMessage('[addrec]~~om~~' + myID + '|||' + riffly_id, 'http://www.charlau.com');		
 //		if(!(iCanListen)){
 			document.getElementById("recorder_container").innerHTML="";
 			rifflyShowRecorder('recorder_container', 'audio', 'rifflyFinishedRecording');
