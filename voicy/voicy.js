@@ -35,8 +35,6 @@
 //			wooYayIntervalId = setInterval("getReady()", 200);
 			wave.setStateCallback(stateUpdated);
 			setIframe();
-			getReady();
-			gadgets.window.adjustHeight();
 			wooYayIntervalId = setInterval("waitingCharlau()", 500);
 	}
 
@@ -48,6 +46,18 @@
 		}
 	}
 	
+	function setIframe(){
+		iframeSrc="http://www.charlau.com/gwave/voicy.php?fl="+ prefs.getString("zfile");
+		var html='<iframe id="mainIframe" src="" height="0" frameborder="0" scrolling="no"></iframe>';
+		document.getElementById('content_div').innerHTML = html;
+		document.getElementById("mainIframe").src = iframeSrc;
+
+		gadgets.window.adjustHeight();
+		iframeWin = document.getElementsByTagName('iframe')[0].contentWindow;
+		window.addEventListener('message', receiver, false);
+		getReady();
+	}
+
 	function getReady() {
 		
 		if (wave && wave.isInWaveContainer()) {
@@ -140,16 +150,6 @@
 		}
 	}
 
-	function setIframe(){
-		iframeSrc="http://www.charlau.com/gwave/voicy.php?fl="+ prefs.getString("zfile");
-		var html='<iframe id="mainIframe" src="" height="0" frameborder="0" scrolling="no"></iframe>';
-		document.getElementById('content_div').innerHTML = html;
-		document.getElementById("mainIframe").src = iframeSrc;
-
-		gadgets.window.adjustHeight();
-		iframeWin = document.getElementsByTagName('iframe')[0].contentWindow;
-		window.addEventListener('message', receiver, false);
-	}
 
 	function generateList(messages) {
 		var opt;
