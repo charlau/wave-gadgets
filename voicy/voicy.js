@@ -116,7 +116,7 @@
 			rifflyShowRecorder('recorder_container', 'audio', 'rifflyFinishedRecording');
 			document.getElementById('recorder_container').firstChild.style.display="none";
 			
-			wooYayIntervalId = setInterval("waitingCharlau()", 500);
+// -------			wooYayIntervalId = setInterval("waitingCharlau()", 500);
 
 		}
 	}
