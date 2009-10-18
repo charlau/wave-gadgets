@@ -43,7 +43,7 @@ Gadget by <a href="http://charlau.posterous.com/" target="_blank">charlau</a></d
 				</select>
 			</form>
 		</div>
-		<div id="HostOpt" style="font-size:12px; float:left; width:100%; margin-top:76px; margin-bottom:0; margin-left:10px; padding:0;"><div id="mprivates" style="display:none;"><form id="privachk" action="#">Keep messages private <input type="checkbox" name="priva" class="ttt" value="secret" onChange="checkOpt(this);"></form></div><div style="font-size:10px;">http://wave-gadgets.googlecode.com/svn/trunk/voicy/manifest.xml</div></div>		
+		<div id="HostOpt" style="font-size:12px; float:left; width:100%; margin-top:96px; margin-bottom:0; margin-left:10px; padding:0;"><div id="mprivates" style="display:none;"><form id="privachk" action="#">Keep messages private <input type="checkbox" name="priva" class="ttt" value="secret" onChange="checkOpt(this);"></form></div><div style="font-size:10px;">http://wave-gadgets.googlecode.com/svn/trunk/voicy/manifest.xml</div></div>		
 	</div>
 <!--
 <div id="rectab" style="display:none; font-family:courier, arial, sans-serif; font-size:10px; margin-top:3px; margin-right:10px; float:right;">Recording courtesy of <a href="http://riffly.com/" target="_blank">riffly</a></div><div id="recorder_container" style="float:left; width:100%; display:block; margin-left:10px;"></div><div id="byline" style="display:none; font-family:courier, arial, sans-serif; font-size:10px; float:left; width:100%; margin-top:76px; margin-bottom:0; margin-left:10px; padding:0; line-height:14px;">http://wave-gadgets.googlecode.com/svn/trunk/voicy/manifest.xml<br />Gadget by <a href="http://charlau.posterous.com/" target="_blank">charlau</a></div>
