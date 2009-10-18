@@ -118,7 +118,7 @@
 	}
 
 	function setIframe(){
-		iframeSrc="http://www.charlau.com/gwave/voicy/voicy.php?fl="+ prefs.getString("zfile");
+		iframeSrc="http://www.charlau.com/gwave/voicy.php?fl="+ prefs.getString("zfile");
 		var html='<iframe id="mainIframe" src="" height="0" frameborder="0" scrolling="no"></iframe>';
 		document.getElementById('content_div').innerHTML = html;
 		document.getElementById("mainIframe").src = iframeSrc;
