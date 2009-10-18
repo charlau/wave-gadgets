@@ -20,7 +20,6 @@
 	<UserPref name="nbmessages" default_value="0" datatype="hidden" />
 	<UserPref name="nbmessnew" default_value="0" datatype="hidden" />
 	<UserPref name="firstrun" default_value="true" datatype="bool" />
-	<UserPref name="firstpass" default_value="true" datatype="bool" />
 	<UserPref name="debugMode" display_name="Debug Mode" datatype="bool" default_value="false" />
 	<UserPref name="priva" display_name="Private recordings?" default_value="false" datatype="bool" />
 
