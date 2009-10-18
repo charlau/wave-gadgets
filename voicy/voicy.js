@@ -5,6 +5,7 @@
 	var prefs = new gadgets.Prefs();
 	var debugMode = prefs.getBool("debugMode");
 	var firstrun = prefs.getBool("firstrun");
+	var firstpass = true;
 	var theBasePath;
 	var myID;
 	var theHost;
@@ -80,7 +81,7 @@
 	}
 
 	function stateUpdated() {
-		if (iCanListen && !firstrun){
+		if (iCanListen && !firstpass){
 //			if(myRamdom != wave.getState().get('added')){
 //				if(iamTheHost){
 //					msg.createDismissibleMessage("You have new messages!");
@@ -157,13 +158,13 @@
 
 msg.createDismissibleMessage(prefs.getString("nbmessages"));
 msg.createDismissibleMessage(messages.length-1);
-msg.createDismissibleMessage(firstrun);
+msg.createDismissibleMessage(firstpass);
 
-		if((iamTheHost) && firstrun && (messages.length-1 > prefs.getInt("nbmessages"))){
+		if((iamTheHost) && firstpass && (messages.length-1 > prefs.getInt("nbmessages"))){
 
 			msg.createDismissibleMessage("You have new messages!");
 			}else{
-				if (iCanListen && !firstrun){
+				if (iCanListen && !firstpass){
 					if(myRamdom != wave.getState().get('added')){
 						if(iamTheHost){
 							msg.createDismissibleMessage("You have new messages!");
@@ -175,7 +176,7 @@ msg.createDismissibleMessage(firstrun);
 			
 			}
 
-		firstrun=false;
+		firstpass=false;
 		if(iamTheHost){
 			prefs.set("nbmessages", messages.length-1);
 		}
