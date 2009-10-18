@@ -78,7 +78,7 @@
 	}
 
 	function stateUpdated() {
-		if (iCanListen && !firstrun)){
+		if (iCanListen && !firstrun){
 			if(myRamdom != wave.getState().get('added')){
 				if(iamTheHost){
 					msg.createDismissibleMessage("You have new messages!");
