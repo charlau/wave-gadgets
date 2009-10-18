@@ -42,14 +42,14 @@
 				setOpt();
 			}
 
-//			var therecordpanel = '<div style="font-family:courier, arial, sans-serif; font-size:10px; margin-top:3px; margin-right:10px; float:right;">Recording courtesy of <a href="http://riffly.com/" target="_blank">riffly</a></div><div id="recorder_container" style="float:left; width:100%; display:block; margin-left:10px;"></div>';
+			var therecordpanel = '<div style="font-family:courier, arial, sans-serif; font-size:10px; margin-top:3px; margin-right:10px; float:right;">Recording courtesy of <a href="http://riffly.com/" target="_blank">riffly</a></div><div id="recorder_container" style="float:left; width:100%; display:block; margin-left:10px;"></div>';
 			
 			tabs = new gadgets.TabSet("voicy"); 
 			tabs.alignTabs("left", 10);
-			tabs.addTab("Record a greeting", {
-				contentContainer: document.getElementById("rectab"),
-				index: 1
-			});
+//			tabs.addTab("Record a greeting", {
+//				contentContainer: document.getElementById("rectab"),
+//				index: 1
+//			});
 			if(iamTheHost || !(prefs.getBool("priva"))){			
 				iCanListen = true;
 				tabs.addTab("Play messages", {
@@ -59,11 +59,11 @@
 				});
 			}else{
 				document.getElementById("playdiv").innerHTML="";
-				document.getElementById("byline").style.display="block";
-//				therecordpanel += '<div id="HostOpt" style="font-family:courier, arial, sans-serif; font-size:10px; float:left; width:100%; margin-top:76px; margin-bottom:0; margin-left:10px; padding:0; line-height:14px;">http://wave-gadgets.googlecode.com/svn/trunk/voicy/manifest.xml<br />Gadget by <a href="http://charlau.posterous.com/" target="_blank">charlau</a></div>';
+//				document.getElementById("byline").style.display="block";
+				therecordpanel += '<div id="byline" style="font-family:courier, arial, sans-serif; font-size:10px; float:left; width:100%; margin-top:76px; margin-bottom:0; margin-left:10px; padding:0; line-height:14px;">http://wave-gadgets.googlecode.com/svn/trunk/voicy/manifest.xml<br />Gadget by <a href="http://charlau.posterous.com/" target="_blank">charlau</a></div>';
 			}
-//			var therectab = tabs.addTab('Record');
-//			document.getElementById(therectab).innerHTML = therecordpanel;
+			var therectab = tabs.addTab('Record');
+			document.getElementById(therectab).innerHTML = therecordpanel;
 
 //			document.getElementById("rectab").style.display="block";
 			rifflyShowRecorder('recorder_container', 'audio', 'rifflyFinishedRecording');
