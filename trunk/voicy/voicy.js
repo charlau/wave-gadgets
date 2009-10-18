@@ -38,6 +38,7 @@
 			
 			if(myID == theHost){
 				iamTheHost = true;
+				document.getElementById("playdiv").style.display="block";
 				document.getElementById("mprivates").style.display="block";
 				setOpt();
 			}
