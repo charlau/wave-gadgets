@@ -95,7 +95,7 @@
 	}
 
 	function stateUpdated() {
-		if (iCanListen){
+		if (iCanListen && (myRamdom != prefs.getString("lastRamdom"))){
 			iframeWin.postMessage('[getlist]~~om~~', 'http://www.charlau.com');
 		}
 	}
@@ -178,6 +178,7 @@
 			msg.createTimerMessage("You have new messages!",3);
 			}else{
 				if (iCanListen && !firstpass){
+					prefs.set("lastRamdom", myRamdom);
 					if(myRamdom != wave.getState().get('added')){
 						if(iamTheHost){
 							msg.createTimerMessage("You have new messages!",3);
