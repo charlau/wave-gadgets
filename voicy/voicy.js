@@ -33,7 +33,7 @@
 		prefs.set("firstrun",false);
 		setIframe();
 
-		wooYayIntervalId = setInterval("waitingCharlau", 500);
+		wooYayIntervalId = setInterval("waitingCharlau()", 500);
 	}
 
 	function waitingCharlau() {
@@ -110,6 +110,7 @@
 			if(iCanListen){
 				switch (messages[0]){
 				case "[ping]":
+					waitingForCharlau = false;
 					iframeWin.postMessage('[getlist]~~om~~', 'http://www.charlau.com');
 					break;
 				case "[addok]":
@@ -119,7 +120,6 @@
 					msg.createTimerMessage("Message sent!", 3);
 					break;
 				case "[list]":
-					waitingForCharlau = false;
 					loadMessage = msg.createStaticMessage("loading playlist");
 					generateList(messages);
 					break;
@@ -144,6 +144,8 @@
 		gadgets.window.adjustHeight();
 		iframeWin = document.getElementsByTagName('iframe')[0].contentWindow;
 		window.addEventListener('message', receiver, false);
+		iframeWin.postMessage('[ping]~~om~~', 'http://www.charlau.com');
+
 	}
 
 	function generateList(messages) {

@@ -68,8 +68,8 @@
 					var messages = e.data.split("~~om~~");
 					switch (messages[0]){
 					case "[ping]":
-						getlist();
-//						parentWin.postMessage("[ping]~~om~~","https://0-wave-opensocial.googleusercontent.com");
+//						getlist();
+						parentWin.postMessage("[ping]~~om~~","https://0-wave-opensocial.googleusercontent.com");
 						break;
 					case "[getlist]":
 						getlist();
