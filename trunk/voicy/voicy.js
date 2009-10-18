@@ -123,10 +123,7 @@
 
 	function receiver(e) {
 		Connected=true;
-		msg.dismissMessage(loadMessage);
-				msg.createDismissibleMessage("ppp");
-				msg.createDismissibleMessage(e.origin);
-
+//		msg.dismissMessage(loadMessage);
 		if(e.origin == 'http://www.charlau.com') {
 			var messages = e.data.split("~~om~~");
 			if(iCanListen){
