@@ -22,7 +22,7 @@
    }
    
    if (!$_REQUEST['fl']) { die; }
-   if ($_REQUEST['fl']) { $thFile='lists/'.$_REQUEST['fl']; }
+   if ($_REQUEST['fl']) { $thFile='voicylists/'.$_REQUEST['fl']; }
    if ($_REQUEST['pid']) { $thParticipant=$_REQUEST['pid']; }      
    if ($_POST['riffly_id']) { append_file($thFile,$thParticipant.'|||'.$_POST['riffly_id']); }
    if ($_POST['getlist']) {
