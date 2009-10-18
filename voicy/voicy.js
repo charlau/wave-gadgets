@@ -58,7 +58,7 @@
 		if(!waitingForCharlau){
 			clearInterval(wooYayIntervalId);
 		}else{
-			iframeWin.postMessage('[ping]~~om~~', 'http://www.charlau.com');
+			iframeWin.postMessage('[ping]~~om~~', '*');
 		}
 	}
 	
