@@ -25,7 +25,6 @@
 
 	
 	function init(){
-		if (wave && wave.isInWaveContainer()) {		
 			msg = new gadgets.MiniMessage();
 			loadMessage = msg.createStaticMessage("loading gadget");
 			gagheight = "210";
@@ -38,8 +37,7 @@
 			setIframe();
 			getReady();
 			gadgets.window.adjustHeight();
-			wooYayIntervalId = setInterval("waitingCharlau()", 200);
-		}
+			wooYayIntervalId = setInterval("waitingCharlau()", 500);
 	}
 
 	function waitingCharlau() {
@@ -53,7 +51,6 @@
 	function getReady() {
 		
 		if (wave && wave.isInWaveContainer()) {
-			clearInterval(wooYayIntervalId);
 			myID = wave.getViewer().getId();
 			theHost = wave.getHost().getId();
 			
