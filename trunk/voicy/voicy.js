@@ -22,6 +22,7 @@
 	var nbmessages;
 	var nbmessnew;
 	var IamRecording = false;
+	var particiPready = false;
 
 	
 	function init(){
@@ -34,8 +35,22 @@
 			prefs.set("firstrun",false);
 //			wooYayIntervalId = setInterval("getReady()", 200);
 			wave.setStateCallback(stateUpdated);
+			wave.setParticipantCallback(participantIsReady);
 			setIframe();
 			wooYayIntervalId = setInterval("waitingCharlau()", 500);
+	}
+
+	function stateUpdated() {
+		if (iCanListen && (myRamdom != prefs.getString("lastRamdom")) && !waitingForCharlau){
+			iframeWin.postMessage('[getlist]~~om~~', 'http://www.charlau.com');
+		}
+	}
+
+	function participantIsReady() {		
+		if(!particiPready){
+			particiPready = true;
+			getReady();
+		}
 	}
 
 	function waitingCharlau() {
@@ -55,7 +70,6 @@
 		gadgets.window.adjustHeight();
 		iframeWin = document.getElementsByTagName('iframe')[0].contentWindow;
 		window.addEventListener('message', receiver, false);
-		getReady();
 	}
 
 	function getReady() {
@@ -101,12 +115,6 @@
 
 			rifflyShowRecorder('recorder_container', 'audio', 'rifflyFinishedRecording');
 			document.getElementById('recorder_container').firstChild.style.display="none";
-		}
-	}
-
-	function stateUpdated() {
-		if (iCanListen && (myRamdom != prefs.getString("lastRamdom")) && !waitingForCharlau){
-			iframeWin.postMessage('[getlist]~~om~~', 'http://www.charlau.com');
 		}
 	}
 
