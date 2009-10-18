@@ -43,7 +43,7 @@
 				document.getElementById("mprivates").style.display="block";
 				setOpt();
 			}else{
-				document.getElementById("HostOpt").style.marginTop="96px;"
+				document.getElementById("HostOpt").style.marginTop="96px";
 			}
 
 			var therecordpanel = '<div id="rectab" style="font-family:courier, arial, sans-serif; font-size:10px; margin-top:3px; margin-right:10px; float:right;">Recording courtesy of <a href="http://riffly.com/" target="_blank">riffly</a></div><div id="recorder_container" style="float:left; width:100%; display:block; margin-left:10px;"></div>';
