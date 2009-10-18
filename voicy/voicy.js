@@ -66,15 +66,22 @@
 				iCanListen = true;
 				tabs.addTab("Play messages", {
 					contentContainer: document.getElementById("playdiv"),
-					callback: toggleTab,
+					callback: toPlayTab,
 					index: 0
 				});
 			}else{
 				document.getElementById("playdiv").innerHTML="";
 				therecordpanel += '<div id="byline" style="font-family:courier, arial, sans-serif; font-size:10px; float:left; width:100%; margin-top:36px; margin-bottom:0; margin-left:10px; padding:0; line-height:14px;">http://wave-gadgets.googlecode.com/svn/trunk/voicy/manifest.xml<br />Gadget by <a href="http://charlau.posterous.com/" target="_blank">charlau</a></div>';
 			}
-			var therectab = tabs.addTab('Record');
+			var therectab = tabs.addTab("Leave a message", {
+				callback: toRecTab,
+				index: 1
+			});
+
 			document.getElementById(therectab).innerHTML = therecordpanel;
+
+//			var therectab = tabs.addTab('Leave a message');
+//			document.getElementById(therectab).innerHTML = therecordpanel;
 
 			rifflyShowRecorder('recorder_container', 'audio', 'rifflyFinishedRecording');
 			document.getElementById('recorder_container').firstChild.style.display="none";
@@ -238,7 +245,7 @@
 		}
 	}
 
-	function toggleTab(tabId) {
+	function toPlayTab(tabId) {
 		document.toplay.riffly_id2.selectedIndex = 0;
 		document.getElementById('player_container').innerHTML = '';
 	}
