@@ -30,12 +30,12 @@
 			prefs.set("zfile", randomString(15)+".txt"); 
 		}
 		prefs.set("firstrun",false);
-		wooYayIntervalId = setInterval("getReady()", 500);
+		wooYayIntervalId = setInterval("getReady()", 250);
 	}
 
 	function getReady() {
 		
-//		if (wave && wave.isInWaveContainer()) {
+		if (wave && wave.isInWaveContainer()) {
 			clearInterval(wooYayIntervalId);
 			myID = wave.getViewer().getId();
 			theHost = wave.getHost().getId();
@@ -77,7 +77,7 @@
 			document.getElementById('recorder_container').firstChild.style.display="none";
 			setIframe();
 			wave.setStateCallback(stateUpdated);
-//		}
+		}
 	}
 
 	function stateUpdated() {
