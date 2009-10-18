@@ -33,7 +33,6 @@
 				prefs.set("zfile", randomString(15)+".txt"); 
 			}
 			prefs.set("firstrun",false);
-//			wooYayIntervalId = setInterval("getReady()", 200);
 			setIframe();
 			wave.setStateCallback(stateUpdated);
 			wave.setParticipantCallback(participantIsReady);
@@ -60,7 +59,6 @@
 			clearInterval(wooYayIntervalId);
 		}else{
 			iframeWin.postMessage('[ping]~~om~~', 'http://www.charlau.com');
-			msg.createDismissibleMessage("*** I ping ***");
 		}
 	}
 	
@@ -127,7 +125,6 @@
 		Connected=true;
 		msg.dismissMessage(loadMessage);
 		if(e.origin == 'http://www.charlau.com') {
-msg.createDismissibleMessage("*** you pinged ***");
 			var messages = e.data.split("~~om~~");
 			if(iCanListen){
 				switch (messages[0]){
