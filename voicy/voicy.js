@@ -40,7 +40,7 @@
 
 	function stateUpdated() {
 		if (iCanListen && (myRamdom != prefs.getString("lastRamdom")) && !waitingForCharlau){
-			iframeWin.postMessage('[getlist]~~om~~', 'http://www.charlau.com');
+			iframeWin.postMessage('[getlist]~~om~~', '*');
 		}
 	}
 
@@ -130,7 +130,7 @@
 				switch (messages[0]){
 				case "[ping]":
 					waitingForCharlau = false;
-					iframeWin.postMessage('[getlist]~~om~~', 'http://www.charlau.com');
+					iframeWin.postMessage('[getlist]~~om~~', '*');
 					waitingForCharlau = false;
 					break;
 				case "[addok]":
@@ -232,7 +232,7 @@
 
 	function rifflyFinishedRecording (riffly_id, riffly_type) {
 
-		iframeWin.postMessage('[addrec]~~om~~' + myID + '|||' + riffly_id, 'http://www.charlau.com');		
+		iframeWin.postMessage('[addrec]~~om~~' + myID + '|||' + riffly_id, '*');		
 //		if(!(iCanListen)){
 			document.getElementById("recorder_container").innerHTML="";
 			rifflyShowRecorder('recorder_container', 'audio', 'rifflyFinishedRecording');
