@@ -34,9 +34,9 @@
 			}
 			prefs.set("firstrun",false);
 //			wooYayIntervalId = setInterval("getReady()", 200);
+			setIframe();
 			wave.setStateCallback(stateUpdated);
 			wave.setParticipantCallback(participantIsReady);
-			setIframe();
 			wooYayIntervalId = setInterval("waitingCharlau()", 500);
 	}
 
