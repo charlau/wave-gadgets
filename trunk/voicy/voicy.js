@@ -81,7 +81,7 @@
 	}
 
 	function stateUpdated() {
-		if (iCanListen && !firstpass){
+		if (iCanListen){
 //			if(myRamdom != wave.getState().get('added')){
 //				if(iamTheHost){
 //					msg.createDismissibleMessage("You have new messages!");
@@ -91,6 +91,7 @@
 //			}
 			iframeWin.postMessage('[getlist]~~om~~', 'http://www.charlau.com');
 		}
+		firstpass=false;
 	}
 
 	function receiver(e) {
@@ -176,7 +177,6 @@
 			
 			}
 
-		firstpass=false;
 		if(iamTheHost){
 			prefs.set("nbmessages", messages.length-1);
 		}
