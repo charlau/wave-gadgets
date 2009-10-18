@@ -31,9 +31,7 @@
 			prefs.set("zfile", randomString(15)+".txt"); 
 		}
 		prefs.set("firstrun",false);
-		setIframe();
-		getReady();
-		wooYayIntervalId = setInterval("waitingCharlau()", 200);
+		wooYayIntervalId = setInterval("getReady()", 200);
 	}
 
 	function waitingCharlau() {
@@ -47,6 +45,7 @@
 	function getReady() {
 		
 		if (wave && wave.isInWaveContainer()) {
+			clearInterval(wooYayIntervalId);
 			myID = wave.getViewer().getId();
 			theHost = wave.getHost().getId();
 			
@@ -85,6 +84,10 @@
 //			document.getElementById("rectab").style.display="block";
 			rifflyShowRecorder('recorder_container', 'audio', 'rifflyFinishedRecording');
 			document.getElementById('recorder_container').firstChild.style.display="none";
+
+			setIframe();
+
+			wooYayIntervalId = setInterval("waitingCharlau()", 200);
 
 			wave.setStateCallback(stateUpdated);
 		}
