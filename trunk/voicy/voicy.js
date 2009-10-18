@@ -33,12 +33,14 @@
 		prefs.set("firstrun",false);
 		setIframe();
 		getReady();
+		wooYayIntervalId = setInterval("waitingCharlau()", 200);
 	}
 
 	function waitingCharlau() {
 		if(!waitingForCharlau){
 			clearInterval(wooYayIntervalId);
-			getReady();
+		}else{
+			iframeWin.postMessage('[ping]~~om~~', 'http://www.charlau.com');
 		}
 	}
 	
@@ -143,8 +145,6 @@
 		gadgets.window.adjustHeight();
 		iframeWin = document.getElementsByTagName('iframe')[0].contentWindow;
 		window.addEventListener('message', receiver, false);
-		iframeWin.postMessage('[ping]~~om~~', 'http://www.charlau.com');
-
 	}
 
 	function generateList(messages) {
