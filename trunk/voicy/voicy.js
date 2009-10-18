@@ -81,9 +81,9 @@
 		if (iCanListen && !firstrun){
 			if(myRamdom != wave.getState().get('added')){
 				if(iamTheHost){
-					msg.createDismissibleMessage("You have new messages!");
+//					msg.createDismissibleMessage("You have new messages!");
 				}else{
-					msg.createDismissibleMessage("Someone else left a message!");				
+//					msg.createDismissibleMessage("Someone else left a message!");				
 				}
 			}
 			iframeWin.postMessage('[getlist]~~om~~', 'http://www.charlau.com');
@@ -106,7 +106,7 @@
 					myRamdom = randomString(10);
 					wave.getState().submitDelta({'added': myRamdom});
 	//				iframeWin.postMessage('[getlist]~~om~~', 'http://www.charlau.com');
-					loadMessage = msg.createStaticMessage("loading playlist");
+					msg.createTimerMessage("Message sent!", 3);
 					break;
 				case "[list]":
 					loGit(messages[1]);
@@ -117,7 +117,7 @@
 				}
 			}else{
 				if(messages[0]=="[addok]") {
-					msg.createTimerMessage("Message received!", 3);
+					msg.createTimerMessage("Message sent!", 3);
 					myRamdom = randomString(10);
 					wave.getState().submitDelta({'added': myRamdom});
 				}
