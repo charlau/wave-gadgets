@@ -65,7 +65,7 @@
 //			var therectab = tabs.addTab('Record');
 //			document.getElementById(therectab).innerHTML = therecordpanel;
 
-			document.getElementById("rectab").style.display="block";
+//			document.getElementById("rectab").style.display="block";
 			rifflyShowRecorder('recorder_container', 'audio', 'rifflyFinishedRecording');
 			document.getElementById('recorder_container').firstChild.style.display="none";
 			setIframe();
