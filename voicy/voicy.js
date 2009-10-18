@@ -42,7 +42,7 @@
 				setOpt();
 			}
 
-			var therecordpanel = '<div style="font-family:courier, arial, sans-serif; font-size:10px; margin-top:3px; margin-right:10px; float:right;">Recording courtesy of <a href="http://riffly.com/" target="_blank">riffly</a></div><div id="recorder_container" style="float:left; width:100%; display:block; margin-left:10px;"></div>';
+			var therecordpanel = '<div id="rectab" style="font-family:courier, arial, sans-serif; font-size:10px; margin-top:3px; margin-right:10px; float:right;">Recording courtesy of <a href="http://riffly.com/" target="_blank">riffly</a></div><div id="recorder_container" style="float:left; width:100%; display:block; margin-left:10px;"></div>';
 			
 			tabs = new gadgets.TabSet("voicy"); 
 			tabs.alignTabs("left", 10);
@@ -89,31 +89,33 @@
 	function receiver(e) {
 		Connected=true;
 		msg.dismissMessage(loadMessage);
-		if ((e.origin == 'http://www.charlau.com') && iCanListen) {
+		if(e.origin == 'http://www.charlau.com') {
 			var messages = e.data.split("~~om~~");
-			switch (messages[0]){
-			case "[ping]":
-				loGit("[ping]");
-				iframeWin.postMessage('[getlist]~~om~~', 'http://www.charlau.com');
-				break;
-			case "[addok]":
-				loGit("[addok]");
+			if(iCanListen){
+				switch (messages[0]){
+				case "[ping]":
+					iframeWin.postMessage('[getlist]~~om~~', 'http://www.charlau.com');
+					break;
+				case "[addok]":
+					myRamdom = randomString(10);
+					wave.getState().submitDelta({'added': myRamdom});
+	//				iframeWin.postMessage('[getlist]~~om~~', 'http://www.charlau.com');
+					loadMessage = msg.createStaticMessage("loading playlist");
+					break;
+				case "[list]":
+					loGit(messages[1]);
+					loadMessage = msg.createStaticMessage("loading playlist");
+					generateList(messages);
+					break;
+				default:
+				}
+			}	
+		}else{
+			if(messages[0]=="[addok]") {
+				msg.createTimerMessage("Message received!", 3);
 				myRamdom = randomString(10);
 				wave.getState().submitDelta({'added': myRamdom});
-//				iframeWin.postMessage('[getlist]~~om~~', 'http://www.charlau.com');
-				loadMessage = msg.createStaticMessage("loading playlist");
-				break;
-			case "[list]":
-				loGit("[list]");
-				loGit(messages[1]);
-				loadMessage = msg.createStaticMessage("loading playlist");
-				generateList(messages);
-				break;
-			default:
-			}	
-		}
-		if(!(iCanListen) && (messages[0] == "[addok]")) {
-			msg.createTimerMessage("Message received!", 3);
+			}
 		}
 	}
 
@@ -152,7 +154,7 @@
 			if(myRamdom=="") {
 				myRamdom=="sdf";
 				firstStatus = false;
-				msg.createDismissibleMessage("You have new messages!");
+//				msg.createDismissibleMessage("You have new messages!");
 			}
 		}
 	}
