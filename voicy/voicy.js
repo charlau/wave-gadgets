@@ -156,9 +156,9 @@
 		msg.dismissMessage(loadMessage);
 		tabs.setSelectedTab(0);
 
-msg.createDismissibleMessage(prefs.getString("nbmessages"));
-msg.createDismissibleMessage(messages.length-1);
-msg.createDismissibleMessage(firstpass);
+//msg.createDismissibleMessage(prefs.getString("nbmessages"));
+//msg.createDismissibleMessage(messages.length-1);
+//msg.createDismissibleMessage(firstpass);
 
 		if((iamTheHost) && firstpass && (messages.length-1 > prefs.getInt("nbmessages"))){
 
