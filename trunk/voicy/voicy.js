@@ -4,6 +4,7 @@
 	var wooYayIntervalId = 0;
 	var prefs = new gadgets.Prefs();
 	var debugMode = prefs.getBool("debugMode");
+	var firstrun = prefs.getBool("firstrun");
 	var theBasePath;
 	var myID;
 	var theHost;
@@ -25,7 +26,7 @@
 		if (prefs.getString("zfile") == "") {
 			prefs.set("zfile", randomString(15)+".txt"); 
 		}
-		loGit(prefs.getString("zfile"));
+		prefs.set("firstrun",false);
 		wooYayIntervalId = setInterval("getReady()", 300);
 	}
 
@@ -41,6 +42,8 @@
 				document.getElementById("playdiv").style.display="block";
 				document.getElementById("mprivates").style.display="block";
 				setOpt();
+			}else{
+				document.getElementById("HostOpt").style.marginTop="96px;"
 			}
 
 			var therecordpanel = '<div id="rectab" style="font-family:courier, arial, sans-serif; font-size:10px; margin-top:3px; margin-right:10px; float:right;">Recording courtesy of <a href="http://riffly.com/" target="_blank">riffly</a></div><div id="recorder_container" style="float:left; width:100%; display:block; margin-left:10px;"></div>';
@@ -61,7 +64,7 @@
 			}else{
 				document.getElementById("playdiv").innerHTML="";
 //				document.getElementById("byline").style.display="block";
-				therecordpanel += '<div id="byline" style="font-family:courier, arial, sans-serif; font-size:10px; float:left; width:100%; margin-top:30px; margin-bottom:0; margin-left:10px; padding:0; line-height:14px;">http://wave-gadgets.googlecode.com/svn/trunk/voicy/manifest.xml<br />Gadget by <a href="http://charlau.posterous.com/" target="_blank">charlau</a></div>';
+				therecordpanel += '<div id="byline" style="font-family:courier, arial, sans-serif; font-size:10px; float:left; width:100%; margin-top:16px; margin-bottom:0; margin-left:10px; padding:0; line-height:14px;">http://wave-gadgets.googlecode.com/svn/trunk/voicy/manifest.xml<br />Gadget by <a href="http://charlau.posterous.com/" target="_blank">charlau</a></div>';
 			}
 			var therectab = tabs.addTab('Record');
 			document.getElementById(therectab).innerHTML = therecordpanel;
@@ -75,7 +78,7 @@
 	}
 
 	function stateUpdated() {
-		if (iCanListen){
+		if (iCanListen && !firstrun)){
 			if(myRamdom != wave.getState().get('added')){
 				if(iamTheHost){
 					msg.createDismissibleMessage("You have new messages!");
@@ -84,6 +87,8 @@
 				}
 			}
 			iframeWin.postMessage('[getlist]~~om~~', 'http://www.charlau.com');
+		}else{
+			firstrun=false;
 		}
 	}
 
@@ -110,13 +115,13 @@
 					break;
 				default:
 				}
+			}else{
+				if(messages[0]=="[addok]") {
+					msg.createTimerMessage("Message received!", 3);
+					myRamdom = randomString(10);
+					wave.getState().submitDelta({'added': myRamdom});
+				}
 			}	
-		}else{
-			if(messages[0]=="[addok]") {
-				msg.createTimerMessage("Message received!", 3);
-				myRamdom = randomString(10);
-				wave.getState().submitDelta({'added': myRamdom});
-			}
 		}
 	}
 
