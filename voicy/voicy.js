@@ -124,10 +124,11 @@
 	function receiver(e) {
 		Connected=true;
 		msg.dismissMessage(loadMessage);
-		msg.createDismissibleMessage("*** ppp ***");
 		if(e.origin == 'http://www.charlau.com') {
 			var messages = e.data.split("~~om~~");
 			if(iCanListen){
+										msg.createDismissibleMessage(messages[0]);
+
 				switch (messages[0]){
 				case "[ping]":
 					waitingForCharlau = false;
