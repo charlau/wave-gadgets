@@ -49,6 +49,8 @@
 	function participantIsReady() {		
 		if(!particiPready){
 			particiPready = true;
+			theHost = wave.getHost().getId();
+			myID = wave.getViewer().getId();
 			getReady();
 		}
 	}
@@ -75,8 +77,8 @@
 	function getReady() {
 		
 		if (wave && wave.isInWaveContainer()) {
-			myID = wave.getViewer().getId();
-			theHost = wave.getHost().getId();
+//			myID = wave.getViewer().getId();
+//			theHost = wave.getHost().getId();
 			
 			if(myID == theHost){
 				iamTheHost = true;
