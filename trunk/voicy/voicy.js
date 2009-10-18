@@ -62,10 +62,6 @@
 			
 			tabs = new gadgets.TabSet("voicy"); 
 			tabs.alignTabs("left", 10);
-//			tabs.addTab("Record a greeting", {
-//				contentContainer: document.getElementById("rectab"),
-//				index: 1
-//			});
 			if(iamTheHost || !(prefs.getBool("priva"))){			
 				iCanListen = true;
 				tabs.addTab("Play messages", {
@@ -75,13 +71,11 @@
 				});
 			}else{
 				document.getElementById("playdiv").innerHTML="";
-//				document.getElementById("byline").style.display="block";
 				therecordpanel += '<div id="byline" style="font-family:courier, arial, sans-serif; font-size:10px; float:left; width:100%; margin-top:36px; margin-bottom:0; margin-left:10px; padding:0; line-height:14px;">http://wave-gadgets.googlecode.com/svn/trunk/voicy/manifest.xml<br />Gadget by <a href="http://charlau.posterous.com/" target="_blank">charlau</a></div>';
 			}
 			var therectab = tabs.addTab('Record');
 			document.getElementById(therectab).innerHTML = therecordpanel;
 
-//			document.getElementById("rectab").style.display="block";
 			rifflyShowRecorder('recorder_container', 'audio', 'rifflyFinishedRecording');
 			document.getElementById('recorder_container').firstChild.style.display="none";
 
@@ -130,10 +124,16 @@
 				default:
 				}
 			}else{
-				if(messages[0]=="[addok]") {
+				switch (messages[0]){
+				case "[ping]":
+					waitingForCharlau = false;
+					break;
+				case "[addok]":
 					msg.createTimerMessage("Message sent!", 3);
 					myRamdom = randomString(10);
 					wave.getState().submitDelta({'added': myRamdom});
+					break;
+				default:
 				}
 			}	
 		}
