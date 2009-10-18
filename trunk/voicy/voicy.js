@@ -124,13 +124,14 @@
 	function receiver(e) {
 		Connected=true;
 		msg.dismissMessage(loadMessage);
+		msg.createDismissibleMessage("*** ppp ***");
 		if(e.origin == 'http://www.charlau.com') {
 			var messages = e.data.split("~~om~~");
 			if(iCanListen){
 				switch (messages[0]){
 				case "[ping]":
 					waitingForCharlau = false;
-					iframeWin.postMessage('[getlist]~~om~~', '*');
+					iframeWin.postMessage('[getlist]~~om~~', e.origin);
 					waitingForCharlau = false;
 					break;
 				case "[addok]":
