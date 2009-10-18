@@ -156,20 +156,16 @@
 		msg.dismissMessage(loadMessage);
 		tabs.setSelectedTab(0);
 
-//msg.createDismissibleMessage(prefs.getString("nbmessages"));
-//msg.createDismissibleMessage(messages.length-1);
-//msg.createDismissibleMessage(firstpass);
-
 		if((iamTheHost) && firstpass && (messages.length-1 > prefs.getInt("nbmessages"))){
 
-			msg.createDismissibleMessage("You have new messages!");
+			msg.createTimerMessage("You have new messages!",3);
 			}else{
 				if (iCanListen && !firstpass){
 					if(myRamdom != wave.getState().get('added')){
 						if(iamTheHost){
-							msg.createDismissibleMessage("You have new messages!");
+							msg.createTimerMessage("You have new messages!",3);
 						}else{
-							msg.createDismissibleMessage("Someone else left a message!");				
+							msg.createTimerMessage("Someone else left a message!",3);				
 						}
 					}
 				}
