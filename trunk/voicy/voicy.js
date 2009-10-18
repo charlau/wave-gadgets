@@ -15,13 +15,14 @@
 	var myRamdom="";
 	var firstStatus = true;
 	var waitingForCharlau = true;
-	
 	var gagheight;
 	var Connected = false;
 	var iframeSrc = "";
 	var iamTheHost = false;
 	var nbmessages;
 	var nbmessnew;
+	var IamRecording = false;
+
 	
 	function init(){
 		msg = new gadgets.MiniMessage();
@@ -70,6 +71,7 @@
 					index: 0
 				});
 			}else{
+				IamRecording = true;
 				document.getElementById("playdiv").innerHTML="";
 				therecordpanel += '<div id="byline" style="font-family:courier, arial, sans-serif; font-size:10px; float:left; width:100%; margin-top:36px; margin-bottom:0; margin-left:10px; padding:0; line-height:14px;">http://wave-gadgets.googlecode.com/svn/trunk/voicy/manifest.xml<br />Gadget by <a href="http://charlau.posterous.com/" target="_blank">charlau</a></div>';
 			}
@@ -174,9 +176,12 @@
 				loGit(particip);
 			document.toplay.riffly_id2.options[x]=new Option(particip, opt[1], false, false);
 		}
-		msg.dismissMessage(loadMessage);
-		tabs.setSelectedTab(0);
 
+		msg.dismissMessage(loadMessage);
+		if(!IamRecording){
+			tabs.setSelectedTab(0);
+		}
+		
 		if((iamTheHost) && firstpass && (messages.length-1 > prefs.getInt("nbmessages"))){
 
 			msg.createTimerMessage("You have new messages!",3);
@@ -246,10 +251,14 @@
 	}
 
 	function toPlayTab(tabId) {
+		IamRecording = false;
 		document.toplay.riffly_id2.selectedIndex = 0;
 		document.getElementById('player_container').innerHTML = '';
 	}
 
+	function toRecTab(tabId) {
+		IamRecording = true;
+	}
 
 	function randomString(length){
 		var chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
