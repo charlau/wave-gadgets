@@ -30,7 +30,7 @@
 			prefs.set("zfile", randomString(15)+".txt"); 
 		}
 		prefs.set("firstrun",false);
-		wooYayIntervalId = setInterval("getReady()", 250);
+		wooYayIntervalId = setInterval("getReady()", 100);
 	}
 
 	function getReady() {

@@ -27,29 +27,29 @@
     <![CDATA[
 <head>
 	<link rel="stylesheet" type="text/css" href="http://wave-gadgets.googlecode.com/svn/trunk/voicy/forms.css" media="screen" />
-	<script type="text/javascript" src="http://free-video-comments-at.riffly.com/static/js/api/1/web.js"></script>
-<!--	<script type="text/javascript" src="http://wave-gadgets.googlecode.com/svn/trunk/voicy/style.js"></script> -->
 	<script type="text/javascript" src="http://wave-gadgets.googlecode.com/svn/trunk/voicy/voicy.js"></script>
+	<script type="text/javascript" src="http://free-video-comments-at.riffly.com/static/js/api/1/web.js"></script>
 </head>
 <body>
 	<div id="playdiv" style="display:none; float:left; width:100%; padding:0; margin:0;">
-	<div style="float:right; font-size:10px; font-family:Courier, Arial, Helvetica, sans-serif; margin-top:3px; margin-right:10px;">
-Gadget by <a href="http://charlau.posterous.com/" target="_blank">charlau</a></div>
-			<div id="player_container" style="height:20px; margin-top:30px; margin-left:10px;"></div>
-		<div id="choosefile" style="margin-left:10px;">
-			<form name="toplay" action="#" method="post">
-				<select name="riffly_id2" class="ttt" style="width:190px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #ffffff; background-color: red;" onChange="showPlayer('player_container', document.toplay.riffly_id2.value, 'audio');">
-					<option value="" selected="selected">-------click to play-------</option>
-				</select>
+	<div style="float:right; font-size:10px; font-family:Courier, Arial, Helvetica, sans-serif; margin-top:3px; margin-right:10px;">Gadget by <a href="http://charlau.posterous.com/" target="_blank">charlau</a></div>
+	<div id="player_container" style="height:20px; margin-top:30px; margin-left:10px;"></div>
+	<div id="choosefile" style="margin-left:10px;">
+		<form name="toplay" action="#" method="post">
+			<select name="riffly_id2" class="ttt" style="width:190px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #ffffff; background-color: red;" onChange="showPlayer('player_container', document.toplay.riffly_id2.value, 'audio');">
+				<option value="" selected="selected">-------click to play-------</option>
+			</select>
+		</form>
+	</div>
+	<div id="HostOpt" style="font-size:12px; float:left; width:100%; margin-top:96px; margin-bottom:0; margin-left:10px; padding:0;">
+		<div id="mprivates" style="display:none;">
+			<form id="privachk" action="#">Keep messages private <input type="checkbox" name="priva" class="ttt" value="secret" onChange="checkOpt(this);">
 			</form>
 		</div>
-		<div id="HostOpt" style="font-size:12px; float:left; width:100%; margin-top:96px; margin-bottom:0; margin-left:10px; padding:0;"><div id="mprivates" style="display:none;"><form id="privachk" action="#">Keep messages private <input type="checkbox" name="priva" class="ttt" value="secret" onChange="checkOpt(this);"></form></div><div style="font-size:10px;">http://wave-gadgets.googlecode.com/svn/trunk/voicy/manifest.xml</div></div>		
+		<div style="font-size:10px;">http://wave-gadgets.googlecode.com/svn/trunk/voicy/manifest.xml</div>		
 	</div>
-<!--
-<div id="rectab" style="display:none; font-family:courier, arial, sans-serif; font-size:10px; margin-top:3px; margin-right:10px; float:right;">Recording courtesy of <a href="http://riffly.com/" target="_blank">riffly</a></div><div id="recorder_container" style="float:left; width:100%; display:block; margin-left:10px;"></div><div id="byline" style="display:none; font-family:courier, arial, sans-serif; font-size:10px; float:left; width:100%; margin-top:76px; margin-bottom:0; margin-left:10px; padding:0; line-height:14px;">http://wave-gadgets.googlecode.com/svn/trunk/voicy/manifest.xml<br />Gadget by <a href="http://charlau.posterous.com/" target="_blank">charlau</a></div>
--->
 	<div id="content_div" style="display:none;"></div>
-<body>
+</body>
     ]]>
   </Content>
 </Module>
