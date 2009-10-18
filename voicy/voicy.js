@@ -32,8 +32,7 @@
 		}
 		prefs.set("firstrun",false);
 		setIframe();
-
-		wooYayIntervalId = setInterval("waitingCharlau()", 500);
+		getReady();
 	}
 
 	function waitingCharlau() {
