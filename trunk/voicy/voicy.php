@@ -60,7 +60,7 @@
 				if("<?php echo $_POST['getlist']; ?>"!=""){
 					parentWin.postMessage("[list]~~om~~<?php echo $listTosend; ?>","https://0-wave-opensocial.googleusercontent.com");			
 				}else{
-					parentWin.postMessage("[ping]~~om~~","https://0-wave-opensocial.googleusercontent.com");			
+//					parentWin.postMessage("[ping]~~om~~","https://0-wave-opensocial.googleusercontent.com");			
 				}
 			}
             window.addEventListener("message", function(e){ 
@@ -68,6 +68,7 @@
 					var messages = e.data.split("~~om~~");
 					switch (messages[0]){
 					case "[ping]":
+						getlist();
 //						parentWin.postMessage("[ping]~~om~~","https://0-wave-opensocial.googleusercontent.com");
 						break;
 					case "[getlist]":

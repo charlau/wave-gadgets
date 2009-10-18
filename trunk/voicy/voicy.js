@@ -14,6 +14,7 @@
 	var iframeWin;
 	var myRamdom="";
 	var firstStatus = true;
+	var waitingForCharlau = true;
 	
 	var gagheight;
 	var Connected = false;
@@ -30,13 +31,21 @@
 			prefs.set("zfile", randomString(15)+".txt"); 
 		}
 		prefs.set("firstrun",false);
-		wooYayIntervalId = setInterval("getReady()", 100);
+		setIframe();
+
+		wooYayIntervalId = setInterval("waitingForCharlau()", 500);
 	}
 
+	function waitingForCharlau() {
+		if(!waitingForCharlau){
+			clearInterval(wooYayIntervalId);
+			getReady();
+		}
+	}
+	
 	function getReady() {
 		
 		if (wave && wave.isInWaveContainer()) {
-			clearInterval(wooYayIntervalId);
 			myID = wave.getViewer().getId();
 			theHost = wave.getHost().getId();
 			
@@ -75,7 +84,7 @@
 //			document.getElementById("rectab").style.display="block";
 			rifflyShowRecorder('recorder_container', 'audio', 'rifflyFinishedRecording');
 			document.getElementById('recorder_container').firstChild.style.display="none";
-			setIframe();
+
 			wave.setStateCallback(stateUpdated);
 		}
 	}
@@ -110,6 +119,7 @@
 					msg.createTimerMessage("Message sent!", 3);
 					break;
 				case "[list]":
+					waitingForCharlau = false;
 					loadMessage = msg.createStaticMessage("loading playlist");
 					generateList(messages);
 					break;
