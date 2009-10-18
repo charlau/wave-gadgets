@@ -52,7 +52,8 @@
  
 	var parentWin = window.parent;
 	var listCount = 0;
-
+	var thesource = "";
+	
 	window.onload = function(){ 
 			if("<?php echo $_POST['riffly_id']; ?>"!=""){
 				parentWin.postMessage("[addok]~~om~~","https://0-wave-opensocial.googleusercontent.com");				
@@ -65,11 +66,12 @@
 			}
             window.addEventListener("message", function(e){ 
 				if (e.origin == 'https://0-wave-opensocial.googleusercontent.com') {
+					thesource = e.origin;
 					var messages = e.data.split("~~om~~");
 					switch (messages[0]){
 					case "[ping]":
 //						getlist();
-						parentWin.postMessage("[ping]~~om~~","https://0-wave-opensocial.googleusercontent.com");
+						parentWin.postMessage("[ping]~~om~~",e.origin);
 						break;
 					case "[getlist]":
 						getlist();
