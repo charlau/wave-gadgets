@@ -44,7 +44,7 @@
 	
 	function getReady() {
 		
-		if (wave && wave.isInWaveContainer()) {
+		if (wave && wave.isInWaveContainer() && wave.getViewer().getId()) {
 			clearInterval(wooYayIntervalId);
 			myID = wave.getViewer().getId();
 			theHost = wave.getHost().getId();
