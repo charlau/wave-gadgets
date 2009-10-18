@@ -91,7 +91,6 @@
 //			}
 			iframeWin.postMessage('[getlist]~~om~~', 'http://www.charlau.com');
 		}
-		firstpass=false;
 	}
 
 	function receiver(e) {
@@ -179,6 +178,7 @@
 
 		if(iamTheHost){
 			prefs.set("nbmessages", messages.length-1);
+			firstpass=false;
 		}
 	}
 
