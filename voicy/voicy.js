@@ -25,14 +25,21 @@
 
 	
 	function init(){
-		msg = new gadgets.MiniMessage();
-		loadMessage = msg.createStaticMessage("loading gadget");
-		gagheight = "210";
-		if (prefs.getString("zfile") == "") {
-			prefs.set("zfile", randomString(15)+".txt"); 
+		if (wave && wave.isInWaveContainer()) {		
+			msg = new gadgets.MiniMessage();
+			loadMessage = msg.createStaticMessage("loading gadget");
+			gagheight = "210";
+			if (prefs.getString("zfile") == "") {
+				prefs.set("zfile", randomString(15)+".txt"); 
+			}
+			prefs.set("firstrun",false);
+//			wooYayIntervalId = setInterval("getReady()", 200);
+			wave.setStateCallback(stateUpdated);
+			setIframe();
+			getReady();
+			gadgets.window.adjustHeight();
+			wooYayIntervalId = setInterval("waitingCharlau()", 200);
 		}
-		prefs.set("firstrun",false);
-		wooYayIntervalId = setInterval("getReady()", 200);
 	}
 
 	function waitingCharlau() {
@@ -45,7 +52,7 @@
 	
 	function getReady() {
 		
-		if (wave && wave.isInWaveContainer() && wave.getViewer().getId()) {
+		if (wave && wave.isInWaveContainer()) {
 			clearInterval(wooYayIntervalId);
 			myID = wave.getViewer().getId();
 			theHost = wave.getHost().getId();
@@ -65,7 +72,7 @@
 			tabs.alignTabs("left", 10);
 			if(iamTheHost || !(prefs.getBool("priva"))){			
 				iCanListen = true;
-				tabs.addTab("Play messages", {
+				tabs.addTab("Play messages (TEST)", {
 					contentContainer: document.getElementById("playdiv"),
 					callback: toPlayTab,
 					index: 0
@@ -75,7 +82,7 @@
 				document.getElementById("playdiv").innerHTML="";
 				therecordpanel += '<div id="byline" style="font-family:courier, arial, sans-serif; font-size:10px; float:left; width:100%; margin-top:36px; margin-bottom:0; margin-left:10px; padding:0; line-height:14px;">http://wave-gadgets.googlecode.com/svn/trunk/voicy/manifest.xml<br />Gadget by <a href="http://charlau.posterous.com/" target="_blank">charlau</a></div>';
 			}
-			var therectab = tabs.addTab("Leave a message", {
+			var therectab = tabs.addTab("Leave a message (TEST)", {
 				callback: toRecTab,
 				index: 1
 			});
@@ -87,15 +94,11 @@
 
 			rifflyShowRecorder('recorder_container', 'audio', 'rifflyFinishedRecording');
 			document.getElementById('recorder_container').firstChild.style.display="none";
-
-			setIframe();
-			wooYayIntervalId = setInterval("waitingCharlau()", 200);
-			wave.setStateCallback(stateUpdated);
 		}
 	}
 
 	function stateUpdated() {
-		if (iCanListen && (myRamdom != prefs.getString("lastRamdom"))){
+		if (iCanListen && (myRamdom != prefs.getString("lastRamdom")) && !waitingForCharlau){
 			iframeWin.postMessage('[getlist]~~om~~', 'http://www.charlau.com');
 		}
 	}
@@ -110,6 +113,7 @@
 				case "[ping]":
 					waitingForCharlau = false;
 					iframeWin.postMessage('[getlist]~~om~~', 'http://www.charlau.com');
+					waitingForCharlau = false;
 					break;
 				case "[addok]":
 					myRamdom = randomString(10);
