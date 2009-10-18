@@ -61,7 +61,7 @@
 			}else{
 				document.getElementById("playdiv").innerHTML="";
 //				document.getElementById("byline").style.display="block";
-				therecordpanel += '<div id="byline" style="font-family:courier, arial, sans-serif; font-size:10px; float:left; width:100%; margin-top:16px; margin-bottom:0; margin-left:10px; padding:0; line-height:14px;">http://wave-gadgets.googlecode.com/svn/trunk/voicy/manifest.xml<br />Gadget by <a href="http://charlau.posterous.com/" target="_blank">charlau</a></div>';
+				therecordpanel += '<div id="byline" style="font-family:courier, arial, sans-serif; font-size:10px; float:left; width:100%; margin-top:30px; margin-bottom:0; margin-left:10px; padding:0; line-height:14px;">http://wave-gadgets.googlecode.com/svn/trunk/voicy/manifest.xml<br />Gadget by <a href="http://charlau.posterous.com/" target="_blank">charlau</a></div>';
 			}
 			var therectab = tabs.addTab('Record');
 			document.getElementById(therectab).innerHTML = therecordpanel;
@@ -76,7 +76,7 @@
 
 	function stateUpdated() {
 		if (iCanListen){
-			if(myRamdom != wave.getState().get('added') && !firstStatus){
+			if(myRamdom != wave.getState().get('added')){
 				if(iamTheHost){
 					msg.createDismissibleMessage("You have new messages!");
 				}else{
