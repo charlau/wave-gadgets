@@ -18,6 +18,8 @@
 	var Connected = false;
 	var iframeSrc = "";
 	var iamTheHost = false;
+	var nbmessages;
+	var nbmessnew;
 	
 	function init(){
 		msg = new gadgets.MiniMessage();
@@ -79,16 +81,14 @@
 
 	function stateUpdated() {
 		if (iCanListen && !firstrun){
-			if(myRamdom != wave.getState().get('added')){
-				if(iamTheHost){
+//			if(myRamdom != wave.getState().get('added')){
+//				if(iamTheHost){
 //					msg.createDismissibleMessage("You have new messages!");
-				}else{
+//				}else{
 //					msg.createDismissibleMessage("Someone else left a message!");				
-				}
-			}
+//				}
+//			}
 			iframeWin.postMessage('[getlist]~~om~~', 'http://www.charlau.com');
-		}else{
-			firstrun=false;
 		}
 	}
 
@@ -109,7 +109,6 @@
 					msg.createTimerMessage("Message sent!", 3);
 					break;
 				case "[list]":
-					loGit(messages[1]);
 					loadMessage = msg.createStaticMessage("loading playlist");
 					generateList(messages);
 					break;
@@ -155,13 +154,26 @@
 		}
 		msg.dismissMessage(loadMessage);
 		tabs.setSelectedTab(0);
-		if((myID==theHost) && (messages.length-1 > prefs.getInt("nbmessages"))){
+
+		if((iamTheHost) && firstrun && (messages.length-1 > prefs.getInt("nbmessages"))){
 			prefs.set("nbmessages", messages.length-1);
-			if(myRamdom=="") {
-				myRamdom=="sdf";
-				firstStatus = false;
-//				msg.createDismissibleMessage("You have new messages!");
+			msg.createDismissibleMessage("You have new messages!");
+			}else{
+				if (iCanListen && !firstrun){
+					if(myRamdom != wave.getState().get('added')){
+						if(iamTheHost){
+							msg.createDismissibleMessage("You have new messages!");
+						}else{
+							msg.createDismissibleMessage("Someone else left a message!");				
+						}
+					}
+				}
+			
 			}
+
+		firstrun=false;
+		if(iamTheHost){
+			prefs.set("nbmessages", messages.length-1);
 		}
 	}
 
