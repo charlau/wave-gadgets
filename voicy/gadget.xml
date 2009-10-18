@@ -31,7 +31,7 @@
 	<script type="text/javascript" src="http://wave-gadgets.googlecode.com/svn/trunk/voicy/voicy.js"></script>
 </head>
 <body>
-	<div id="playdiv" style="float:left; width:100%; padding:0; margin:0;">
+	<div id="playdiv" style="display:none; float:left; width:100%; padding:0; margin:0;">
 	<div style="float:right; font-size:10px; font-family:Courier, Arial, Helvetica, sans-serif; margin-top:3px; margin-right:10px;">
 Gadget by <a href="http://charlau.posterous.com/" target="_blank">charlau</a></div>
 			<div id="player_container" style="height:20px; margin-top:30px; margin-left:10px;"></div>
