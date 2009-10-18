@@ -89,22 +89,13 @@
 			document.getElementById('recorder_container').firstChild.style.display="none";
 
 			setIframe();
-
 			wooYayIntervalId = setInterval("waitingCharlau()", 200);
-
 			wave.setStateCallback(stateUpdated);
 		}
 	}
 
 	function stateUpdated() {
 		if (iCanListen){
-//			if(myRamdom != wave.getState().get('added')){
-//				if(iamTheHost){
-//					msg.createDismissibleMessage("You have new messages!");
-//				}else{
-//					msg.createDismissibleMessage("Someone else left a message!");				
-//				}
-//			}
 			iframeWin.postMessage('[getlist]~~om~~', 'http://www.charlau.com');
 		}
 	}
@@ -229,11 +220,11 @@
 	function rifflyFinishedRecording (riffly_id, riffly_type) {
 
 		iframeWin.postMessage('[addrec]~~om~~' + myID + '|||' + riffly_id, 'http://www.charlau.com');		
-		if(!(iCanListen)){
+//		if(!(iCanListen)){
 			document.getElementById("recorder_container").innerHTML="";
 			rifflyShowRecorder('recorder_container', 'audio', 'rifflyFinishedRecording');
 			document.getElementById('recorder_container').firstChild.style.display="none";
-		}
+//		}
 	}
 
 	function showPlayer (player_container_id, riffly_id, riffly_type) {
