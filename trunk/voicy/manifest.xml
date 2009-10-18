@@ -1,4 +1,4 @@
-<extension name="Voicy" description="Add a little 'voicy' to your waves, record greetings and comments and play them back within a wave" thumbnailUrl="http://wave-gadgets.googlecode.com/svn/trunk/voicy/images/screen.png">
+<extension name="Voicy" description="Add a little 'voicy' to your waves, record greetings and comments and play them back within a wave" thumbnailUrl="http://wave-gadgets.googlecode.com/svn/trunk/voicy/images/voicy-screen.png">
 	<author name="Charles Deschenes" email="charlesmtl@gmail.com"/>
 	<menuHook location="toolbar" text="Recording machine greetings N comments" iconUrl="http://wave-gadgets.googlecode.com/svn/trunk/voicy/images/voicy-icon.png">
 		<insertGadget url="http://wave-gadgets.googlecode.com/svn/trunk/voicy/gadget.xml"/>
