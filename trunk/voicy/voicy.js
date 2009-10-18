@@ -37,7 +37,6 @@
 			setIframe();
 			wave.setStateCallback(stateUpdated);
 			wave.setParticipantCallback(participantIsReady);
-			wooYayIntervalId = setInterval("waitingCharlau()", 500);
 	}
 
 	function stateUpdated() {
@@ -52,6 +51,7 @@
 			theHost = wave.getHost().getId();
 			myID = wave.getViewer().getId();
 			getReady();
+			gadgets.window.adjustHeight();
 		}
 	}
 
@@ -69,7 +69,6 @@
 		document.getElementById('content_div').innerHTML = html;
 		document.getElementById("mainIframe").src = iframeSrc;
 
-		gadgets.window.adjustHeight();
 		iframeWin = document.getElementsByTagName('iframe')[0].contentWindow;
 		window.addEventListener('message', receiver, false);
 	}
@@ -117,6 +116,9 @@
 
 			rifflyShowRecorder('recorder_container', 'audio', 'rifflyFinishedRecording');
 			document.getElementById('recorder_container').firstChild.style.display="none";
+			
+			wooYayIntervalId = setInterval("waitingCharlau()", 200);
+
 		}
 	}
 
