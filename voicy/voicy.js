@@ -60,6 +60,7 @@
 			clearInterval(wooYayIntervalId);
 		}else{
 			iframeWin.postMessage('[ping]~~om~~', 'http://www.charlau.com');
+			msg.createDismissibleMessage("*** I ping ***");
 		}
 	}
 	
@@ -117,7 +118,7 @@
 			rifflyShowRecorder('recorder_container', 'audio', 'rifflyFinishedRecording');
 			document.getElementById('recorder_container').firstChild.style.display="none";
 			
-			wooYayIntervalId = setInterval("waitingCharlau()", 200);
+			wooYayIntervalId = setInterval("waitingCharlau()", 500);
 
 		}
 	}
@@ -126,6 +127,7 @@
 		Connected=true;
 		msg.dismissMessage(loadMessage);
 		if(e.origin == 'http://www.charlau.com') {
+msg.createDismissibleMessage("*** you pinged ***");
 			var messages = e.data.split("~~om~~");
 			if(iCanListen){
 				switch (messages[0]){
