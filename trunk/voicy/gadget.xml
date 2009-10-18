@@ -25,11 +25,11 @@
 	<UserPref name="priva" display_name="Private recordings?" default_value="false" datatype="bool" />
 
 	<Content type="html">
-    <![CDATA[
+<![CDATA[
 	<link rel="stylesheet" type="text/css" href="http://wave-gadgets.googlecode.com/svn/trunk/voicy/forms.css" media="screen" />
 	<script type="text/javascript" src="http://wave-gadgets.googlecode.com/svn/trunk/voicy/voicy.js"></script>
 	<script type="text/javascript" src="http://free-video-comments-at.riffly.com/static/js/api/1/web.js"></script>
-
+This is a test. Really. No upside down whale, but just the same...
 	<div id="playdiv" style="display:none; float:left; width:100%; padding:0; margin:0;">
 	<div style="float:right; font-size:10px; font-family:Courier, Arial, Helvetica, sans-serif; margin-top:3px; margin-right:10px;">Gadget by <a href="http://charlau.posterous.com/" target="_blank">charlau</a></div>
 	<div id="player_container" style="height:20px; margin-top:30px; margin-left:10px;"></div>
