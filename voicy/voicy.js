@@ -155,10 +155,9 @@
 		msg.dismissMessage(loadMessage);
 		tabs.setSelectedTab(0);
 
-		if((iamTheHost) && firstrun && (messages.length-1 > prefs.getInt("nbmessages"))){
-
 msg.createDismissibleMessage(prefs.getString("nbmessages"));
 msg.createDismissibleMessage(messages.length-1);
+		if((iamTheHost) && firstrun && (messages.length-1 > prefs.getInt("nbmessages"))){
 
 			prefs.set("nbmessages", messages.length-1);
 			msg.createDismissibleMessage("You have new messages!");
