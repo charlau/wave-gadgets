@@ -33,10 +33,10 @@
 		prefs.set("firstrun",false);
 		setIframe();
 
-		wooYayIntervalId = setInterval("waitingForCharlau()", 500);
+		wooYayIntervalId = setInterval("waitingCharlau()", 500);
 	}
 
-	function waitingForCharlau() {
+	function waitingCharlau() {
 		if(!waitingForCharlau){
 			clearInterval(wooYayIntervalId);
 			getReady();
