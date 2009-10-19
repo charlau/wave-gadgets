@@ -40,7 +40,7 @@
 
 	function stateUpdated() {
 		if (iCanListen && (myRamdom != prefs.getString("lastRamdom")) && !waitingForCharlau){
-			iframeWin.postMessage('[getlist]~~om~~', 'http://www.photo-chaz.net');
+//			iframeWin.postMessage('[getlist]~~om~~', 'http://www.photo-chaz.net');
 //			msg.createDismissibleMessage("***getlist***");
 		}
 	}
@@ -59,7 +59,7 @@
 		if(!waitingForCharlau){
 			clearInterval(wooYayIntervalId);
 		}else{
-			iframeWin.postMessage('[ping]~~om~~', 'http://www.photo-chaz.net');
+//			iframeWin.postMessage('[ping]~~om~~', 'http://www.photo-chaz.net');
 		}
 	}
 	
