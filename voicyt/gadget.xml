@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+	<ModulePrefs 
+		title="Om2" 
+		height="200"
+		description="Add a little 'voicyt' to your waves, record greetings and comments and play them back within a wave"
+		author="charlau" author_email="charlesmtl+voicyt@gmail.com"
+		author_link="http://charlau.posterous.com" author_location="Switzerland"
+		author_aboutme=""
+		author_quote=""
+		thumbnail=""
+		screenshot="http://wave-gadgets.googlecode.com/svn/trunk/voicyt/images/voicyt-screen.png">
+		<Require feature="wave-preview"/>
+		<Require feature="dynamic-height"/>
+		<Require feature="setprefs" /> 
+		<Require feature="minimessage"/>
+		<Require feature="tabs"/>
+	</ModulePrefs>
+	<UserPref name="zfile" default_value="" datatype="hidden" />
+	<UserPref name="nbmessages" default_value="0" datatype="hidden" />
+	<UserPref name="nbmessnew" default_value="0" datatype="hidden" />
+	<UserPref name="lastRamdom" default_value="" datatype="hidden" />
+	<UserPref name="firstrun" default_value="true" datatype="bool" />
+	<UserPref name="debugMode" display_name="Debug Mode" datatype="bool" default_value="false" />
+	<UserPref name="priva" display_name="Private recordings?" default_value="false" datatype="bool" />
+
+	<Content type="html">
+<![CDATA[
+	<link rel="stylesheet" type="text/css" href="http://wave-gadgets.googlecode.com/svn/trunk/voicyt/forms.css" media="screen" />
+	<script type="text/javascript" src="http://wave-gadgets.googlecode.com/svn/trunk/voicyt/voicy.js"></script>
+	<script type="text/javascript" src="http://free-video-comments-at.riffly.com/static/js/api/1/web.js"></script>
+This is a test. Really. No upside down whale, but just the same. . . Will be back shortly! (that is, a day or two)
+	<div id="playdiv" style="display:none; float:left; width:100%; padding:0; margin:0;">
+	<div style="float:right; font-size:10px; font-family:Courier, Arial, Helvetica, sans-serif; margin-top:3px; margin-right:10px;">Gadget by <a href="http://charlau.posterous.com/" target="_blank">charlau</a></div>
+	<div id="player_container" style="height:20px; margin-top:30px; margin-left:10px;"></div>
+	<div id="choosefile" style="margin-left:10px;">
+		<form name="toplay" action="#" method="post">
+			<select name="riffly_id2" class="ttt" style="width:190px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #ffffff; background-color: red;" onChange="showPlayer('player_container', document.toplay.riffly_id2.value, 'audio');">
+				<option value="" selected="selected">-------click to play-------</option>
+			</select>
+		</form>
+	</div>
+	<div id="HostOpt" style="font-size:12px; float:left; width:100%; margin-top:96px; margin-bottom:0; margin-left:10px; padding:0;">
+		<div id="mprivates" style="display:none;">
+			<form id="privachk" action="#">Keep messages private <input type="checkbox" name="priva" class="ttt" value="secret" onChange="checkOpt(this);">
+			</form>
+		</div>
+		<div style="font-size:10px;">http://wave-gadgets.googlecode.com/svn/trunk/voicyt/manifest.xml</div>		
+	</div>
+	<div id="content_div" style="display:none;"><iframe id="mainIframe" src="http://www.charlau.com/gwave/voicyt.php" height="0" frameborder="0" scrolling="no"></iframe></div>
+This is a test. Really. No upside down whale, but just the same. . . Will be back shortly! (that is, a day or two)
+    ]]>
+  </Content>
+</Module>
