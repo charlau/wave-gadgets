@@ -19,13 +19,22 @@
 					var messages = e.data.split("~~om~~");
 					switch (messages[0]){
 					case "[ping]":
+						clearInterval(wooYayIntervalId);
 						alert("ping");
 						parentWin.postMessage("[ping]~~om~~"+e.origin+"~~om~~"+e.source+"~~om~~",e.origin);
 						break;
 					default:
+					}
 				}
 			}, false);			 
 		} 
+
+	function pinggoogle(){
+		
+		parentWin.postMessage("[ping]~~om~~1~~om~~2~~om~~",'https://0-wave-opensocial.googleusercontent.com');
+		
+		}
+		var xy = setInterval("pinggoogle()", 1000);
 
   </script>
 
