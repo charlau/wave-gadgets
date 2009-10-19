@@ -68,12 +68,11 @@
             window.addEventListener("message", function(e){ 
 				if (e.origin == 'https://0-wave-opensocial.googleusercontent.com') {
 					thesource = e.origin;
+					alert(e.origin);
 					var messages = e.data.split("~~om~~");
 					switch (messages[0]){
 					case "[ping]":
 //						getlist();
-if (!file_exists('log.log')) { write_file('log.log',''); }
-append_file($filename,e.origin .'*-----*'. e.source);
 						parentWin.postMessage("[ping]~~om~~",e.origin);
 						break;
 					case "[getlist]":
