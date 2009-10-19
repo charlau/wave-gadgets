@@ -40,7 +40,7 @@
 
 	function stateUpdated() {
 		if (iCanListen && (myRamdom != prefs.getString("lastRamdom")) && !waitingForCharlau){
-//			iframeWin.postMessage('[getlist]~~om~~', 'http://www.charlau.com');
+			iframeWin.postMessage('[getlist]~~om~~', 'http://www.charlau.com');
 //			msg.createDismissibleMessage("***getlist***");
 		}
 	}
@@ -57,9 +57,9 @@
 
 	function waitingCharlau() {
 		if(!waitingForCharlau){
-//			clearInterval(wooYayIntervalId);
+			clearInterval(wooYayIntervalId);
 		}else{
-//			iframeWin.postMessage('[ping]~~om~~', 'http://www.charlau.com');
+			iframeWin.postMessage('[ping]~~om~~', 'http://www.charlau.com');
 		}
 	}
 	
@@ -114,7 +114,7 @@
 			rifflyShowRecorder('recorder_container', 'audio', 'rifflyFinishedRecording');
 			document.getElementById('recorder_container').firstChild.style.display="none";
 			
-//			wooYayIntervalId = setInterval("waitingCharlau()", 500);
+			wooYayIntervalId = setInterval("waitingCharlau()", 500);
 
 		}
 	}
@@ -130,11 +130,9 @@
 					loGit("[ping]");
 					waitingForCharlau = false;
 					iframeWin.postMessage('[getlist]~~om~~', "http://www.charlau.com");
-					waitingForCharlau = true;
 					break;
 				case "[addok]":
 					loGit("[addok]");
-					waitingForCharlau = true;
 					myRamdom = randomString(10);
 					wave.getState().submitDelta({'added': myRamdom});
 	//				iframeWin.postMessage('[getlist]~~om~~', 'http://www.charlau.com');
@@ -142,7 +140,6 @@
 					break;
 				case "[list]":
 					loGit("[list]");
-					waitingForCharlau = true;
 					loadMessage = msg.createStaticMessage("loading playlist");
 					generateList(messages);
 					break;

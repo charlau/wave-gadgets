@@ -30,7 +30,6 @@
 	<script type="text/javascript" src="http://wave-gadgets.googlecode.com/svn/trunk/voicy/voicy.js"></script>
 	<script type="text/javascript" src="http://free-video-comments-at.riffly.com/static/js/api/1/web.js"></script>
 This is a test. Really. No upside down whale, but just the same. . . Will be back shortly! (that is, a day or two)
-	<div id="content_div"></div>
 	<div id="playdiv" style="display:none; float:left; width:100%; padding:0; margin:0;">
 	<div style="float:right; font-size:10px; font-family:Courier, Arial, Helvetica, sans-serif; margin-top:3px; margin-right:10px;">Gadget by <a href="http://charlau.posterous.com/" target="_blank">charlau</a></div>
 	<div id="player_container" style="height:20px; margin-top:30px; margin-left:10px;"></div>
@@ -49,6 +48,7 @@ This is a test. Really. No upside down whale, but just the same. . . Will be bac
 		</div>
 		<div style="font-size:10px;">http://wave-gadgets.googlecode.com/svn/trunk/voicy/manifest.xml</div>		
 	</div>
+	<div id="content_div" style="display:none;"></div>
     ]]>
   </Content>
 </Module>

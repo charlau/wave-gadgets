@@ -60,30 +60,24 @@
 	
 	window.onload = function(){ 
 			if("<?php echo $_POST['riffly_id']; ?>"!=""){
-				addok = true;
+				parentWin.postMessage("[addok]~~om~~","https://0-wave-opensocial.googleusercontent.com");
 			}else{
 				if("<?php echo $_POST['getlist']; ?>"!=""){
-					dolist = true;
+					parentWin.postMessage("[list]~~om~~<?php echo $listTosend; ?>","https://0-wave-opensocial.googleusercontent.com");
+					}else{
+//						pingping = setInterval("pinggoogle()", 500);
+//						parentWin.postMessage("[ping]~~om~~","https://0-wave-opensocial.googleusercontent.com");			
 					}
 			}
-
-			pingping = setInterval("pinggoogle()", 1500);
-			parentWin.postMessage("[ping]~~om~~","https://0-wave-opensocial.googleusercontent.com");			
 
             window.addEventListener("message", function(e){ 
 				if (e.origin == 'https://0-wave-opensocial.googleusercontent.com') {
 					thesource = e.origin;
-					document.getElementById('zmess').textContent = e.data;
 					var messages = e.data.split("~~om~~");
 					switch (messages[0]){
 					case "[ping]":
-						clearInterval(pinggoogle);
-						if(addok){parentWin.postMessage("[addok]~~om~~","https://0-wave-opensocial.googleusercontent.com");}
-						if(dolist){
-							getlist();
-							parentWin.postMessage("[list]~~om~~<?php echo $listTosend; ?>","https://0-wave-opensocial.googleusercontent.com");
-							}
-						parentWin.postMessage("[ping]~~om~~",e.origin);
+//						clearInterval(pinggoogle);
+						parentWin.postMessage("[ping]~~om~~","https://0-wave-opensocial.googleusercontent.com");
 						break;
 					case "[getlist]":
 						getlist();
@@ -98,9 +92,9 @@
 			 
 		} 
 
-	function pinggoogle(){		
-		parentWin.postMessage("[ping]~~om~~",'https://0-wave-opensocial.googleusercontent.com');
-		}
+//	function pinggoogle(){		
+//		parentWin.postMessage("[ping]~~om~~",'https://0-wave-opensocial.googleusercontent.com');
+//		}
 
 	function getlist(){
 		document.getElementById('getlist').value = "yes";
@@ -117,7 +111,6 @@
 
 </head>
 <body>
-<div id="zmess">ttt</div>
 <form name="recorded" id="recorded" method="post" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>">
 <input name="riffly_id" id="riffly_id" type="hidden">
 <input name="fl" id="fl" type="hidden" value="<?php echo $_REQUEST['fl'] ?>">
