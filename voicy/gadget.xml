@@ -21,7 +21,7 @@
 	<UserPref name="nbmessnew" default_value="0" datatype="hidden" />
 	<UserPref name="lastRamdom" default_value="" datatype="hidden" />
 	<UserPref name="firstrun" default_value="true" datatype="bool" />
-	<UserPref name="debugMode" display_name="Debug Mode" datatype="bool" default_value="false" />
+	<UserPref name="debugMode" display_name="Debug Mode" datatype="bool" default_value="true" />
 	<UserPref name="priva" display_name="Private recordings?" default_value="false" datatype="bool" />
 
 	<Content type="html">
@@ -44,11 +44,11 @@ This is a test. Really. No upside down whale, but just the same. . . Will be bac
 		<div id="mprivates" style="display:none;">
 			<form id="privachk" action="#">Keep messages private <input type="checkbox" name="priva" class="ttt" value="secret" onChange="checkOpt(this);">
 			</form>
+This is a test. Really. No upside down whale, but just the same. . . Will be back shortly! (that is, a day or two)
 		</div>
 		<div style="font-size:10px;">http://wave-gadgets.googlecode.com/svn/trunk/voicy/manifest.xml</div>		
 	</div>
-	<div id="content_div" style="display:none;"></div>
-This is a test. Really. No upside down whale, but just the same. . . Will be back shortly! (that is, a day or two)
+	<div id="content_div"></div>
     ]]>
   </Content>
 </Module>
