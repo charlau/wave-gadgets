@@ -97,7 +97,7 @@
 				tabs.addTab("Play messages (TEST)", {
 					contentContainer: document.getElementById("playdiv"),
 					callback: toPlayTab,
-					index: 0
+					index: 3
 				});
 			}else{
 				IamRecording = true;
@@ -109,9 +109,9 @@
 				index: 1
 			});
 				tabs.addTab("php", {
-					contentContainer: document.getElementById("mainIframe"),
+					contentContainer: document.getElementById("content_div"),
 					callback: toPlayTab,
-					index: 2
+					index: 0
 				});
 
 			document.getElementById(therectab).innerHTML = therecordpanel;
