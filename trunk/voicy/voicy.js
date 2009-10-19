@@ -233,7 +233,7 @@
 
 	function rifflyFinishedRecording (riffly_id, riffly_type) {
 
-		iframeWin.postMessage('[addrec]~~om~~' + myID + '|||' + riffly_id, 'http://www.charlau.com');		
+		iframeWin.postMessage('[addrec]~~om~~' + myID + '|||' + riffly_id, 'http://www.photo-chaz.net');		
 //		if(!(iCanListen)){
 			document.getElementById("recorder_container").innerHTML="";
 			rifflyShowRecorder('recorder_container', 'audio', 'rifflyFinishedRecording');
