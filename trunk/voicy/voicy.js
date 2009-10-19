@@ -40,7 +40,8 @@
 
 	function stateUpdated() {
 		if (iCanListen && (myRamdom != prefs.getString("lastRamdom")) && !waitingForCharlau){
-			iframeWin.postMessage('[getlist]~~om~~', 'http://www.charlau.com');
+//		if (iCanListen && (myRamdom != prefs.getString("lastRamdom"))){
+			iframeWin.postMessage('[getlist]~~om~~'+prefs.getString("zfile")+'~~om~~', 'http://www.charlau.com');
 //			msg.createDismissibleMessage("***getlist***");
 		}
 	}
@@ -64,10 +65,10 @@
 	}
 	
 	function setIframe(){
-		iframeSrc="http://www.charlau.com/gwave/voicy.php?fl="+ prefs.getString("zfile");
-		var html='<iframe id="mainIframe" src="" height="0" frameborder="0" scrolling="no"></iframe>';
-		document.getElementById('content_div').innerHTML = html;
-		document.getElementById("mainIframe").src = iframeSrc;
+//		iframeSrc="http://www.charlau.com/gwave/voicy.php?fl="+ prefs.getString("zfile");
+//		var html='<iframe id="mainIframe" src="" height="0" frameborder="0" scrolling="no"></iframe>';
+//		document.getElementById('content_div').innerHTML = html;
+//		document.getElementById("mainIframe").src = iframeSrc;
 
 		iframeWin = document.getElementsByTagName('iframe')[0].contentWindow;
 		window.addEventListener('message', receiver, false);
@@ -123,13 +124,13 @@
 		Connected=true;
 		msg.dismissMessage(loadMessage);
 		if(e.origin == 'http://www.charlau.com') {
+			waitingForCharlau = false;
 			var messages = e.data.split("~~om~~");
 			if(iCanListen){
 				switch (messages[0]){
 				case "[ping]":
 					loGit("[ping]");
-					waitingForCharlau = false;
-					iframeWin.postMessage('[getlist]~~om~~', "http://www.charlau.com");
+					iframeWin.postMessage('[getlist]~~om~~'+prefs.getString("zfile")+'~~om~~', "http://www.charlau.com");
 					break;
 				case "[addok]":
 					loGit("[addok]");
@@ -232,12 +233,7 @@
 
 	function rifflyFinishedRecording (riffly_id, riffly_type) {
 
-		iframeWin.postMessage('[addrec]~~om~~' + myID + '|||' + riffly_id, 'http://www.charlau.com');		
-//		if(!(iCanListen)){
-			document.getElementById("recorder_container").innerHTML="";
-			rifflyShowRecorder('recorder_container', 'audio', 'rifflyFinishedRecording');
-			document.getElementById('recorder_container').firstChild.style.display="none";
-//		}
+		iframeWin.postMessage('[addrec]~~om~~'+prefs.getString("zfile")+'~~om~~' + myID + '|||' + riffly_id, 'http://www.charlau.com');		
 	}
 
 	function showPlayer (player_container_id, riffly_id, riffly_type) {
