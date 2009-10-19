@@ -66,9 +66,9 @@
 				}
 			}
             window.addEventListener("message", function(e){ 
+					alert(e.origin);
 				if (e.origin == 'https://0-wave-opensocial.googleusercontent.com') {
 					thesource = e.origin;
-					alert(e.origin);
 					var messages = e.data.split("~~om~~");
 					switch (messages[0]){
 					case "[ping]":
