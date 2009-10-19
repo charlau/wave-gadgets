@@ -22,6 +22,7 @@
 						clearInterval(xy);
 						alert("ping");
 						parentWin.postMessage("[ping]~~om~~"+e.origin+"~~om~~"+e.source+"~~om~~",e.origin);
+						document.getElementById('smessage').value = "ping-charlot";
 						break;
 					default:
 					}
@@ -36,10 +37,13 @@
 		}
 		var xy = setInterval("pinggoogle()", 1000);
 
+		document.forms['recorded'].submit();
+
   </script>
 
 </head>
 
 <body>
+<div id="smessage"></div>
 </body>
 </html>
