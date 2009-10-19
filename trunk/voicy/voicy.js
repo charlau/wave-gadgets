@@ -132,15 +132,17 @@
 				case "[ping]":
 					waitingForCharlau = false;
 					iframeWin.postMessage('[getlist]~~om~~', e.origin);
-					waitingForCharlau = false;
+					waitingForCharlau = true;
 					break;
 				case "[addok]":
+					waitingForCharlau = true;
 					myRamdom = randomString(10);
 					wave.getState().submitDelta({'added': myRamdom});
 	//				iframeWin.postMessage('[getlist]~~om~~', 'http://www.charlau.com');
 					msg.createTimerMessage("Message sent!", 3);
 					break;
 				case "[list]":
+					waitingForCharlau = true;
 					loadMessage = msg.createStaticMessage("loading playlist");
 					generateList(messages);
 					break;
