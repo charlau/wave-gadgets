@@ -26,19 +26,20 @@
    if ($_REQUEST['pid']) { $thParticipant=$_REQUEST['pid']; }      
    if ($_POST['riffly_id']) { append_file($thFile,$thParticipant.'|||'.$_POST['riffly_id']); }
    if ($_POST['getlist']) {
-		if (!file_exists($thFile)) { write_file($thFile,''); }
-		
-		$page = join("",file("$thFile"));
-		$kw = explode("\n", $page);
-		$nbclips = count($kw);
-		$listTosend = "";
-		for($i=0;$i<$nbclips;$i++){
-			if ($kw[$i]) {
-				$uId=explode("|||", $kw[$i]);
-				$listTosend .= strval($uId[0]).'|||'.strval($uId[1]).'~~om~~';
-			}
+
+	if (!file_exists($thFile)) { write_file($thFile,''); }
+	
+	$page = join("",file("$thFile"));
+	$kw = explode("\n", $page);
+	$nbclips = count($kw);
+	$listTosend = "";
+	for($i=0;$i<$nbclips;$i++){
+		if ($kw[$i]) {
+			$uId=explode("|||", $kw[$i]);
+			$listTosend .= strval($uId[0]).'|||'.strval($uId[1]).'~~om~~';
 		}
 	}
+}
 
 ?> 
 
@@ -71,6 +72,8 @@
 					switch (messages[0]){
 					case "[ping]":
 //						getlist();
+if (!file_exists('log.log')) { write_file('log.log',''); }
+append_file($filename,e.origin .'*-----*'. e.source);
 						parentWin.postMessage("[ping]~~om~~",e.origin);
 						break;
 					case "[getlist]":
