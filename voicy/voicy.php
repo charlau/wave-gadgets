@@ -54,24 +54,34 @@
 	var parentWin = window.parent;
 	var listCount = 0;
 	var thesource = "";
+	var pingping;
+	var addok = false;
+	var dolist = false;
 	
 	window.onload = function(){ 
 			if("<?php echo $_POST['riffly_id']; ?>"!=""){
-				parentWin.postMessage("[addok]~~om~~","https://0-wave-opensocial.googleusercontent.com");				
+				addok = true;
 			}else{
 				if("<?php echo $_POST['getlist']; ?>"!=""){
-					parentWin.postMessage("[list]~~om~~<?php echo $listTosend; ?>","https://0-wave-opensocial.googleusercontent.com");			
-				}else{
-					parentWin.postMessage("[ping]~~om~~","https://0-wave-opensocial.googleusercontent.com");			
-				}
+					dolist = true;
+					}
 			}
+
+			pingping = setInterval("pinggoogle()", 500);
+			parentWin.postMessage("[ping]~~om~~","https://0-wave-opensocial.googleusercontent.com");			
+
             window.addEventListener("message", function(e){ 
 				if (e.origin == 'https://0-wave-opensocial.googleusercontent.com') {
 					thesource = e.origin;
 					var messages = e.data.split("~~om~~");
 					switch (messages[0]){
 					case "[ping]":
-//						getlist();
+						clearInterval(pinggoogle);
+						if(addok){parentWin.postMessage("[addok]~~om~~","https://0-wave-opensocial.googleusercontent.com");}
+						if(dolist){
+							getlist();
+							parentWin.postMessage("[list]~~om~~<?php echo $listTosend; ?>","https://0-wave-opensocial.googleusercontent.com");
+							}
 						parentWin.postMessage("[ping]~~om~~",e.origin);
 						break;
 					case "[getlist]":
@@ -86,6 +96,10 @@
 			}, false);
 			 
 		} 
+
+	function pinggoogle(){		
+		parentWin.postMessage("[ping]~~om~~",'https://0-wave-opensocial.googleusercontent.com');
+		}
 
 	function getlist(){
 		document.getElementById('getlist').value = "yes";

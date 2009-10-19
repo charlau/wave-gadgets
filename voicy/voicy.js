@@ -40,7 +40,7 @@
 
 	function stateUpdated() {
 		if (iCanListen && (myRamdom != prefs.getString("lastRamdom")) && !waitingForCharlau){
-//			iframeWin.postMessage('[getlist]~~om~~', 'http://www.photo-chaz.net');
+			iframeWin.postMessage('[getlist]~~om~~', 'http://www.charlau.com');
 //			msg.createDismissibleMessage("***getlist***");
 		}
 	}
@@ -59,12 +59,12 @@
 		if(!waitingForCharlau){
 			clearInterval(wooYayIntervalId);
 		}else{
-//			iframeWin.postMessage('[ping]~~om~~', 'http://www.photo-chaz.net');
+//			iframeWin.postMessage('[ping]~~om~~', 'http://www.charlau.com');
 		}
 	}
 	
 	function setIframe(){
-		iframeSrc="http://www.photo-chaz.net/charlau.com/gwave/voicy.php?fl="+ prefs.getString("zfile");
+		iframeSrc="http://www.charlau.com/gwave/voicy.php?fl="+ prefs.getString("zfile");
 		var html='<iframe id="mainIframe" src="" height="0" frameborder="0" scrolling="no"></iframe>';
 		document.getElementById('content_div').innerHTML = html;
 		document.getElementById("mainIframe").src = iframeSrc;
@@ -125,7 +125,7 @@
 	function receiver(e) {
 		Connected=true;
 //		msg.dismissMessage(loadMessage);
-		if(e.origin == 'http://www.photo-chaz.net') {
+		if(e.origin == 'http://www.charlau.com') {
 			var messages = e.data.split("~~om~~");
 			if(iCanListen){
 				switch (messages[0]){
@@ -233,7 +233,7 @@
 
 	function rifflyFinishedRecording (riffly_id, riffly_type) {
 
-		iframeWin.postMessage('[addrec]~~om~~' + myID + '|||' + riffly_id, 'http://www.photo-chaz.net');		
+		iframeWin.postMessage('[addrec]~~om~~' + myID + '|||' + riffly_id, 'http://www.charlau.com');		
 //		if(!(iCanListen)){
 			document.getElementById("recorder_container").innerHTML="";
 			rifflyShowRecorder('recorder_container', 'audio', 'rifflyFinishedRecording');
