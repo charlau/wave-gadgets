@@ -39,10 +39,10 @@
 	}
 
 	function stateUpdated() {
-//		if (iCanListen && (myRamdom != prefs.getString("lastRamdom")) && !waitingForCharlau){
-			iframeWin.postMessage('[getlist]~~om~~', '*');
-			msg.createDismissibleMessage("***getlist***");
-//		}
+		if (iCanListen && (myRamdom != prefs.getString("lastRamdom")) && !waitingForCharlau){
+			iframeWin.postMessage('[getlist]~~om~~', 'http://www.photo-chaz.net');
+//			msg.createDismissibleMessage("***getlist***");
+		}
 	}
 
 	function participantIsReady() {		
@@ -124,7 +124,7 @@
 
 	function receiver(e) {
 		Connected=true;
-//		msg.dismissMessage(loadMessage);
+		msg.dismissMessage(loadMessage);
 		if(e.origin == 'http://www.charlau.com') {
 			var messages = e.data.split("~~om~~");
 			if(iCanListen){
