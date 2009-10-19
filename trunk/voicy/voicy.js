@@ -97,7 +97,7 @@
 				tabs.addTab("Play messages (TEST)", {
 					contentContainer: document.getElementById("playdiv"),
 					callback: toPlayTab,
-					index: 3
+					index: 0
 				});
 			}else{
 				IamRecording = true;
@@ -108,11 +108,6 @@
 				callback: toRecTab,
 				index: 1
 			});
-				tabs.addTab("php", {
-					contentContainer: document.getElementById("content_div"),
-					callback: toPlayTab,
-					index: 0
-				});
 
 			document.getElementById(therectab).innerHTML = therecordpanel;
 
@@ -133,9 +128,9 @@
 				switch (messages[0]){
 				case "[ping]":
 					loGit("[ping]");
-//					waitingForCharlau = false;
-					iframeWin.postMessage('[getlist]~~om~~', e.origin);
-//					waitingForCharlau = true;
+					waitingForCharlau = false;
+					iframeWin.postMessage('[getlist]~~om~~', "http://www.charlau.com");
+					waitingForCharlau = true;
 					break;
 				case "[addok]":
 					loGit("[addok]");
