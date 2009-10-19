@@ -39,8 +39,8 @@
 	function stateUpdated() {
 		iframeWin = document.getElementsByTagName('iframe')[0].contentWindow;
 		window.addEventListener('message', receiver, false);
-		iframeWin.postMessage('[ping]~~om~~', 'http://www.charlau.com');
-		msg.createDismissibleMessage("***I ping***");
+//		iframeWin.postMessage('[ping]~~om~~', 'http://www.charlau.com');
+//		msg.createDismissibleMessage("***I ping***");
 	}
 
 	function receiver(e) {
@@ -51,6 +51,7 @@
 				switch (messages[0]){
 				case "[ping]":
 					msg.createDismissibleMessage("***YOU ping***" + e.origin + "***" + e.source+"yourorigin:"+messages[1]+"yoursource:"+messages[2]);
+					iframeWin.postMessage('[ping]~~om~~', 'http://www.charlau.com');
 					break;
 				default:
 				}
