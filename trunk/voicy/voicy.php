@@ -116,8 +116,8 @@
   </script>
 
 </head>
-<div id="zmess">ttt</div>
 <body>
+<div id="zmess">ttt</div>
 <form name="recorded" id="recorded" method="post" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>">
 <input name="riffly_id" id="riffly_id" type="hidden">
 <input name="fl" id="fl" type="hidden" value="<?php echo $_REQUEST['fl'] ?>">
