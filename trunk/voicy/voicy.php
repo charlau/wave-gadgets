@@ -73,7 +73,7 @@
             window.addEventListener("message", function(e){ 
 				if (e.origin == 'https://0-wave-opensocial.googleusercontent.com') {
 					thesource = e.origin;
-					document.write e.data;
+					document.getElementById('zmess').textContent = e.data;
 					var messages = e.data.split("~~om~~");
 					switch (messages[0]){
 					case "[ping]":
@@ -116,7 +116,7 @@
   </script>
 
 </head>
-
+<div id="zmess">ttt</div>
 <body>
 <form name="recorded" id="recorded" method="post" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>">
 <input name="riffly_id" id="riffly_id" type="hidden">
