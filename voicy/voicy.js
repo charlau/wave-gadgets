@@ -57,7 +57,7 @@
 
 	function waitingCharlau() {
 		if(!waitingForCharlau){
-			clearInterval(wooYayIntervalId);
+//			clearInterval(wooYayIntervalId);
 		}else{
 //			iframeWin.postMessage('[ping]~~om~~', 'http://www.charlau.com');
 		}
@@ -108,29 +108,25 @@
 				callback: toRecTab,
 				index: 1
 			});
-			document.getElementById(therectab).innerHTML = therecordpanel;
-
-//			var therectab = tabs.addTab('Leave a message');
-//			document.getElementById(therectab).innerHTML = therecordpanel;
-
 				tabs.addTab("php", {
-					contentContainer: document.getElementById("content_div"),
+					contentContainer: document.getElementById("mainIframe"),
 					callback: toPlayTab,
 					index: 2
 				});
 
+			document.getElementById(therectab).innerHTML = therecordpanel;
 
 			rifflyShowRecorder('recorder_container', 'audio', 'rifflyFinishedRecording');
 			document.getElementById('recorder_container').firstChild.style.display="none";
 			
-			wooYayIntervalId = setInterval("waitingCharlau()", 500);
+//			wooYayIntervalId = setInterval("waitingCharlau()", 500);
 
 		}
 	}
 
 	function receiver(e) {
 		Connected=true;
-//		msg.dismissMessage(loadMessage);
+		msg.dismissMessage(loadMessage);
 		if(e.origin == 'http://www.charlau.com') {
 			var messages = e.data.split("~~om~~");
 			if(iCanListen){
