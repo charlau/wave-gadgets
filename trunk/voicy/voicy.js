@@ -124,7 +124,7 @@
 
 	function receiver(e) {
 		Connected=true;
-		msg.dismissMessage(loadMessage);
+//		msg.dismissMessage(loadMessage);
 		if(e.origin == 'http://www.photo-chaz.net') {
 			var messages = e.data.split("~~om~~");
 			if(iCanListen){
