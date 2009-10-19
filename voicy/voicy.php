@@ -21,11 +21,11 @@
           return $data;
    }
    
-   if (!$_REQUEST['fl']) { die; }
+//   if (!$_REQUEST['fl']) { die; }
    if ($_REQUEST['fl']) { $thFile='voicylists/'.$_REQUEST['fl']; }
    if ($_REQUEST['pid']) { $thParticipant=$_REQUEST['pid']; }      
-   if ($_POST['riffly_id']) { append_file($thFile,$thParticipant.'|||'.$_POST['riffly_id']); }
-   if ($_POST['getlist']) {
+   if ($_REQUEST['riffly_id']) { append_file($thFile,$thParticipant.'|||'.$_REQUEST['riffly_id']); }
+   if ($_REQUEST['getlist']) {
 
 	if (!file_exists($thFile)) { write_file($thFile,''); }
 	
@@ -72,7 +72,6 @@
 
             window.addEventListener("message", function(e){ 
 				if (e.origin == 'https://0-wave-opensocial.googleusercontent.com') {
-					thesource = e.origin;
 					var messages = e.data.split("~~om~~");
 					switch (messages[0]){
 					case "[ping]":
@@ -83,7 +82,7 @@
 						getlist();
 						break;
 					case "[addrec]":
-						addrec(messages[1]);
+						addrec(messages);
 						break;
 					default:
 					}
@@ -96,13 +95,16 @@
 //		parentWin.postMessage("[ping]~~om~~",'https://0-wave-opensocial.googleusercontent.com');
 //		}
 
-	function getlist(){
+	function getlist(msg){
+		document.getElementById('fl').value = msg[1];
 		document.getElementById('getlist').value = "yes";
 		document.forms['recorded'].submit();
 		}
 
-	function addrec(recadd){
-		var recArr=recadd.split('|||');
+	function addrec(msg){
+		document.getElementById('fl').value = msg[1];
+		
+		var recArr=msg[2].split('|||');
 		document.getElementById('pid').value = recArr[0];
 		document.getElementById('riffly_id').value = recArr[1];
 		document.forms['recorded'].submit();
