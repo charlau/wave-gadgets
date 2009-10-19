@@ -40,7 +40,7 @@
 
 	function stateUpdated() {
 //		if (iCanListen && (myRamdom != prefs.getString("lastRamdom")) && !waitingForCharlau){
-			iframeWin.postMessage('[getlist]~~om~~', 'http://www.charlau.com');
+			iframeWin.postMessage('[getlist]~~om~~', '*');
 			msg.createDismissibleMessage("***getlist***");
 //		}
 	}
