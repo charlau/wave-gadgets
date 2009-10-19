@@ -39,9 +39,10 @@
 	}
 
 	function stateUpdated() {
-		if (iCanListen && (myRamdom != prefs.getString("lastRamdom")) && !waitingForCharlau){
+//		if (iCanListen && (myRamdom != prefs.getString("lastRamdom")) && !waitingForCharlau){
 			iframeWin.postMessage('[getlist]~~om~~', 'http://www.charlau.com');
-		}
+			msg.createDismissibleMessage("***getlist***");
+//		}
 	}
 
 	function participantIsReady() {		
