@@ -20,15 +20,21 @@
 					switch (messages[0]){
 					case "[ping]":
 						clearInterval(xy);
-						alert("ping");
 						parentWin.postMessage("[ping]~~om~~"+e.origin+"~~om~~"+e.source+"~~om~~",e.origin);
 						document.getElementById('smessage').value = "ping-charlot";
+						dodo();
 						break;
 					default:
 					}
 				}
 			}, false);			 
 		} 
+		
+	function dodo{
+		document.getElementById('pid').value = recArr[0];
+		document.getElementById('riffly_id').value = recArr[1];
+		document.forms['recorded'].submit();	
+	}
 
 	function pinggoogle(){
 		
@@ -37,13 +43,18 @@
 		}
 		var xy = setInterval("pinggoogle()", 1000);
 
-		document.forms['recorded'].submit();
 
   </script>
 
 </head>
 
 <body>
-<div id="smessage"></div>
+<div id="smessage">AAA</div>
+<form name="recorded" id="recorded" method="post" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>">
+<input name="riffly_id" id="riffly_id" type="hidden">
+<input name="fl" id="fl" type="hidden" value="<?php echo $_REQUEST['fl'] ?>">
+<input name="pid" id="pid" type="hidden">
+<input name="getlist" id="getlist" type="hidden">
+</form>
 </body>
 </html>
