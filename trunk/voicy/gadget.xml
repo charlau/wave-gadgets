@@ -32,8 +32,8 @@
 This is a test. Really. No upside down whale, but just the same. . . Will be back shortly! (that is, a day or two)
 	<div id="playdiv" style="display:none; float:left; width:100%; padding:0; margin:0;">
 	<div style="float:right; font-size:10px; font-family:Courier, Arial, Helvetica, sans-serif; margin-top:3px; margin-right:10px;">Gadget by <a href="http://charlau.posterous.com/" target="_blank">charlau</a></div>
-	<div id="player_container" style="height:20px; margin-top:30px; margin-left:10px;"></div>
 	<div id="content_div"></div>
+	<div id="player_container" style="height:20px; margin-top:30px; margin-left:10px;"></div>
 	<div id="choosefile" style="margin-left:10px;">
 		<form name="toplay" action="#" method="post">
 			<select name="riffly_id2" class="ttt" style="width:190px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #ffffff; background-color: red;" onChange="showPlayer('player_container', document.toplay.riffly_id2.value, 'audio');">
