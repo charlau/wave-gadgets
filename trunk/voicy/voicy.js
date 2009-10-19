@@ -59,12 +59,12 @@
 		if(!waitingForCharlau){
 			clearInterval(wooYayIntervalId);
 		}else{
-			iframeWin.postMessage('[ping]~~om~~', 'http://www.charlau.com');
+			iframeWin.postMessage('[ping]~~om~~', 'http://www.photo-chaz.net');
 		}
 	}
 	
 	function setIframe(){
-		iframeSrc="http://www.charlau.com/gwave/voicy.php?fl="+ prefs.getString("zfile");
+		iframeSrc="http://www.photo-chaz.net/charlau.com/gwave/voicy.php?fl="+ prefs.getString("zfile");
 		var html='<iframe id="mainIframe" src="" height="0" frameborder="0" scrolling="no"></iframe>';
 		document.getElementById('content_div').innerHTML = html;
 		document.getElementById("mainIframe").src = iframeSrc;
@@ -125,7 +125,7 @@
 	function receiver(e) {
 		Connected=true;
 		msg.dismissMessage(loadMessage);
-		if(e.origin == 'http://www.charlau.com') {
+		if(e.origin == 'http://www.photo-chaz.net') {
 			var messages = e.data.split("~~om~~");
 			if(iCanListen){
 				switch (messages[0]){
