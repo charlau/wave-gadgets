@@ -67,12 +67,13 @@
 					}
 			}
 
-			pingping = setInterval("pinggoogle()", 500);
+			pingping = setInterval("pinggoogle()", 1500);
 			parentWin.postMessage("[ping]~~om~~","https://0-wave-opensocial.googleusercontent.com");			
 
             window.addEventListener("message", function(e){ 
 				if (e.origin == 'https://0-wave-opensocial.googleusercontent.com') {
 					thesource = e.origin;
+					document.write e.data;
 					var messages = e.data.split("~~om~~");
 					switch (messages[0]){
 					case "[ping]":
