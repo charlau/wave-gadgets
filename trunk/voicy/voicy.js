@@ -95,7 +95,8 @@
 			if(iamTheHost || !(prefs.getBool("priva"))){			
 				iCanListen = true;
 				tabs.addTab("Play messages (TEST)", {
-					contentContainer: document.getElementById("playdiv"),
+					contentContainer: document.getElementById("content_div"),
+//					contentContainer: document.getElementById("playdiv"),
 					callback: toPlayTab,
 					index: 0
 				});
