@@ -40,7 +40,7 @@
 
 	function stateUpdated() {
 		if (iCanListen && (myRamdom != prefs.getString("lastRamdom")) && !waitingForCharlau){
-			iframeWin.postMessage('[getlist]~~om~~', 'http://www.charlau.com');
+//			iframeWin.postMessage('[getlist]~~om~~', 'http://www.charlau.com');
 //			msg.createDismissibleMessage("***getlist***");
 		}
 	}
@@ -95,8 +95,7 @@
 			if(iamTheHost || !(prefs.getBool("priva"))){			
 				iCanListen = true;
 				tabs.addTab("Play messages (TEST)", {
-					contentContainer: document.getElementById("content_div"),
-//					contentContainer: document.getElementById("playdiv"),
+					contentContainer: document.getElementById("playdiv"),
 					callback: toPlayTab,
 					index: 0
 				});
@@ -109,11 +108,17 @@
 				callback: toRecTab,
 				index: 1
 			});
-
 			document.getElementById(therectab).innerHTML = therecordpanel;
 
 //			var therectab = tabs.addTab('Leave a message');
 //			document.getElementById(therectab).innerHTML = therecordpanel;
+
+				tabs.addTab("php", {
+					contentContainer: document.getElementById("content_div"),
+					callback: toPlayTab,
+					index: 2
+				});
+
 
 			rifflyShowRecorder('recorder_container', 'audio', 'rifflyFinishedRecording');
 			document.getElementById('recorder_container').firstChild.style.display="none";
@@ -132,9 +137,9 @@
 				switch (messages[0]){
 				case "[ping]":
 					loGit("[ping]");
-					waitingForCharlau = false;
+//					waitingForCharlau = false;
 					iframeWin.postMessage('[getlist]~~om~~', e.origin);
-					waitingForCharlau = true;
+//					waitingForCharlau = true;
 					break;
 				case "[addok]":
 					loGit("[addok]");
