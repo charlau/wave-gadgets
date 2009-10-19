@@ -130,11 +130,13 @@
 			if(iCanListen){
 				switch (messages[0]){
 				case "[ping]":
+					loGit("[ping]");
 					waitingForCharlau = false;
 					iframeWin.postMessage('[getlist]~~om~~', e.origin);
 					waitingForCharlau = true;
 					break;
 				case "[addok]":
+					loGit("[addok]");
 					waitingForCharlau = true;
 					myRamdom = randomString(10);
 					wave.getState().submitDelta({'added': myRamdom});
@@ -142,6 +144,7 @@
 					msg.createTimerMessage("Message sent!", 3);
 					break;
 				case "[list]":
+					loGit("[list]");
 					waitingForCharlau = true;
 					loadMessage = msg.createStaticMessage("loading playlist");
 					generateList(messages);
