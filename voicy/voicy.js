@@ -19,19 +19,6 @@ var particiPready = false;
 var iframeWin;
 var waitingForCharlau = true;
 	
-	function init(){
-			msg = new gadgets.MiniMessage();
-			loadMessage = msg.createStaticMessage("loading gadget");
-			gagheight = "210";
-			if (prefs.getString("zfile") == "") {
-				prefs.set("zfile", randomString(15)+".txt"); 
-			}
-			///test
-//			prefs.set("zfile","QfKT6UZeWp488tb.txt");
-			prefs.set("firstrun",false);
-			wave.setStateCallback(stateUpdated);
-			wave.setParticipantCallback(participantIsReady);
-	}
 
 	function stateUpdated() {
 //		if (iCanListen && (myRamdom != prefs.getString("lastRamdom")) && !waitingForCharlau){
@@ -252,5 +239,16 @@ var waitingForCharlau = true;
 		}
 	}
 
-    gadgets.util.registerOnLoadHandler(init);
-    gadgets.window.adjustHeight();
+	function init(){
+			msg = new gadgets.MiniMessage();
+			loadMessage = msg.createStaticMessage("loading gadget");
+			gagheight = "210";
+			if (prefs.getString("zfile") == "") {
+				prefs.set("zfile", randomString(15)+".txt"); 
+			}
+			prefs.set("firstrun",false);
+			wave.setStateCallback(stateUpdated);
+			wave.setParticipantCallback(participantIsReady);
+	}
+
+    gadgets.util.registerOnLoadHandler(init);    
