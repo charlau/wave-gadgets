@@ -29,7 +29,7 @@ function init(){
 	}
 	prefs.set("firstrun",false);
 
-	if (wave && wave.isInWaveContainer()){
+	if ((typeof wave != 'undefined') && wave.isInWaveContainer()) {
 		wave.setStateCallback(stateUpdated);
 		wave.setParticipantCallback(participantIsReady);		
 	}else{
@@ -40,7 +40,7 @@ function init(){
 }
 
 function waitingWave() {
-	if(wave && wave.isInWaveContainer()){
+	if ((typeof wave != 'undefined') && wave.isInWaveContainer()) {
 		clearInterval(runPerd);
 		msg.dismissMessage(waitwave);
 		loadMessage = msg.createStaticMessage("loading gadget");
