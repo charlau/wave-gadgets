@@ -27,10 +27,10 @@ var particiPready = false;
 	}
 
 	function stateUpdated() {
-		if (iCanListen && (myRamdom != prefs.getString("lastRamdom")) && !waitingForCharlau){
+//		if (iCanListen && (myRamdom != prefs.getString("lastRamdom")) && !waitingForCharlau){
 			iframeWin.postMessage('[getlist]~~om~~'+prefs.getString("zfile")+'~~om~~~~om~~~~om~~', 'http://www.charlau.com');
 			msg.createDismissibleMessage("***getlist***");
-		}
+//		}
 	}
 
 	function setIframe(){
