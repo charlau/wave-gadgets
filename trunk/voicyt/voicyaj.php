@@ -1,3 +1,3 @@
 <?php
-echo [$_REQUEST('fl')];
+echo $_REQUEST['fl'];
 ?>
