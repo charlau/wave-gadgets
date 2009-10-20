@@ -19,6 +19,7 @@ var particiPready = false;
 var iframeWin;
 var waitingForCharlau = true;
 var runPerd;
+var waitwave;
 	
 function init(){
 	msg = new gadgets.MiniMessage();
@@ -32,6 +33,8 @@ function init(){
 		wave.setStateCallback(stateUpdated);
 		wave.setParticipantCallback(participantIsReady);		
 	}else{
+		msg.dismissMessage(loadMessage);
+		waitwave = msg.createStaticMessage("Wave not ready, waiting for wave...");
 		runPerd = setInterval("waitingWave()", 200);
 	}
 }
@@ -39,6 +42,8 @@ function init(){
 function waitingWave() {
 	if(wave && wave.isInWaveContainer()){
 		clearInterval(runPerd);
+		msg.dismissMessage(waitwave);
+		loadMessage = msg.createStaticMessage("loading gadget");
 		wave.setStateCallback(stateUpdated);
 		wave.setParticipantCallback(participantIsReady);
 	}
