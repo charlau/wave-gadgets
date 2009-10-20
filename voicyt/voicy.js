@@ -6,7 +6,7 @@ var firstrun = prefs.getBool("firstrun");
 var firstpass = true;
 var myID;
 var theHost;
-
+var myRamdom = "";
 
 
 var iCanListen = true;
@@ -194,6 +194,57 @@ var waitingForCharlau = true;
 			rifflyShowRecorder('recorder_container', 'audio', 'rifflyFinishedRecording');
 			document.getElementById('recorder_container').firstChild.style.display="none";
 		}
+	}
+
+	function checkOpt(thebox){
+		loGit("checkOpt");
+		if(myID == theHost){
+			if (thebox.checked) {
+				prefs.set("priva", true); 
+			}else{
+				prefs.set("priva", false); 				
+			}
+			loGit(prefs.getBool("priva"));
+		}
+	}
+
+	function setOpt(){
+		var mfrm;
+		if(myID == theHost){
+			loGit("setOpt");
+			mfrm = document.getElementsByTagName('form')[1];
+			loGit(mfrm.priva.checked);
+			mfrm.priva.checked = prefs.getBool("priva");
+		}
+	}
+
+	function rifflyFinishedRecording (riffly_id, riffly_type) {
+
+		iframeWin.postMessage('[addrec]~~om~~'+prefs.getString("zfile")+'~~om~~' + myID + '|||' + riffly_id, 'http://www.charlau.com');		
+	}
+
+	function showPlayer (player_container_id, riffly_id, riffly_type) {
+		var player_container = document.getElementById(player_container_id);
+		
+		player_container.style.display = 'block';
+
+		if (riffly_type == 'video') {
+			player_container.innerHTML = '<embed src="http://riffly.com/p/' + riffly_id + 
+			'" width="400" height="320" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true"></embed>';
+		} else if (riffly_type == 'audio') {
+			player_container.innerHTML = '<embed src="http://riffly.com/p/' + riffly_id +
+			'" width="190" height="20" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true"></embed>';
+		}
+	}
+
+	function toPlayTab(tabId) {
+		IamRecording = false;
+		document.toplay.riffly_id2.selectedIndex = 0;
+		document.getElementById('player_container').innerHTML = '';
+	}
+
+	function toRecTab(tabId) {
+		IamRecording = true;
 	}
 
 
