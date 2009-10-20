@@ -25,7 +25,7 @@ div, p {font-family:courier, arial, sans-serif; font-size:10px; line-height:14px
 }
 
 a { text-decoration:none; }
-a:hover { color:red; background-color:#ffdded; font-style:bold;} 
+a:hover { color:red; background-color:#ffdded; font-weight:bold;} 
 
 /* FORMS */
 

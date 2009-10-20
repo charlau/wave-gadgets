@@ -1,6 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <?php
+
    //File will be rewritten if already exists
    function write_file($filename,$newdata) {
           $f=fopen($filename,'w') or die("can't write file");
@@ -20,105 +19,43 @@
           fclose($f);
           return $data;
    }
-   
-//   if (!$_REQUEST['fl']) { die; }
 
-   if ($_REQUEST['fl']) { $thFile='voicylists/'.$_REQUEST['fl']; }
-   if ($_REQUEST['pid']) { $thParticipant=$_REQUEST['pid']; }      
-   if ($_REQUEST['riffly_id']) { append_file($thFile,$thParticipant.'|||'.$_POST['riffly_id']); }
-   if ($_REQUEST['getlist']) {
-
-	if (!file_exists($thFile)) { write_file($thFile,''); }
-	
-	$page = join("",file("$thFile"));
-	$kw = explode("\n", $page);
-	$nbclips = count($kw);
-	$listTosend = "";
-	for($i=0;$i<$nbclips;$i++){
-		if ($kw[$i]) {
-			$uId=explode("|||", $kw[$i]);
-			$listTosend .= strval($uId[0]).'|||'.strval($uId[1]).'~~om~~';
-		}
-	}
-}
-
-?> 
-
-<head>
-<title>Record and Play audio greetings in google wave</title>
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="" />
-<meta name="description" content="" />
-
- <script type="text/javascript">
- 
-	var parentWin = window.parent;
-	var listCount = 0;
-	var thesource = "";
-	var pingping;
-	var addok = false;
-	var dolist = false;
-	
-	window.onload = function(){ 
-			if("<?php echo $_POST['riffly_id']; ?>"!=""){
-				parentWin.postMessage("[addok]~~om~~","https://0-wave-opensocial.googleusercontent.com");
+	function prep_send($cmd, $fl, $pid, $riffly_id) {
+		
+		$fl='voicylists/'.$fl;
+		
+		if($cmd=='getlist') {
+			if(!file_exists($fl)) {
+				$my_response = "[getlist]~~om~~BAD~~om~~"; 
 			}else{
-				if("<?php echo $_POST['getlist']; ?>"!=""){
-					parentWin.postMessage("[list]~~om~~<?php echo $listTosend; ?>","https://0-wave-opensocial.googleusercontent.com");
-					}else{
-//						pingping = setInterval("pinggoogle()", 500);
-//						parentWin.postMessage("[ping]~~om~~","https://0-wave-opensocial.googleusercontent.com");			
-					}
-			}
-
-            window.addEventListener("message", function(e){ 
-				if (e.origin == 'https://0-wave-opensocial.googleusercontent.com') {
-					var messages = e.data.split("~~om~~");
-					switch (messages[0]){
-					case "[ping]":
-//						clearInterval(pinggoogle);
-						parentWin.postMessage("[ping]~~om~~","https://0-wave-opensocial.googleusercontent.com");
-						break;
-					case "[getlist]":
-						getlist();
-						break;
-					case "[addrec]":
-						addrec(messages);
-						break;
-					default:
+				$page = join("",file("$fl"));
+				$kw = explode("\n", $page);
+				$nbclips = count($kw);
+				$my_response = "[getlist]~~om~~";
+				for($i=0;$i<$nbclips;$i++){
+					if ($kw[$i]) {
+						$uId=explode("|||", $kw[$i]);
+						$my_response .= strval($uId[0]).'|||'.strval($uId[1]).'~~om~~';
 					}
 				}
-			}, false);
-			 
-		} 
 
-//	function pinggoogle(){		
-//		parentWin.postMessage("[ping]~~om~~",'https://0-wave-opensocial.googleusercontent.com');
-//		}
-
-	function getlist(msg){
-		document.getElementById('fl').value = msg[1];
-		document.getElementById('getlist').value = "yes";
-		document.forms['recorded'].submit();
+			}
+		}else{
+			if($cmd=='addrec') {
+				if(!file_exists($fl)) {
+					write_file($fl,''); 
+				}
+				append_file($fl,$pid.'|||'.$riffly_id);
+				$my_response = "[addrec]~~om~~ok~~om~~"; 				
+			}
 		}
+		return $my_response;	
+	}
+   
+	if (!$_GET['fl']) { die("bad param"); }
 
-	function addrec(msg){
-		document.getElementById('fl').value = msg[1];
-		
-		var recArr=msg[2].split('|||');
-		document.getElementById('pid').value = recArr[0];
-		document.getElementById('riffly_id').value = recArr[1];
-		document.forms['recorded'].submit();
-		}
-  </script>
+	if (($_GET['cmd']=='getlist') || ($_GET['cmd']=='addrec')) { 	
+		echo prep_send($_GET['cmd'], $_GET['fl'], $_GET['pid'], $_GET['riffly_id']);
+	}
 
-</head>
-<body>
-<form name="recorded" id="recorded" method="get" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>">
-<input name="riffly_id" id="riffly_id" type="hidden">
-<input name="fl" id="fl" type="hidden" value="<?php echo $_REQUEST['fl'] ?>">
-<input name="pid" id="pid" type="hidden">
-<input name="getlist" id="getlist" type="hidden">
-</form>
-</body>
-</html>
+?> 
