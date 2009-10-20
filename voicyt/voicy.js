@@ -8,12 +8,8 @@ var myID;
 var theHost;
 var myRamdom = "";
 
-
-var iCanListen = true;
+var iCanListen = false;
 var tabs;
-
-
-
 
 var iamTheHost = false;
 var nbmessages;
