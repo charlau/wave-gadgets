@@ -29,6 +29,7 @@ var waitingForCharlau = true;
 			///test
 //			prefs.set("zfile","QfKT6UZeWp488tb.txt");
 			prefs.set("firstrun",false);
+			wave.setStateCallback(stateUpdated);
 			wave.setParticipantCallback(participantIsReady);
 	}
 
@@ -47,7 +48,6 @@ var waitingForCharlau = true;
 			iframeWin = document.getElementById('mainIframe').contentWindow;
 			window.addEventListener('message', receiver, false);
 			gadgets.window.adjustHeight();
-			wave.setStateCallback(stateUpdated);
 			particiPready = true;
 		}
 	}
