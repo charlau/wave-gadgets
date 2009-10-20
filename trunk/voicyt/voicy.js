@@ -33,7 +33,7 @@ var waitingForCharlau = true;
 			///test
 			prefs.set("zfile","QfKT6UZeWp488tb.txt");
 			
-			msg.createDismissibleMessage(prefs.getString("zfile"));
+			
 			prefs.set("firstrun",false);
 			setIframe();
 			wave.setStateCallback(stateUpdated);
@@ -43,6 +43,7 @@ var waitingForCharlau = true;
 
 	function stateUpdated() {
 		if (iCanListen && (myRamdom != prefs.getString("lastRamdom")) && !waitingForCharlau){
+			msg.createDismissibleMessage("getting new list!");
 			iframeWin.postMessage('[getlist]~~om~~'+prefs.getString("zfile")+'~~om~~~~om~~~~om~~', 'http://www.charlau.com');
 		}
 	}
