@@ -42,7 +42,8 @@ var waitingForCharlau = true;
 	}
 
 	function stateUpdated() {
-		if (iCanListen && (myRamdom != prefs.getString("lastRamdom")) && !waitingForCharlau){
+//		if (iCanListen && (myRamdom != prefs.getString("lastRamdom")) && !waitingForCharlau){
+		if (iCanListen && !waitingForCharlau){
 			msg.createDismissibleMessage("getting new list!");
 			iframeWin.postMessage('[getlist]~~om~~'+prefs.getString("zfile")+'~~om~~~~om~~~~om~~', 'http://www.charlau.com');
 		}
