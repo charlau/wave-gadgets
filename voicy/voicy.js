@@ -66,8 +66,8 @@ function stateUpdated() {
 
 function participantIsReady() {		
 	if(!particiPready){
-		theHost = wave.getHost().getId();
 		myID = wave.getViewer().getId();
+		theHost = wave.getHost().getId();
 		document.getElementById('mainIframe').src = "http://www.charlau.com/gwave/voicy/comm-google-charlau.html"
 		getReady();
 		iframeWin = document.getElementById('mainIframe').contentWindow;
