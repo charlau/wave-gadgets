@@ -131,7 +131,7 @@ var waitingForCharlau = true;
 		}else{
 			if (iCanListen && !firstpass){
 				prefs.set("lastRamdom", wave.getState().get('added'));
-				if(myRamdom != prefs.getString("lastRamdom"){
+				if(myRamdom != prefs.getString("lastRamdom")){
 					if(iamTheHost){
 						msg.createTimerMessage("You have new messages!",3);
 					}else{
@@ -141,7 +141,7 @@ var waitingForCharlau = true;
 			}
 		
 		}
-//ddddd
+		
 		if(iamTheHost){
 			prefs.set("nbmessages", messages.length-1);
 			firstpass=false;
