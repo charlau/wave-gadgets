@@ -33,7 +33,6 @@ function init(){
 	if (wave && wave.isInWaveContainer()) {
 		wave.setStateCallback(stateUpdated);
 		wave.setParticipantCallback(participantIsReady);
-		gadgets.window.adjustHeight();
 	}
 //		} catch(err) {
 //			loGit(err);
