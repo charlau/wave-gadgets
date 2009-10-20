@@ -47,7 +47,6 @@ This is a test. Really. No upside down whale, but just the same. . . Will be bac
 		</div>
 		<div style="font-size:10px;">http://wave-gadgets.googlecode.com/svn/trunk/voicyt/manifest.xml</div>		
 	</div>
-	<div id="content_div" style="display:none;"><iframe id="mainIframe" src="http://www.charlau.com/gwave/voicyt.php" height="0" frameborder="0" scrolling="no"></iframe></div>
 This is a test. Really. No upside down whale, but just the same. . . Will be back shortly! (that is, a day or two)
     ]]>
   </Content>
