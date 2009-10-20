@@ -37,15 +37,15 @@
 	}
 
 	function stateUpdated() {
-		iframeWin = document.getElementsByTagName('iframe')[0].contentWindow;
-		window.addEventListener('message', receiver, false);
+//		iframeWin = document.getElementsByTagName('iframe')[0].contentWindow;
+//		window.addEventListener('message', receiver, false);
 //		iframeWin.postMessage('[ping]~~om~~', 'http://www.charlau.com');
 //		msg.createDismissibleMessage("***I ping***");
 	}
 
 	function receiver(e) {
 		msg.dismissMessage(loadMessage);
-		msg.createDismissibleMessage("***received***" + e.origin + "***" + e.source);
+//		msg.createDismissibleMessage("***received***" + e.origin + "***" + e.source);
 		if(e.origin == 'http://www.charlau.com') {
 			var messages = e.data.split("~~om~~");
 				switch (messages[0]){
@@ -57,6 +57,38 @@
 				}
 			}	
 		}
+
+var vmessage = function () {
+	try{
+		// Opera 8.0+, Firefox, Safari
+		this.ajaxReq = new XMLHttpRequest();
+	} catch (e){
+		// Internet Explorer Browsers
+		try{
+			this.ajaxReq = new ActiveXObject("Msxml2.XMLHTTP");
+		} catch (e) {
+			try{
+				this.ajaxReq = new ActiveXObject("Microsoft.XMLHTTP");
+			} catch (e){
+				return false;
+			}
+		}
+	}
+	this.get = function (e) {
+		this.ajaxReq.open("GET", e, true);
+		this.ajaxReq.send(null); 
+		}
+
+	this.ajaxReq.onreadystatechange = function () {
+		if (this.ajaxReq.readyState == 4) {
+			msg.createDismissibleMessage(this.ajaxReq.responseText);
+		}
+	}
+
+}
+
+var getList = new vmessage;
+getList.get("http://www.charlau.com/gwave/voicyaj.php?fl=qoweu07qwkncbao.txt");
 
 	function randomString(length){
 		var chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";

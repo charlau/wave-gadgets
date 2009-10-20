@@ -22,9 +22,10 @@
    }
    
 //   if (!$_REQUEST['fl']) { die; }
+
    if ($_REQUEST['fl']) { $thFile='voicylists/'.$_REQUEST['fl']; }
    if ($_REQUEST['pid']) { $thParticipant=$_REQUEST['pid']; }      
-   if ($_REQUEST['riffly_id']) { append_file($thFile,$thParticipant.'|||'.$_REQUEST['riffly_id']); }
+   if ($_REQUEST['riffly_id']) { append_file($thFile,$thParticipant.'|||'.$_POST['riffly_id']); }
    if ($_REQUEST['getlist']) {
 
 	if (!file_exists($thFile)) { write_file($thFile,''); }
@@ -113,7 +114,7 @@
 
 </head>
 <body>
-<form name="recorded" id="recorded" method="post" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>">
+<form name="recorded" id="recorded" method="get" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>">
 <input name="riffly_id" id="riffly_id" type="hidden">
 <input name="fl" id="fl" type="hidden" value="<?php echo $_REQUEST['fl'] ?>">
 <input name="pid" id="pid" type="hidden">
