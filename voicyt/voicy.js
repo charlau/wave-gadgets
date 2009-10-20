@@ -29,6 +29,10 @@ var iframeWin;
 			if (prefs.getString("zfile") == "") {
 				prefs.set("zfile", randomString(15)+".txt"); 
 			}
+			///test
+			prefs.set("zfile","5W6e7yGs25e81tr.txt");
+			
+			
 			msg.createDismissibleMessage(prefs.getString("zfile"));
 			prefs.set("firstrun",false);
 			setIframe();
