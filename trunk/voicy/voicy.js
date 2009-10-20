@@ -61,7 +61,6 @@ var waitingForCharlau = true;
 		Connected=true;
 		msg.dismissMessage(loadMessage);
 		if(e.origin == 'http://www.charlau.com') {
-			waitingForCharlau = false;
 			var messages = e.data.split("~~om~~");
 			if(iCanListen){
 				switch (messages[0]){
@@ -77,6 +76,7 @@ var waitingForCharlau = true;
 					break;
 				case "[getlist]":
 					loGit("[getlist]");
+					waitingForCharlau = false;
 					if(messages[1]!='BAD') {
 						loadMessage = msg.createStaticMessage("loading playlist");
 						generateList(messages);
