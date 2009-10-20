@@ -10,7 +10,7 @@
 		author_quote=""
 		thumbnail=""
 		screenshot="http://wave-gadgets.googlecode.com/svn/trunk/voicy/images/voicy-screen.png">
-		<Require feature="wave-preview"/>
+		<Require feature="wave"/>
 		<Require feature="dynamic-height"/>
 		<Require feature="setprefs" /> 
 		<Require feature="minimessage"/>
