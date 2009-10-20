@@ -29,6 +29,7 @@ var iframeWin;
 			if (prefs.getString("zfile") == "") {
 				prefs.set("zfile", randomString(15)+".txt"); 
 			}
+			msg.createDismissibleMessage(prefs.getString("zfile"));
 			prefs.set("firstrun",false);
 			setIframe();
 			wave.setStateCallback(stateUpdated);
@@ -69,7 +70,7 @@ var iframeWin;
 					break;
 				case "[getlist]":
 					loGit("[getlist]");
-					if(message[1]!='BAD') {
+					if(messages[1]!='BAD') {
 						loadMessage = msg.createStaticMessage("loading playlist");
 						generateList(messages);
 					}
