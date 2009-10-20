@@ -13,6 +13,7 @@ var nbmessages;
 var nbmessnew;
 var IamRecording = false;
 var particiPready = false;
+var iframeWin;
 	
 	function init(){
 			msg = new gadgets.MiniMessage();
