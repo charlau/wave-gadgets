@@ -26,10 +26,7 @@ var waitingForCharlau = true;
 			if (prefs.getString("zfile") == "") {
 				prefs.set("zfile", randomString(15)+".txt"); 
 			}
-			///test
-			prefs.set("zfile","QfKT6UZeWp488tb.txt");
-			
-			
+
 			prefs.set("firstrun",false);
 			setIframe();
 			wave.setStateCallback(stateUpdated);
