@@ -28,9 +28,7 @@ var waitingForCharlau = true;
 			}
 			///test
 //			prefs.set("zfile","QfKT6UZeWp488tb.txt");
-			setIframe();
 			prefs.set("firstrun",false);
-			wave.setStateCallback(stateUpdated);
 			wave.setParticipantCallback(participantIsReady);
 	}
 
@@ -43,18 +41,56 @@ var waitingForCharlau = true;
 
 	function participantIsReady() {		
 		if(!particiPready && wave && wave.getViewer()){
-			particiPready = true;
 			theHost = wave.getHost().getId();
 			myID = wave.getViewer().getId();
 			getReady();
+			iframeWin = document.getElementById('mainIframe').contentWindow;
+			window.addEventListener('message', receiver, false);
 			gadgets.window.adjustHeight();
+			wave.setStateCallback(stateUpdated);
+			particiPready = true;
 		}
 	}
 
+	function getReady() {
+		
+		if (wave && wave.isInWaveContainer()) {
+			
+			if(myID == theHost){
+				iamTheHost = true;
+				document.getElementById("playdiv").style.display="block";
+				document.getElementById("mprivates").style.display="block";
+				setOpt();
+			}else{
+				document.getElementById("HostOpt").style.marginTop="105px";
+			}
 
-	function setIframe(){
-		iframeWin = document.getElementById('mainIframe').contentWindow;
-		window.addEventListener('message', receiver, false);
+			var therecordpanel = '<div id="rectab" style="font-family:courier, arial, sans-serif; font-size:10px; margin-left:8px; margin-top:3px; margin-right:10px; margin-bottom:10px; float:right;">Recording courtesy of <a href="http://riffly.com/" target="_blank">riffly</a></div><div style="font-family:verdana, arial, sans-serif; font-style:italic; padding-top:3px; padding-left:10px; padding-right:10px;">Note: this recording is not anonymous - your name will appear on the list with your message</div><div id="recorder_container" style="float:left; width:100%; display:block; margin-left:10px;"></div>';
+			
+			tabs = new gadgets.TabSet("voicy"); 
+			tabs.alignTabs("left", 10);
+			if(iamTheHost || !(prefs.getBool("priva"))){			
+				iCanListen = true;
+				tabs.addTab("Play messages", {
+					contentContainer: document.getElementById("playdiv"),
+					callback: toPlayTab,
+					index: 0
+				});
+			}else{
+				IamRecording = true;
+				document.getElementById("playdiv").innerHTML="";
+				therecordpanel += '<div id="byline" style="font-family:courier, arial, sans-serif; font-size:10px; float:left; width:100%; margin-top:36px; margin-bottom:0; margin-left:10px; padding:0; line-height:14px;">http://wave-gadgets.googlecode.com/svn/trunk/voicy/manifest.xml<br />Gadget by <a href="http://charlau.posterous.com/" target="_blank">charlau</a></div>';
+			}
+			var therectab = tabs.addTab("Leave a message", {
+				callback: toRecTab,
+				index: 1
+			});
+
+			document.getElementById(therectab).innerHTML = therecordpanel;
+
+			rifflyShowRecorder('recorder_container', 'audio', 'rifflyFinishedRecording');
+			document.getElementById('recorder_container').firstChild.style.display="none";
+		}
 	}
 
 	function receiver(e) {
@@ -86,7 +122,7 @@ var waitingForCharlau = true;
 				}
 			}else{
 				switch (messages[0]){
-				case "[ping]":
+				case "[getlist]":
 					waitingForCharlau = false;
 					break;
 				case "[addrec]":
@@ -145,46 +181,6 @@ var waitingForCharlau = true;
 		}
 	}
 
-	function getReady() {
-		
-		if (wave && wave.isInWaveContainer()) {
-			
-			if(myID == theHost){
-				iamTheHost = true;
-				document.getElementById("playdiv").style.display="block";
-				document.getElementById("mprivates").style.display="block";
-				setOpt();
-			}else{
-				document.getElementById("HostOpt").style.marginTop="105px";
-			}
-
-			var therecordpanel = '<div id="rectab" style="font-family:courier, arial, sans-serif; font-size:10px; margin-left:8px; margin-top:3px; margin-right:10px; margin-bottom:10px; float:right;">Recording courtesy of <a href="http://riffly.com/" target="_blank">riffly</a></div><div style="font-family:verdana, arial, sans-serif; font-style:italic; padding-top:3px; padding-left:10px; padding-right:10px;">Note: this recording is not anonymous - your name will appear on the list with your message</div><div id="recorder_container" style="float:left; width:100%; display:block; margin-left:10px;"></div>';
-			
-			tabs = new gadgets.TabSet("voicy"); 
-			tabs.alignTabs("left", 10);
-			if(iamTheHost || !(prefs.getBool("priva"))){			
-				iCanListen = true;
-				tabs.addTab("Play messages", {
-					contentContainer: document.getElementById("playdiv"),
-					callback: toPlayTab,
-					index: 0
-				});
-			}else{
-				IamRecording = true;
-				document.getElementById("playdiv").innerHTML="";
-				therecordpanel += '<div id="byline" style="font-family:courier, arial, sans-serif; font-size:10px; float:left; width:100%; margin-top:36px; margin-bottom:0; margin-left:10px; padding:0; line-height:14px;">http://wave-gadgets.googlecode.com/svn/trunk/voicy/manifest.xml<br />Gadget by <a href="http://charlau.posterous.com/" target="_blank">charlau</a></div>';
-			}
-			var therectab = tabs.addTab("Leave a message", {
-				callback: toRecTab,
-				index: 1
-			});
-
-			document.getElementById(therectab).innerHTML = therecordpanel;
-
-			rifflyShowRecorder('recorder_container', 'audio', 'rifflyFinishedRecording');
-			document.getElementById('recorder_container').firstChild.style.display="none";
-		}
-	}
 
 	function checkOpt(thebox){
 		loGit("checkOpt");
