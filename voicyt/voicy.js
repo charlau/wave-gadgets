@@ -53,8 +53,6 @@ var vmessage = function () {
 
 }
 
-
-
 	function init(){
 			msg = new gadgets.MiniMessage();
 			loadMessage = msg.createStaticMessage("loading gadget");
@@ -64,8 +62,7 @@ var vmessage = function () {
 			}
 			prefs.set("firstrun",false);
 			var getList = new vmessage;
-			getList.get("http://www.charlau.com/gwave/voicyaj.php?fl=" + prefs.getString("zfile"));
-
+			alert(getList.get("http://www.charlau.com/gwave/voicyaj.php?fl=" + prefs.getString("zfile")));
 			wave.setStateCallback(stateUpdated);
 	}
 
