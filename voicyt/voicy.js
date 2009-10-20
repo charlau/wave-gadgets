@@ -34,7 +34,7 @@ var particiPready = false;
 	}
 
 	function setIframe(){
-		iframeWin = document.getElementsByTagName('iframe')[0].contentWindow;
+		iframeWin = document.getElementById('mainIframe').contentWindow;
 		window.addEventListener('message', receiver, false);
 	}
 
