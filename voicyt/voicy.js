@@ -126,26 +126,25 @@ var waitingForCharlau = true;
 		}
 
 		msg.dismissMessage(loadMessage);
-		if(!IamRecording){
+//		if(!IamRecording){
 			tabs.setSelectedTab(0);
-		}
+//		}
 		
 		if((iamTheHost) && firstpass && (messages.length-1 > prefs.getInt("nbmessages"))){
-
 			msg.createTimerMessage("You have new messages!",3);
-			}else{
-				if (iCanListen && !firstpass){
-					prefs.set("lastRamdom", myRamdom);
-					if(myRamdom != wave.getState().get('added')){
-						if(iamTheHost){
-							msg.createTimerMessage("You have new messages!",3);
-						}else{
-							msg.createTimerMessage("Someone else left a message!",3);				
-						}
+		}else{
+			if (iCanListen && !firstpass){
+				prefs.set("lastRamdom", myRamdom);
+				if(myRamdom != wave.getState().get('added')){
+					if(iamTheHost){
+						msg.createTimerMessage("You have new messages!",3);
+					}else{
+						msg.createTimerMessage("Someone else left a message!",3);				
 					}
 				}
-			
 			}
+		
+		}
 
 		if(iamTheHost){
 			prefs.set("nbmessages", messages.length-1);
