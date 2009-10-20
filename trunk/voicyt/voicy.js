@@ -32,18 +32,13 @@ function vmessage() {
 			}
 		}
 	}
-	this.get = function (e) {
-		ajaxReq.open("GET", e, true);
-		ajaxReq.send(null); 
-		}
-
 	ajaxReq.onreadystatechange = function () {
 		if (ajaxReq.readyState == 4) {
 			alert("received:"+ajaxReq.responseText);
 			msg.createDismissibleMessage(ajaxReq.responseText);
 		}
 	}
-	ajaxReq.open("GET", "http://www.charlau.com/gwave/voicyaj.php&fl=sfdsf.txt", true);
+	ajaxReq.open("GET", "http://www.charlau.com/gwave/voicyaj.php?fl=sfdsf.txt", true);
 	ajaxReq.send(null);
 }
 
