@@ -25,29 +25,31 @@ var IamRecording = false;
 var particiPready = false;
 	
 var vmessage = function () {
+	var ajaxReq;
 	try{
 		// Opera 8.0+, Firefox, Safari
-		this.ajaxReq = new XMLHttpRequest();
+		ajaxReq = new XMLHttpRequest();
 	} catch (e){
 		// Internet Explorer Browsers
 		try{
-			this.ajaxReq = new ActiveXObject("Msxml2.XMLHTTP");
+			ajaxReq = new ActiveXObject("Msxml2.XMLHTTP");
 		} catch (e) {
 			try{
-				this.ajaxReq = new ActiveXObject("Microsoft.XMLHTTP");
+				ajaxReq = new ActiveXObject("Microsoft.XMLHTTP");
 			} catch (e){
 				return false;
 			}
 		}
 	}
 	this.get = function (e) {
-		this.ajaxReq.open("GET", e, true);
-		this.ajaxReq.send(null); 
+		ajaxReq.open("GET", e, true);
+		ajaxReq.send(null); 
 		}
 
-	this.ajaxReq.onreadystatechange = function () {
-		if (this.ajaxReq.readyState == 4) {
-			msg.createDismissibleMessage(this.ajaxReq.responseText);
+	ajaxReq.onreadystatechange = function () {
+		if (ajaxReq.readyState == 4) {
+			alert("received:"+ajaxReq.responseText);
+			msg.createDismissibleMessage(ajaxReq.responseText);
 		}
 	}
 
@@ -62,7 +64,7 @@ var vmessage = function () {
 			}
 			prefs.set("firstrun",false);
 			var getList = new vmessage;
-			alert(getList.get("http://www.charlau.com/gwave/voicyaj.php?fl=" + prefs.getString("zfile")));
+			getList.get("http://www.charlau.com/gwave/voicyaj.php?fl=" + prefs.getString("zfile"));
 			wave.setStateCallback(stateUpdated);
 	}
 
