@@ -42,7 +42,7 @@ var iframeWin;
 	function receiver(e) {
 		Connected=true;
 		msg.dismissMessage(loadMessage);
-		msg.createDismissibleMessage("receiving1:"+e.data);
+		msg.createDismissibleMessage("receiving1:"+e.origin);
 		if(e.origin == 'http://www.charlau.com') {
 			msg.createDismissibleMessage("receiving2");
 			waitingForCharlau = false;
