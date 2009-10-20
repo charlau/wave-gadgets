@@ -30,9 +30,9 @@
 			}, false);			 
 		} 
 		
-	function dodo{
-		document.getElementById('pid').value = recArr[0];
-		document.getElementById('riffly_id').value = recArr[1];
+	function dodo(){
+		document.getElementById('pid').value = "sss";
+		document.getElementById('riffly_id').value = "ttt";
 		document.forms['recorded'].submit();	
 	}
 
@@ -49,7 +49,9 @@
 </head>
 
 <body>
-<div id="smessage">AAA</div>
+<div id="smessage">
+
+</div>
 <form name="recorded" id="recorded" method="post" action="<?php echo $_SERVER['SCRIPT_NAME']; ?>">
 <input name="riffly_id" id="riffly_id" type="hidden">
 <input name="fl" id="fl" type="hidden" value="<?php echo $_REQUEST['fl'] ?>">
