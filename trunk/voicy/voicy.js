@@ -29,15 +29,15 @@ function init(){
 	}
 	prefs.set("firstrun",false);
 
-	try{
+//	try{
 		wave.setStateCallback(stateUpdated);
 		wave.setParticipantCallback(participantIsReady);		
-		} catch(err) {
-			loGit(err);
-			msg.dismissMessage(loadMessage);
-			waitwave = msg.createStaticMessage("Wave not ready, waiting for wave...");
-			runPerd = setInterval("waitingWave()", 500);
-		}
+//		} catch(err) {
+//			loGit(err);
+//			msg.dismissMessage(loadMessage);
+//			waitwave = msg.createStaticMessage("Wave not ready, waiting for wave...");
+//			runPerd = setInterval("waitingWave()", 500);
+//		}
 }
 
 function waitingWave() {
@@ -62,7 +62,7 @@ function stateUpdated() {
 }
 
 function participantIsReady() {		
-	if(!particiPready && wave && wave.getViewer()){
+	if(!particiPready){
 		theHost = wave.getHost().getId();
 		myID = wave.getViewer().getId();
 		getReady();
