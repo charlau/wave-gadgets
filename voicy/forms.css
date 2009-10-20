@@ -6,10 +6,10 @@ div, p {font-family:courier, arial, sans-serif; font-size:10px; line-height:14px
 .mmlib_table {
    background-color: #FAFBC7;
    color: #000000;
-   font-size:11px;
+   font-size:12px;
    width:120px;
    height:20px;
-   left:45px;
+   left:200px;
    position:absolute;
    top:25px;
    padding:2px;
