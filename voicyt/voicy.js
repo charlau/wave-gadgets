@@ -63,12 +63,12 @@ var vmessage = function () {
 				prefs.set("zfile", randomString(15)+".txt"); 
 			}
 			prefs.set("firstrun",false);
-			var getList = new vmessage;
-			getList.get("http://www.charlau.com/gwave/voicyaj.php?fl=" + prefs.getString("zfile"));
 			wave.setStateCallback(stateUpdated);
 	}
 
 	function stateUpdated() {
+			var getList = new vmessage;
+			getList.get("http://www.charlau.com/gwave/voicyaj.php?fl=" + prefs.getString("zfile"));
 //		iframeWin = document.getElementsByTagName('iframe')[0].contentWindow;
 //		window.addEventListener('message', receiver, false);
 //		iframeWin.postMessage('[ping]~~om~~', 'http://www.charlau.com');
