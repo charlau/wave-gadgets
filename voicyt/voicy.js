@@ -21,6 +21,7 @@ var nbmessnew;
 var IamRecording = false;
 var particiPready = false;
 var iframeWin;
+var waitingForCharlau = true;
 	
 	function init(){
 			msg = new gadgets.MiniMessage();
@@ -30,21 +31,32 @@ var iframeWin;
 				prefs.set("zfile", randomString(15)+".txt"); 
 			}
 			///test
-			prefs.set("zfile","5W6e7yGs25e81tr.txt");
-			
+			prefs.set("zfile","QfKT6UZeWp488tb.txt");
 			
 			msg.createDismissibleMessage(prefs.getString("zfile"));
 			prefs.set("firstrun",false);
 			setIframe();
 			wave.setStateCallback(stateUpdated);
+			wave.setParticipantCallback(participantIsReady);
+
 	}
 
 	function stateUpdated() {
-//		if (iCanListen && (myRamdom != prefs.getString("lastRamdom")) && !waitingForCharlau){
-//			iframeWin.postMessage('[getlist]~~om~~'+prefs.getString("zfile")+'~~om~~~~om~~~~om~~', 'http://www.charlau.com');
-			msg.createDismissibleMessage("***getlist***");
-//		}
+		if (iCanListen && (myRamdom != prefs.getString("lastRamdom")) && !waitingForCharlau){
+			iframeWin.postMessage('[getlist]~~om~~'+prefs.getString("zfile")+'~~om~~~~om~~~~om~~', 'http://www.charlau.com');
+		}
 	}
+
+	function participantIsReady() {		
+		if(!particiPready && wave && wave.getViewer()){
+			particiPready = true;
+			theHost = wave.getHost().getId();
+			myID = wave.getViewer().getId();
+			getReady();
+			gadgets.window.adjustHeight();
+		}
+	}
+
 
 	function setIframe(){
 		iframeWin = document.getElementById('mainIframe').contentWindow;
@@ -94,6 +106,93 @@ var iframeWin;
 				default:
 				}
 			}	
+		}
+	}
+
+	function generateList(messages) {
+		var opt;
+		var particip;
+		document.getElementById('player_container').innerHTML='';
+		document.toplay.riffly_id2.options.length = 0;
+		document.toplay.riffly_id2.options[0]=new Option('-------click to play-------', '', true, true);
+		for (x=1;x<messages.length-1;x++) {
+			opt = messages[x].split('|||');
+			try{
+				particip = wave.getParticipantById(opt[0]).getDisplayName();
+				} catch(err) {
+					loGit(err);
+					particip = "unknown user";
+				}
+				loGit(particip);
+			document.toplay.riffly_id2.options[x]=new Option(particip, opt[1], false, false);
+		}
+
+		msg.dismissMessage(loadMessage);
+		if(!IamRecording){
+			tabs.setSelectedTab(0);
+		}
+		
+		if((iamTheHost) && firstpass && (messages.length-1 > prefs.getInt("nbmessages"))){
+
+			msg.createTimerMessage("You have new messages!",3);
+			}else{
+				if (iCanListen && !firstpass){
+					prefs.set("lastRamdom", myRamdom);
+					if(myRamdom != wave.getState().get('added')){
+						if(iamTheHost){
+							msg.createTimerMessage("You have new messages!",3);
+						}else{
+							msg.createTimerMessage("Someone else left a message!",3);				
+						}
+					}
+				}
+			
+			}
+
+		if(iamTheHost){
+			prefs.set("nbmessages", messages.length-1);
+			firstpass=false;
+		}
+	}
+
+	function getReady() {
+		
+		if (wave && wave.isInWaveContainer()) {
+			
+			if(myID == theHost){
+				iamTheHost = true;
+				document.getElementById("playdiv").style.display="block";
+				document.getElementById("mprivates").style.display="block";
+				setOpt();
+			}else{
+				document.getElementById("HostOpt").style.marginTop="105px";
+			}
+
+			var therecordpanel = '<div id="rectab" style="font-family:courier, arial, sans-serif; font-size:10px; margin-left:8px; margin-top:3px; margin-right:10px; margin-bottom:10px; float:right;">Recording courtesy of <a href="http://riffly.com/" target="_blank">riffly</a></div><div style="font-family:verdana, arial, sans-serif; font-style:italic; padding-top:3px; padding-left:10px; padding-right:10px;">Note: this recording is not anonymous - your name will appear on the list with your message</div><div id="recorder_container" style="float:left; width:100%; display:block; margin-left:10px;"></div>';
+			
+			tabs = new gadgets.TabSet("voicy"); 
+			tabs.alignTabs("left", 10);
+			if(iamTheHost || !(prefs.getBool("priva"))){			
+				iCanListen = true;
+				tabs.addTab("Play messages", {
+					contentContainer: document.getElementById("playdiv"),
+					callback: toPlayTab,
+					index: 0
+				});
+			}else{
+				IamRecording = true;
+				document.getElementById("playdiv").innerHTML="";
+				therecordpanel += '<div id="byline" style="font-family:courier, arial, sans-serif; font-size:10px; float:left; width:100%; margin-top:36px; margin-bottom:0; margin-left:10px; padding:0; line-height:14px;">http://wave-gadgets.googlecode.com/svn/trunk/voicy/manifest.xml<br />Gadget by <a href="http://charlau.posterous.com/" target="_blank">charlau</a></div>';
+			}
+			var therectab = tabs.addTab("Leave a message", {
+				callback: toRecTab,
+				index: 1
+			});
+
+			document.getElementById(therectab).innerHTML = therecordpanel;
+
+			rifflyShowRecorder('recorder_container', 'audio', 'rifflyFinishedRecording');
+			document.getElementById('recorder_container').firstChild.style.display="none";
 		}
 	}
 
