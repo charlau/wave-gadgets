@@ -1,4 +1,3 @@
-
 var msg;
 var loadMessage;
 var prefs = new gadgets.Prefs();
@@ -15,33 +14,6 @@ var nbmessnew;
 var IamRecording = false;
 var particiPready = false;
 	
-function vmessage() {
-	var ajaxReq;
-	try{
-		// Opera 8.0+, Firefox, Safari
-		ajaxReq = new XMLHttpRequest();
-	} catch (e){
-		// Internet Explorer Browsers
-		try{
-			ajaxReq = new ActiveXObject("Msxml2.XMLHTTP");
-		} catch (e) {
-			try{
-				ajaxReq = new ActiveXObject("Microsoft.XMLHTTP");
-			} catch (e){
-				return false;
-			}
-		}
-	}
-	ajaxReq.onreadystatechange = function () {
-		if (ajaxReq.readyState == 4) {
-			alert("received:"+ajaxReq.responseText);
-			msg.createDismissibleMessage(ajaxReq.responseText);
-		}
-	}
-	ajaxReq.open("GET", "http://www.charlau.com/gwave/voicyaj.php?fl=sfdsf.txt", true);
-	ajaxReq.send(null);
-}
-
 	function init(){
 			msg = new gadgets.MiniMessage();
 			loadMessage = msg.createStaticMessage("loading gadget");
@@ -50,14 +22,65 @@ function vmessage() {
 				prefs.set("zfile", randomString(15)+".txt"); 
 			}
 			prefs.set("firstrun",false);
+			setIframe();
 			wave.setStateCallback(stateUpdated);
 	}
 
 	function stateUpdated() {
-//			var getList = new vmessage;
-			vmessage();
-//			getList.get("http://www.charlau.com/gwave/voicyaj.php&fl=sfdsf.txt");
+		if (iCanListen && (myRamdom != prefs.getString("lastRamdom")) && !waitingForCharlau){
+			iframeWin.postMessage('[getlist]~~om~~'+prefs.getString("zfile")+'~~om~~~~om~~~~om~~'+, 'http://www.charlau.com');
+			msg.createDismissibleMessage("***getlist***");
+		}
 	}
+
+	function setIframe(){
+		iframeWin = document.getElementsByTagName('iframe')[0].contentWindow;
+		window.addEventListener('message', receiver, false);
+	}
+
+	function receiver(e) {
+		Connected=true;
+		msg.dismissMessage(loadMessage);
+		if(e.origin == 'http://www.charlau.com') {
+			waitingForCharlau = false;
+			var messages = e.data.split("~~om~~");
+			if(iCanListen){
+				switch (messages[0]){
+				case "[ping]":
+					loGit("[ping]");
+					iframeWin.postMessage('[getlist]~~om~~'+prefs.getString("zfile")+'~~om~~~~om~~~~om~~', "http://www.charlau.com");
+					break;
+				case "[addrec]":
+					loGit("[addrec]");
+					myRamdom = randomString(10);
+					wave.getState().submitDelta({'added': myRamdom});
+					msg.createTimerMessage("Message sent!", 3);
+					break;
+				case "[getlist]":
+					loGit("[getlist]");
+					if(message[1]!='BAD') {
+						loadMessage = msg.createStaticMessage("loading playlist");
+						generateList(messages);
+					}
+					break;
+				default:
+				}
+			}else{
+				switch (messages[0]){
+				case "[ping]":
+					waitingForCharlau = false;
+					break;
+				case "[addrec]":
+					msg.createTimerMessage("Message sent!", 3);
+					myRamdom = randomString(10);
+					wave.getState().submitDelta({'added': myRamdom});
+					break;
+				default:
+				}
+			}	
+		}
+	}
+
 
 	function randomString(length){
 		var chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
