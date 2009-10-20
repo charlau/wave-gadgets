@@ -1,7 +1,7 @@
 
 div, p {font-family:courier, arial, sans-serif; font-size:10px; line-height:14px;}
 
-/* TABS 
+/* TABS */
 
 .mmlib_table {
    background-color: #F54141;
@@ -15,7 +15,7 @@ div, p {font-family:courier, arial, sans-serif; font-size:10px; line-height:14px
    padding:2px;
    text-align:center;
  }
-*/
+
 .tablib_selected {
   width: 150px;
 }
