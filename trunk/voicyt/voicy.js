@@ -38,6 +38,7 @@ var waitingForCharlau = true;
 	}
 
 	function stateUpdated() {
+		prefs.set("lastRamdom", wave.getState().get('added'));
 //		if (iCanListen && (myRamdom != prefs.getString("lastRamdom")) && !waitingForCharlau){
 		if (iCanListen && !waitingForCharlau){
 			iframeWin.postMessage('[getlist]~~om~~'+prefs.getString("zfile")+'~~om~~~~om~~~~om~~', 'http://www.charlau.com');
@@ -127,11 +128,11 @@ var waitingForCharlau = true;
 		}
 		
 		if((iamTheHost) && firstpass && (messages.length-1 > prefs.getInt("nbmessages"))){
-			msg.createTimerMessage("You have new messages!",3);
+			msg.createTimerMessage("You have new messages!!",3);
 		}else{
 			if (iCanListen && !firstpass){
-				prefs.set("lastRamdom", myRamdom);
-				if(myRamdom != wave.getState().get('added')){
+				
+				if(myRamdom != prefs.getString("lastRamdom"){
 					if(iamTheHost){
 						msg.createTimerMessage("You have new messages!",3);
 					}else{
