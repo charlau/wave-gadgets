@@ -68,7 +68,7 @@ var vmessage = function () {
 
 	function stateUpdated() {
 			var getList = new vmessage;
-			getList.get("http://www.charlau.com/gwave/voicyaj.php?fl=" + prefs.getString("zfile"));
+			getList.get("http://www.charlau.com/gwave/voicyaj.php");
 //		iframeWin = document.getElementsByTagName('iframe')[0].contentWindow;
 //		window.addEventListener('message', receiver, false);
 //		iframeWin.postMessage('[ping]~~om~~', 'http://www.charlau.com');
