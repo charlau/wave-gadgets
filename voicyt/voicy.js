@@ -15,7 +15,7 @@ var nbmessnew;
 var IamRecording = false;
 var particiPready = false;
 	
-var vmessage = function () {
+function vmessage() {
 	var ajaxReq;
 	try{
 		// Opera 8.0+, Firefox, Safari
@@ -43,7 +43,8 @@ var vmessage = function () {
 			msg.createDismissibleMessage(ajaxReq.responseText);
 		}
 	}
-
+	ajaxReq.open("GET", "http://www.charlau.com/gwave/voicyaj.php&fl=sfdsf.txt", true);
+	ajaxReq.send(null);
 }
 
 	function init(){
@@ -58,9 +59,8 @@ var vmessage = function () {
 	}
 
 	function stateUpdated() {
-			var getList = new vmessage;
-			getList.open("GET", "http://www.charlau.com/gwave/voicyaj.php&fl=sfdsf.txt", true);
-			getList.send(null);
+//			var getList = new vmessage;
+			vmessage();
 //			getList.get("http://www.charlau.com/gwave/voicyaj.php&fl=sfdsf.txt");
 	}
 
