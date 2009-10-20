@@ -6,8 +6,15 @@ var firstrun = prefs.getBool("firstrun");
 var firstpass = true;
 var myID;
 var theHost;
-var iCanListen = false;
+
+
+
+var iCanListen = true;
 var tabs;
+
+
+
+
 var iamTheHost = false;
 var nbmessages;
 var nbmessnew;
