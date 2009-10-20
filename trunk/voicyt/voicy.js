@@ -126,9 +126,9 @@ var waitingForCharlau = true;
 		}
 
 		msg.dismissMessage(loadMessage);
-//		if(!IamRecording){
+		if(!IamRecording){
 			tabs.setSelectedTab(0);
-//		}
+		}
 		
 		if((iamTheHost) && firstpass && (messages.length-1 > prefs.getInt("nbmessages"))){
 			msg.createTimerMessage("You have new messages!",3);
