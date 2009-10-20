@@ -217,7 +217,9 @@ var waitingForCharlau = true;
 
 	function rifflyFinishedRecording (riffly_id, riffly_type) {
 
-		iframeWin.postMessage('[addrec]~~om~~'+prefs.getString("zfile")+'~~om~~' + myID + '|||' + riffly_id, 'http://www.charlau.com');		
+		iframeWin.postMessage('[addrec]~~om~~'+prefs.getString("zfile")+'~~om~~' + myID + '~~om~~' + riffly_id + '~~om~~', 'http://www.charlau.com');	
+		rifflyShowRecorder('recorder_container', 'audio', 'rifflyFinishedRecording');
+		document.getElementById('recorder_container').firstChild.style.display="none";
 	}
 
 	function showPlayer (player_container_id, riffly_id, riffly_type) {
@@ -243,7 +245,6 @@ var waitingForCharlau = true;
 	function toRecTab(tabId) {
 		IamRecording = true;
 	}
-
 
 	function randomString(length){
 		var chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
