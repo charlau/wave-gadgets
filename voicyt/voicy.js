@@ -141,7 +141,7 @@ var waitingForCharlau = true;
 			}
 		
 		}
-
+//ddddd
 		if(iamTheHost){
 			prefs.set("nbmessages", messages.length-1);
 			firstpass=false;
