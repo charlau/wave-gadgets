@@ -42,9 +42,12 @@ var iframeWin;
 	function receiver(e) {
 		Connected=true;
 		msg.dismissMessage(loadMessage);
+		msg.createDismissibleMessage("receiving1");
 		if(e.origin == 'http://www.charlau.com') {
+			msg.createDismissibleMessage("receiving2");
 			waitingForCharlau = false;
 			var messages = e.data.split("~~om~~");
+			msg.createDismissibleMessage("receivingcontent:"+messages[0]);
 			if(iCanListen){
 				switch (messages[0]){
 				case "[ping]":
