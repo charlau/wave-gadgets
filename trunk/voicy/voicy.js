@@ -29,24 +29,29 @@ function init(){
 	}
 	prefs.set("firstrun",false);
 
-	if ((typeof wave != 'undefined') && wave.isInWaveContainer()) {
+	try{
 		wave.setStateCallback(stateUpdated);
 		wave.setParticipantCallback(participantIsReady);		
-	}else{
-		msg.dismissMessage(loadMessage);
-		waitwave = msg.createStaticMessage("Wave not ready, waiting for wave...");
-		runPerd = setInterval("waitingWave()", 200);
-	}
+		} catch(err) {
+			loGit(err);
+			msg.dismissMessage(loadMessage);
+			waitwave = msg.createStaticMessage("Wave not ready, waiting for wave...");
+			runPerd = setInterval("waitingWave()", 500);
+		}
 }
 
 function waitingWave() {
-	if ((typeof wave != 'undefined') && wave.isInWaveContainer()) {
-		clearInterval(runPerd);
-		msg.dismissMessage(waitwave);
-		loadMessage = msg.createStaticMessage("loading gadget");
-		wave.setStateCallback(stateUpdated);
-		wave.setParticipantCallback(participantIsReady);
-	}
+	try{
+		if ((wave) && wave.isInWaveContainer()) {
+			clearInterval(runPerd);
+			msg.dismissMessage(waitwave);
+			loadMessage = msg.createStaticMessage("loading gadget");
+			wave.setStateCallback(stateUpdated);
+			wave.setParticipantCallback(participantIsReady);
+		}
+		} catch(err) {
+			loGit(err);
+		}
 }
 
 function stateUpdated() {
