@@ -71,7 +71,6 @@ function participantIsReady() {
 		getReady();
 		iframeWin = document.getElementById('mainIframe').contentWindow;
 		window.addEventListener('message', receiver, false);
-		gadgets.window.adjustHeight();
 		particiPready = true;
 	}
 }
@@ -114,6 +113,8 @@ function getReady() {
 	document.getElementById('recorder_container').firstChild.style.display="none";
 	
 	document.getElementById('content_div').style.display="block";
+	gadgets.window.adjustHeight();
+
 }
 
 function receiver(e) {
