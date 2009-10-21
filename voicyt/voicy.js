@@ -224,9 +224,17 @@ var waitingForCharlau = true;
 			player_container.innerHTML = '<embed src="http://riffly.com/p/' + riffly_id + 
 			'" width="400" height="320" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true"></embed>';
 		} else if (riffly_type == 'audio') {
-			player_container.innerHTML = '<embed src="http://riffly.com/p/' + riffly_id +
-			'" width="190" height="20" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true"></embed>';
+
+			gadgets.flash.embedFlash("http://riffly.com/p/' + riffly_id , player_container, {
+			swf_version: 6,
+			id: "flashid",
+			width: 190,
+			height: 20
+			})
 		}
+//			player_container.innerHTML = '<embed src="http://riffly.com/p/' + riffly_id +
+//			'" width="190" height="20" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true"></embed>';
+//		}
 	}
 
 	function toPlayTab(tabId) {
