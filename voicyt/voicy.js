@@ -218,7 +218,6 @@ var waitingForCharlau = true;
 	function showPlayer (player_container_id, riffly_id, riffly_type) {
 		var player_container = document.getElementById(player_container_id);
 		
-		player_container.style.display = 'block';
 
 		if (riffly_type == 'video') {
 			player_container.innerHTML = '<embed src="http://riffly.com/p/' + riffly_id + 
@@ -233,6 +232,9 @@ var waitingForCharlau = true;
 				allowfullscreen: "false",
 				allowscriptaccess: "never"
 			});
+
+		player_container.style.display = 'block';
+
 		}
 //			player_container.innerHTML = '<embed src="http://riffly.com/p/' + riffly_id +
 //			'" width="190" height="20" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true"></embed>';
