@@ -114,6 +114,10 @@ function getReady() {
 	
 	document.getElementById('content_div').style.display="block";
 
+	if(IamRecording){ //not the host & privacy enforced (no listing of messages)
+		gadgets.window.adjustHeight();
+	}
+
 }
 
 function receiver(e) {
