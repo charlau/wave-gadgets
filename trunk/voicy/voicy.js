@@ -237,7 +237,7 @@ function rifflyFinishedRecording (riffly_id, riffly_type) {
 function showPlayer (player_container_id, riffly_id, riffly_type) {
 
 	var player_container = document.getElementById(player_container_id);
-	msg.createTimerMessage("Loading recorded message", 3);
+	msg.createTimerMessage("Loading recorded message", 2);
 
 	if (riffly_type == 'video') {
 		player_container.innerHTML = '<embed src="http://riffly.com/p/' + riffly_id + 
