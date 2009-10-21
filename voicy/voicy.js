@@ -162,7 +162,10 @@ function receiver(e) {
 function generateList(messages) {
 	var opt;
 	var particip;
+	msg.dismissMessage(loadMessage);
+	loadMessage = msg.createStaticMessage("loading message list");
 	document.getElementById('player_container').innerHTML='';
+	document.getElementById('choosefile').style.display = 'none';
 	document.toplay.riffly_id2.options.length = 0;
 	document.toplay.riffly_id2.options[0]=new Option('-------click to play-------', '', true, true);
 	for (x=1;x<messages.length-1;x++) {
@@ -177,11 +180,13 @@ function generateList(messages) {
 		document.toplay.riffly_id2.options[x]=new Option(particip, opt[1], false, false);
 	}
 
-	msg.dismissMessage(loadMessage);
 	if(!IamRecording){
 		tabs.setSelectedTab(0);
 	}
-	
+
+	msg.dismissMessage(loadMessage);
+	document.getElementById('choosefile').style.display = 'block';
+
 	if((iamTheHost) && firstpass && (messages.length-1 > prefs.getInt("nbmessages"))){
 		msg.createTimerMessage("You have new messages!!",3);
 	}else{
