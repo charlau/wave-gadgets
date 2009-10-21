@@ -104,6 +104,9 @@ var waitingForCharlau = true;
 		var opt;
 		var particip;
 		document.getElementById('player_container').innerHTML='';
+
+		document.getElementById('choosefile').style.display = 'none';
+
 		document.toplay.riffly_id2.options.length = 0;
 		document.toplay.riffly_id2.options[0]=new Option('-------click to play-------', '', true, true);
 		for (x=1;x<messages.length-1;x++) {
@@ -122,6 +125,8 @@ var waitingForCharlau = true;
 		if(!IamRecording){
 			tabs.setSelectedTab(0);
 		}
+		
+		document.getElementById('choosefile').style.display = 'block';
 		
 		if((iamTheHost) && firstpass && (messages.length-1 > prefs.getInt("nbmessages"))){
 			msg.createTimerMessage("You have new messages!!",3);
