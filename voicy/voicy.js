@@ -71,7 +71,7 @@ function participantIsReady() {
 		getReady();
 		iframeWin = document.getElementById('mainIframe').contentWindow;
 		window.addEventListener('message', receiver, false);
-//		gadgets.window.adjustHeight();
+		gadgets.window.adjustHeight();
 		particiPready = true;
 	}
 }
