@@ -30,7 +30,7 @@
 	<link rel="stylesheet" type="text/css" href="http://wave-gadgets.googlecode.com/svn/trunk/voicy/forms.css" media="screen" />
 	<script type="text/javascript" src="http://wave-gadgets.googlecode.com/svn/trunk/voicy/voicy.js"></script>
 	<script type="text/javascript" src="http://free-video-comments-at.riffly.com/static/js/api/1/web.js"></script>
-	<div id="content_div" style="display:none; border-bottom-style:solid; border-bottom-width:1px; margin-bottom:5px;">
+	<div id="content_div" style="display:none; border-bottom-style:solid; border-bottom-width:1px; margin-bottom:10px;">
 		<iframe id="mainIframe" src="" height="0" frameborder="0" scrolling="no"></iframe>
 		<div id="playdiv" style="float:left; width:100%; padding:0; margin:0;">
 			<div style="float:right; font-size:10px; font-family:Courier, Arial, Helvetica, sans-serif; margin-top:3px; margin-right:10px;">Gadget by <a href="http://charlau.posterous.com/" target="_blank">charlau</a></div>
@@ -42,7 +42,7 @@
 					</select>
 				</form>
 			</div>
-			<div id="HostOpt" style="font-size:12px; float:left; width:100%; margin-top:80px; margin-bottom:0; margin-left:10px; padding:0;">
+			<div id="HostOpt" style="font-size:12px; float:left; width:100%; margin-top:83px; margin-bottom:0; margin-left:10px; padding:0;">
 				<div id="mprivates" style="display:none;">
 					<form id="privachk" action="#">Keep messages private <input type="checkbox" name="priva" class="ttt" value="secret" onChange="checkOpt(this);">
 					</form>
