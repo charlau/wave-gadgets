@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Module>
 	<ModulePrefs 
-		title="Om2"
+		title="Voicy"
 		height="260"
 		description="Add a little 'voicy' to your waves, record greetings and comments and play them back within a wave"
 		author="charlau" author_email="charlesmtl+voicy@gmail.com"
