@@ -34,7 +34,7 @@
 	<div id="playdiv" style="display:none; float:left; width:100%; padding:0; margin:0;">
 	<div style="float:right; font-size:10px; font-family:Courier, Arial, Helvetica, sans-serif; margin-top:3px; margin-right:10px;">Gadget by <a href="http://charlau.posterous.com/" target="_blank">charlau</a></div>
 	<div id="player_container" style="height:21px; width:190px; margin-top:30px; margin-left:10px;"></div>
-	<div id="choosefile" style="margin-left:10px;">
+	<div id="choosefile" style="margin-left:10px; display:none;">
 		<form name="toplay" action="#" method="post">
 			<select name="riffly_id2" class="ttt" style="width:190px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #ffffff; background-color: red;" onChange="showPlayer('player_container', document.toplay.riffly_id2.value, 'audio');">
 				<option value="" selected="selected">-------click to play-------</option>
