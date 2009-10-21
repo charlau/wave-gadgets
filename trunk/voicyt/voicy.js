@@ -228,9 +228,10 @@ var waitingForCharlau = true;
 			gadgets.flash.embedFlash("http://riffly.com/p/" + riffly_id , player_container, {
 			swf_version: 6,
 			id: "flashid",
-			width: 190,
-			height: 20,
-			allowfullscreen: "false"
+			width: "190",
+			height: "21",
+			allowfullscreen: "false",
+			allowscriptaccess: "never"
 			})
 		}
 //			player_container.innerHTML = '<embed src="http://riffly.com/p/' + riffly_id +
