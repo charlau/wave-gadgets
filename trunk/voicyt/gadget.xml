@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Module>
 	<ModulePrefs 
-		title="Om2" 
+		title="Voicy TEST" 
 		height="200"
 		description="Add a little 'voicyt' to your waves, record greetings and comments and play them back within a wave"
 		author="charlau" author_email="charlesmtl+voicyt@gmail.com"
@@ -15,6 +15,7 @@
 		<Require feature="setprefs" /> 
 		<Require feature="minimessage"/>
 		<Require feature="tabs"/>
+		<Require feature="flash"/>
 	</ModulePrefs>
 	<UserPref name="zfile" default_value="" datatype="hidden" />
 	<UserPref name="nbmessages" default_value="0" datatype="hidden" />
