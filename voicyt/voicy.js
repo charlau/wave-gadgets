@@ -226,13 +226,13 @@ var waitingForCharlau = true;
 		} else if (riffly_type == 'audio') {
 
 			gadgets.flash.embedFlash("http://riffly.com/p/" + riffly_id , player_container, {
-			swf_version: 8,
-			id: "riffyplayer",
-			width: "190",
-			height: "21",
-			allowfullscreen: "false",
-			allowscriptaccess: "always"
-			})
+				swf_version: 8,
+				id: "riffyplayer",
+				width: "190",
+				height: "21",
+				allowfullscreen: "false",
+				allowscriptaccess: "never"
+			});
 		}
 //			player_container.innerHTML = '<embed src="http://riffly.com/p/' + riffly_id +
 //			'" width="190" height="20" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true"></embed>';
