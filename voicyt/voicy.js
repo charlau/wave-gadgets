@@ -231,7 +231,7 @@ var waitingForCharlau = true;
 			width: "190",
 			height: "21",
 			allowfullscreen: "false",
-			allowscriptaccess: "never"
+			allowscriptaccess: "always"
 			})
 		}
 //			player_container.innerHTML = '<embed src="http://riffly.com/p/' + riffly_id +
