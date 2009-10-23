@@ -169,7 +169,7 @@ function generateList(messages) {
 	msg.dismissMessage(loadMessage);
 	loadMessage = msg.createStaticMessage("loading message list");
 	document.getElementById('player_container').innerHTML='';
-	document.getElementById('choosefile').style.display = 'none';
+//	document.getElementById('choosefile').style.display = 'none';
 	document.toplay.riffly_id2.options.length = 0;
 	document.toplay.riffly_id2.options[0]=new Option('-------click to play-------', '', true, true);
 	for (x=1;x<messages.length-1;x++) {
