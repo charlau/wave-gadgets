@@ -169,7 +169,8 @@ function generateList(messages) {
 	msg.dismissMessage(loadMessage);
 	loadMessage = msg.createStaticMessage("loading message list");
 	document.getElementById('player_container').innerHTML='';
-//	document.getElementById('choosefile').style.display = 'none';
+	document.getElementById('choosefile').style.display = 'none';
+//	document.getElementById('choosefile').style.display = 'block';
 	document.toplay.riffly_id2.options.length = 0;
 	document.toplay.riffly_id2.options[0]=new Option('-------click to play-------', '', true, true);
 	for (x=1;x<messages.length-1;x++) {
@@ -244,6 +245,7 @@ function rifflyFinishedRecording (riffly_id, riffly_type) {
 	iframeWin.postMessage('[addrec]~~om~~'+prefs.getString("zfile")+'~~om~~' + myID + '~~om~~' + riffly_id + '~~om~~', 'http://www.charlau.com');	
 	rifflyShowRecorder('recorder_container', 'audio', 'rifflyFinishedRecording');
 	document.getElementById('recorder_container').firstChild.style.display="none";
+	IamRecording = false;
 }
 
 function showPlayer (player_container_id, riffly_id, riffly_type) {
