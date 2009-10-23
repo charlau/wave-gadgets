@@ -114,7 +114,7 @@ function getReady() {
 	
 	document.getElementById('content_div').style.display="block";
 
-	if(IamRecording){ //not the host & privacy enforced (no listing of messages)
+	if(iCanListen){ //not the host & privacy enforced (no listing of messages)
 		gadgets.window.adjustHeight();
 	}
 
@@ -243,9 +243,12 @@ function setOpt(){
 function rifflyFinishedRecording (riffly_id, riffly_type) {
 
 	iframeWin.postMessage('[addrec]~~om~~'+prefs.getString("zfile")+'~~om~~' + myID + '~~om~~' + riffly_id + '~~om~~', 'http://www.charlau.com');	
-	rifflyShowRecorder('recorder_container', 'audio', 'rifflyFinishedRecording');
-	document.getElementById('recorder_container').firstChild.style.display="none";
-	IamRecording = false;
+	if(iCanListen) {
+		IamRecording = false;
+	}else{
+		rifflyShowRecorder('recorder_container', 'audio', 'rifflyFinishedRecording');
+		document.getElementById('recorder_container').firstChild.style.display="none";
+	}
 }
 
 function showPlayer (player_container_id, riffly_id, riffly_type) {
