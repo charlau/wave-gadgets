@@ -114,9 +114,9 @@ function getReady() {
 	
 	document.getElementById('content_div').style.display="block";
 
-	if(iCanListen){ //not the host & privacy enforced (no listing of messages)
+//	if(iCanListen){ //not the host & privacy enforced (no listing of messages)
 		gadgets.window.adjustHeight();
-	}
+//	}
 
 }
 
