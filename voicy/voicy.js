@@ -29,17 +29,10 @@ function init(){
 	}
 	prefs.set("firstrun",false);
 
-//	try{
 	if (wave && wave.isInWaveContainer()) {
 		wave.setStateCallback(stateUpdated);
 		wave.setParticipantCallback(participantIsReady);
 	}
-//		} catch(err) {
-//			loGit(err);
-//			msg.dismissMessage(loadMessage);
-//			waitwave = msg.createStaticMessage("Wave not ready, waiting for wave...");
-//			runPerd = setInterval("waitingWave()", 500);
-//		}
 }
 
 function waitingWave() {
@@ -72,9 +65,7 @@ function participantIsReady() {
 		iframeWin = document.getElementById('mainIframe').contentWindow;
 		window.addEventListener('message', receiver, false);
 		particiPready = true;
-//		if(!iCanListen){
-			gadgets.window.adjustHeight();
-//		}
+		gadgets.window.adjustHeight();
 	}
 }
 
@@ -120,11 +111,6 @@ function getReady() {
 	document.getElementById('recorder_container').firstChild.style.display="none";
 	
 	document.getElementById('content_div').style.display="block";
-
-	if(iCanListen){ //not the host & privacy enforced (no listing of messages)
-		gadgets.window.adjustHeight();
-	}
-
 }
 
 function receiver(e) {
