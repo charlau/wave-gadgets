@@ -65,8 +65,8 @@ function participantIsReady() {
 		iframeWin = document.getElementById('mainIframe').contentWindow;
 		window.addEventListener('message', receiver, false);
 		particiPready = true;
-		gadgets.window.adjustHeight();
 		document.getElementById('choosefile').style.display = 'block';
+		gadgets.window.adjustHeight();
 	}
 }
 
@@ -78,7 +78,7 @@ function getReady() {
 		document.getElementById("mprivates").style.display="block";
 		setOpt();
 	}else{
-		document.getElementById("HostOpt").style.marginTop="100px";
+		document.getElementById("HostOpt").style.marginTop="97px";
 	}
 	var theNote;
 	var therecordpanel2 = "";
