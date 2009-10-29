@@ -28,7 +28,7 @@ function init(){
 		prefs.set("zfile", randomString(15)+".txt"); 
 	}
 	prefs.set("firstrun",false);
-
+	document.getElementById('choosefile').style.display = 'none';
 	if (wave && wave.isInWaveContainer()) {
 		wave.setStateCallback(stateUpdated);
 		wave.setParticipantCallback(participantIsReady);
@@ -66,6 +66,7 @@ function participantIsReady() {
 		window.addEventListener('message', receiver, false);
 		particiPready = true;
 		gadgets.window.adjustHeight();
+		document.getElementById('choosefile').style.display = 'block';
 	}
 }
 
@@ -183,7 +184,7 @@ function generateList(messages) {
 	}
 
 	msg.dismissMessage(loadMessage);
-	document.getElementById('choosefile').style.display = 'inline';
+	document.getElementById('choosefile').style.display = 'block';
 
 	if((iamTheHost) && firstpass && (messages.length-1 > prefs.getInt("nbmessages"))){
 		msg.createTimerMessage("You have new messages!!",3);
