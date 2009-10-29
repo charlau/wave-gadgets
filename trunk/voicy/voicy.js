@@ -77,7 +77,7 @@ function getReady() {
 		document.getElementById("mprivates").style.display="block";
 		setOpt();
 	}else{
-		document.getElementById("HostOpt").style.marginTop="117px";
+		document.getElementById("HostOpt").style.marginTop="120px";
 	}
 	var theNote;
 	var therecordpanel2 = "";
