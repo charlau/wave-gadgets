@@ -42,7 +42,7 @@
 					</select>
 				</form>
 			</div>
-			<div id="HostOpt" style="font-size:12px; float:left; width:100%; margin-top:86px; margin-bottom:0; margin-left:10px; padding:0;">
+			<div id="HostOpt" style="font-size:12px; float:left; width:100%; margin-top:83px; margin-bottom:0; margin-left:10px; padding:0;">
 				<div id="mprivates" style="display:none;">
 					<form id="privachk" action="#">Keep messages private <input type="checkbox" name="priva" class="ttt" value="secret" onChange="checkOpt(this);">
 					</form>
