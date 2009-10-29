@@ -183,7 +183,7 @@ function generateList(messages) {
 	}
 
 	msg.dismissMessage(loadMessage);
-	document.getElementById('choosefile').style.display = 'block';
+	document.getElementById('choosefile').style.display = 'inline';
 
 	if((iamTheHost) && firstpass && (messages.length-1 > prefs.getInt("nbmessages"))){
 		msg.createTimerMessage("You have new messages!!",3);
