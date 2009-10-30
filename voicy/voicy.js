@@ -68,7 +68,7 @@ function participantIsReady() {
 		particiPready = true;
 		document.getElementById('choosefile').style.display = 'block';
 
-		document.getElementById('player_container').innerHTML += spMessage;
+		document.getElementById('playdiv').innerHTML += spMessage;
 
 		gadgets.window.adjustHeight();
 	}
