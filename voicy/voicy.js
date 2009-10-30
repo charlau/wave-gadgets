@@ -20,7 +20,7 @@ var iframeWin;
 var waitingForCharlau = true;
 var runPerd;
 var waitwave;
-var spMessage = "<div><p><b>Sorry, as of today 30/11, something's broke in the API making the gadget not functionnal. Will let you know when it gets fixed!</b></p></div>";
+var spMessage = "<div><p style='font-size:13px;'><b>*** Sorry, as of today 30/11, something's broke in the API making the gadget not completelly functionnal. Will let you know when it gets fixed! ***</b></p></div>";
 	
 function init(){
 	msg = new gadgets.MiniMessage();
@@ -68,7 +68,7 @@ function participantIsReady() {
 		particiPready = true;
 		document.getElementById('choosefile').style.display = 'block';
 
-		document.getElementById('playdiv').innerHTML += spMessage;
+		document.getElementById('player_container').innerHTML += spMessage;
 
 		gadgets.window.adjustHeight();
 	}
