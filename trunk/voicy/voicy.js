@@ -20,7 +20,7 @@ var iframeWin;
 var waitingForCharlau = true;
 var runPerd;
 var waitwave;
-var spMessage = "<div style='margin-top:10px; margin-bottom:10px;'><p style='font-size:13px;'><b>*** Sorry, as of today 30/11, something's broke in the API making the gadget not completelly functionnal. Will let you know when it gets fixed! ***</b></p></div>";
+var spMessage = "<div style='padding-top:10px; margin-bottom:10px;'><p style='font-size:13px;'><b>*** Sorry, as of today 30/11, something's broke in the API making the gadget not completelly functionnal. Will let you know when it gets fixed! ***</b></p></div>";
 	
 function init(){
 	msg = new gadgets.MiniMessage();
