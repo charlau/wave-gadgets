@@ -20,6 +20,7 @@ var iframeWin;
 var waitingForCharlau = true;
 var runPerd;
 var waitwave;
+var spMessage = "<p>Sorry, as of today 30/11, something's broke in the API making the gadget not functionnal. Will let you know when it gets fixed!</p>"
 	
 function init(){
 	msg = new gadgets.MiniMessage();
@@ -103,6 +104,8 @@ function getReady() {
 		callback: toRecTab,
 		index: 1
 	});
+
+	theNote += spMessage;
 
 	var therecordpanel = '<div id="rectab" style="font-family:courier, arial, sans-serif; font-size:10px; margin-left:8px; margin-top:3px; margin-right:10px; margin-bottom:10px; float:right;">Recording courtesy of <a href="http://riffly.com/" target="_blank">riffly</a></div><div style="font-family:verdana, arial, sans-serif; font-style:italic; padding-top:3px; padding-left:10px; padding-right:10px;">' + theNote + '</div><div id="recorder_container" style="float:left; width:100%; display:block; margin-left:10px;"></div>' + therecordpanel2;
 
@@ -209,6 +212,8 @@ function generateList(messages) {
 		prefs.set("nbmessages", messages.length-1);
 		firstpass=false;
 	}
+	
+	document.getElementById('choosefile').innerHTML += spMessage;
 }
 
 
