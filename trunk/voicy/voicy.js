@@ -7,21 +7,19 @@ var firstpass = true;
 var myID;
 var theHost;
 var myRamdom = "";
-
 var iCanListen = false;
 var tabs;
-
 var iamTheHost = false;
 var nbmessages;
-var nbmessnew;
 var IamRecording = false;
 var particiPready = false;
 var iframeWin;
 var waitingForCharlau = true;
 var runPerd;
 var waitwave;
+
 var isbugged = false;
-var spMessage = "<div style='padding-top:10px; margin-bottom:10px;'><p style='font-size:13px;'><b>Sorry, something's broke in the API making the gadget not always loading. Please bear with the beta!</b></p></div>";
+var spMessage = "Sorry, sometimes the gadget is not always loading. Please bear with the beta!";
 	
 function init(){
 	msg = new gadgets.MiniMessage();
@@ -29,7 +27,6 @@ function init(){
 		prefs.set("zfile", randomString(15)+".txt"); 
 	}
 	prefs.set("firstrun",false);
-//	document.getElementById('choosefile').style.display = 'none';
 
 	if (isbugged) {
 		msg.createDismissibleMessage(spMessage);
@@ -44,6 +41,7 @@ function init(){
 	}
 }
 
+// used only if isbugged=true in times when waves tend to disapear...
 function waitingWave() {
 	try{
 		if ((wave) && wave.isInWaveContainer()) {
@@ -55,16 +53,17 @@ function waitingWave() {
 		}
 		} catch(err) {
 			loGit(err);
-		}
+	}
 }
 
+// if updated, most likelly because a message was recorded
 function stateUpdated() {
-//		if (iCanListen && (myRamdom != prefs.getString("lastRamdom")) && !waitingForCharlau){
 	if (iCanListen && !waitingForCharlau){
 		iframeWin.postMessage('[getlist]~~om~~'+prefs.getString("zfile")+'~~om~~~~om~~~~om~~', 'http://www.charlau.com');
 	}
 }
 
+// so far, used only on the first participant ready.
 function participantIsReady() {		
 	if(!particiPready && wave.getViewer()){
 		myID = wave.getViewer().getId();
@@ -74,17 +73,13 @@ function participantIsReady() {
 		iframeWin = document.getElementById('mainIframe').contentWindow;
 		window.addEventListener('message', receiver, false);
 		particiPready = true;
-//		document.getElementById('choosefile').style.display = 'block';
-
-//		document.getElementById('playdiv').innerHTML += spMessage;
-
-//		gadgets.window.adjustHeight();
 		runPerd = setInterval( pingCharlau, 500 );
 	}
 }
 
+// keep pinging charlau until we get a response (the setinterval will be cancelled in fnc receiver() when we get pinged from him
 function pingCharlau() {
-		iframeWin.postMessage('[ping]~~om~~', 'http://www.charlau.com');
+	iframeWin.postMessage('[ping]~~om~~', 'http://www.charlau.com');
 }
 
 function getReady() {
@@ -121,8 +116,6 @@ function getReady() {
 		index: 1
 	});
 
-//	theNote += spMessage;
-
 	var therecordpanel = '<div id="rectab" style="font-family:courier, arial, sans-serif; font-size:10px; margin-left:8px; margin-top:3px; margin-right:10px; margin-bottom:10px; float:right;">Recording courtesy of <a href="http://riffly.com/" target="_blank">riffly</a></div><div style="font-family:verdana, arial, sans-serif; font-style:italic; padding-top:3px; padding-left:10px; padding-right:10px;">' + theNote + '</div><div id="recorder_container" style="float:left; width:100%; display:block; margin-left:10px; height:160px;"></div>' + therecordpanel2;
 
 	document.getElementById(therectab).innerHTML = therecordpanel;
@@ -130,11 +123,11 @@ function getReady() {
 	rifflyShowRecorder('recorder_container', 'audio', 'rifflyFinishedRecording');
 	document.getElementById('recorder_container').firstChild.style.display="none";
 	
-//	document.getElementById('content_div').style.display="block";
 	gadgets.window.adjustHeight();
 
 }
 
+//receives messages from charlau.com
 function receiver(e) {
 	Connected=true;
 	if(e.origin == 'http://www.charlau.com') {
@@ -157,7 +150,6 @@ function receiver(e) {
 			case "[getlist]":
 				loGit("[getlist]");
 				if(messages[1]!=='BAD') {
-//					loadMessage = msg.createStaticMessage("loading playlist");
 					generateList(messages);
 				}
 				break;
@@ -179,15 +171,14 @@ function receiver(e) {
 	}
 }
 
+// splits received message ([getlist]) and builds drop-down select list
 function generateList(messages) {
 	var opt;
 	var particip;
 	msg.dismissMessage(loadMessage);
 	loadMessage = msg.createStaticMessage("loading message list");
-//	msg.createDismissibleMessage("*loading message list");
 	document.getElementById('player_container').innerHTML='';
 	document.getElementById('choosefile').style.display = 'none';
-//	document.getElementById('choosefile').style.display = 'block';
 	document.toplay.riffly_id2.options.length = 0;
 	document.toplay.riffly_id2.options[0]=new Option('-------click to play-------', '', true, true);
 	for (x=1;x<messages.length-1;x++) {
@@ -226,7 +217,6 @@ function generateList(messages) {
 	}
 
 	if(firstpass){
-//		gadgets.window.adjustHeight();
 		waitingForCharlau = false;
 	}
 	if(iamTheHost){
@@ -236,7 +226,7 @@ function generateList(messages) {
 	
 }
 
-
+// trigger: user clicks on the checkbox for privacy
 function checkOpt(thebox){
 	loGit("checkOpt");
 	if(myID == theHost){
@@ -259,6 +249,7 @@ function setOpt(){
 	}
 }
 
+// triggered by Riffly's swf
 function rifflyFinishedRecording (riffly_id, riffly_type) {
 
 	iframeWin.postMessage('[addrec]~~om~~'+prefs.getString("zfile")+'~~om~~' + myID + '~~om~~' + riffly_id + '~~om~~', 'http://www.charlau.com');	
@@ -270,6 +261,7 @@ function rifflyFinishedRecording (riffly_id, riffly_type) {
 	}
 }
 
+// triggered by the "onchange" event of the select list of recordings
 function showPlayer (player_container_id, riffly_id, riffly_type) {
 
 	var player_container = document.getElementById(player_container_id);
@@ -277,8 +269,18 @@ function showPlayer (player_container_id, riffly_id, riffly_type) {
 	if (!waitingForCharlau) {
 		msg.createTimerMessage("Loading recorded message", 2);
 		if (riffly_type == 'video') {
-			player_container.innerHTML = '<embed src="http://riffly.com/p/' + riffly_id + 
-			'" width="400" height="320" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true"></embed>';
+
+			gadgets.flash.embedFlash("http://riffly.com/p/" + riffly_id , player_container, {
+				swf_version: 8,
+				id: "riffyplayerx",
+				width: "400",
+				height: "320",
+				allowfullscreen: "true",
+				allowscriptaccess: "never"
+			});
+			
+			player_container.style.display = 'block';	
+
 		} else if (riffly_type == 'audio') {
 	
 				gadgets.flash.embedFlash("http://riffly.com/p/" + riffly_id , player_container, {
@@ -295,12 +297,14 @@ function showPlayer (player_container_id, riffly_id, riffly_type) {
 	}
 }
 
+// When user clicks on the player tab
 function toPlayTab(tabId) {
 	IamRecording = false;
 	document.toplay.riffly_id2.selectedIndex = 0;
 	document.getElementById('player_container').innerHTML = '';
 }
 
+// When user clicks on the recorder tab
 function toRecTab(tabId) {
 	IamRecording = true;
 }
@@ -322,4 +326,4 @@ function loGit(tolog){
 	}
 }
 
-   gadgets.util.registerOnLoadHandler(init);    
+gadgets.util.registerOnLoadHandler(init);    
