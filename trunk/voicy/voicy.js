@@ -135,7 +135,6 @@ function getReady() {
 
 function receiver(e) {
 	Connected=true;
-	msg.dismissMessage(loadMessage);
 	if(e.origin == 'http://www.charlau.com') {
 		clearInterval(runPerd);
 		var messages = e.data.split("~~om~~");
@@ -143,6 +142,8 @@ function receiver(e) {
 			switch (messages[0]){
 			case "[ping]":
 				loGit("[ping]");
+				msg.dismissMessage(loadMessage);
+				loadMessage = msg.createStaticMessage("loading message list");
 				iframeWin.postMessage('[getlist]~~om~~'+prefs.getString("zfile")+'~~om~~~~om~~~~om~~', 'http://www.charlau.com');
 				break;
 			case "[addrec]":
@@ -154,8 +155,8 @@ function receiver(e) {
 			case "[getlist]":
 				loGit("[getlist]");
 				waitingForCharlau = false;
-				if(messages[1]!='BAD') {
-					loadMessage = msg.createStaticMessage("loading playlist");
+				if(messages[1]!=='BAD') {
+//					loadMessage = msg.createStaticMessage("loading playlist");
 					generateList(messages);
 				}
 				break;
