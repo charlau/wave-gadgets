@@ -271,26 +271,25 @@ function rifflyFinishedRecording (riffly_id, riffly_type) {
 function showPlayer (player_container_id, riffly_id, riffly_type) {
 
 	var player_container = document.getElementById(player_container_id);
-	msg.createTimerMessage("Loading recorded message", 2);
 
-	if (riffly_type == 'video') {
-		player_container.innerHTML = '<embed src="http://riffly.com/p/' + riffly_id + 
-		'" width="400" height="320" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true"></embed>';
-	} else if (riffly_type == 'audio') {
-
-			gadgets.flash.embedFlash("http://riffly.com/p/" + riffly_id , player_container, {
-				swf_version: 8,
-				id: "riffyplayerx",
-				width: "190",
-				height: "20",
-				allowfullscreen: "false",
-				allowscriptaccess: "never"
-			});
-			
-			player_container.style.display = 'block';
-
-//		player_container.innerHTML = '<embed src="http://riffly.com/p/' + riffly_id +
-//		'" width="190" height="20" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true"></embed>';
+	if (!waitingForCharlau) {
+		msg.createTimerMessage("Loading recorded message", 2);
+		if (riffly_type == 'video') {
+			player_container.innerHTML = '<embed src="http://riffly.com/p/' + riffly_id + 
+			'" width="400" height="320" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true"></embed>';
+		} else if (riffly_type == 'audio') {
+	
+				gadgets.flash.embedFlash("http://riffly.com/p/" + riffly_id , player_container, {
+					swf_version: 8,
+					id: "riffyplayerx",
+					width: "190",
+					height: "20",
+					allowfullscreen: "false",
+					allowscriptaccess: "never"
+				});
+				
+				player_container.style.display = 'block';	
+		}
 	}
 }
 
