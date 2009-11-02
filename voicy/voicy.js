@@ -31,6 +31,8 @@ function init(){
 	prefs.set("firstrun",false);
 //	document.getElementById('choosefile').style.display = 'none';
 
+	gadgets.window.adjustHeight();
+
 	if (isbugged) {
 		msg.createDismissibleMessage(spMessage);
 		waitwave = msg.createStaticMessage("waiting for wave");
@@ -225,7 +227,7 @@ function generateList(messages) {
 	}
 
 	if(firstpass){
-		gadgets.window.adjustHeight();
+//		gadgets.window.adjustHeight();
 	}
 	if(iamTheHost){
 		prefs.set("nbmessages", messages.length-1);
