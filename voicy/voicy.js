@@ -31,16 +31,16 @@ function init(){
 	}
 	prefs.set("firstrun",false);
 	document.getElementById('choosefile').style.display = 'none';
-	if isbugged {
+	if (isbugged) {
 		bugmess = msg.createStaticMessage(spMessage);
 		waitwave = msg.createStaticMessage("waiting for wave");
 		runPerd = setInterval( waitingWave, 500 );
+	}else{
+		if (wave && wave.isInWaveContainer()) {
+			wave.setStateCallback(stateUpdated);
+			wave.setParticipantCallback(participantIsReady);
+		}
 	}
-
-//	if (wave && wave.isInWaveContainer()) {
-//		wave.setStateCallback(stateUpdated);
-//		wave.setParticipantCallback(participantIsReady);
-//	}
 }
 
 function waitingWave() {
