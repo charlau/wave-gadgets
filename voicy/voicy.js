@@ -182,6 +182,7 @@ function generateList(messages) {
 	var particip;
 	msg.dismissMessage(loadMessage);
 	loadMessage = msg.createStaticMessage("loading message list");
+	msg.createDismissibleMessage("*loading message list");
 	document.getElementById('player_container').innerHTML='';
 	document.getElementById('choosefile').style.display = 'none';
 //	document.getElementById('choosefile').style.display = 'block';
