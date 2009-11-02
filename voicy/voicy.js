@@ -25,7 +25,6 @@ var spMessage = "<div style='padding-top:10px; margin-bottom:10px;'><p style='fo
 	
 function init(){
 	msg = new gadgets.MiniMessage();
-	loadMessage = msg.createStaticMessage("loading gadget");
 	if (prefs.getString("zfile") == "") {
 		prefs.set("zfile", randomString(15)+".txt"); 
 	}
@@ -36,6 +35,7 @@ function init(){
 		waitwave = msg.createStaticMessage("waiting for wave");
 		runPerd = setInterval( waitingWave, 500 );
 	}else{
+		loadMessage = msg.createStaticMessage("loading gadget");
 		if (wave && wave.isInWaveContainer()) {
 			wave.setStateCallback(stateUpdated);
 			wave.setParticipantCallback(participantIsReady);
