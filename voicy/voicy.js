@@ -20,7 +20,8 @@ var iframeWin;
 var waitingForCharlau = true;
 var runPerd;
 var waitwave;
-var spMessage = "<div style='padding-top:10px; margin-bottom:10px;'><p style='font-size:13px;'><b>*** Sorry, as of today 30/11, something's broke in the API making the gadget not completelly functionnal. Will let you know when it gets fixed! ***</b></p></div>";
+var isbugged = true;
+var spMessage = "<div style='padding-top:10px; margin-bottom:10px;'><p style='font-size:13px;'><b>Sorry, something's broke in the API making the gadget not always loading. Please bear with the beta!</b></p></div>";
 	
 function init(){
 	msg = new gadgets.MiniMessage();
@@ -30,10 +31,16 @@ function init(){
 	}
 	prefs.set("firstrun",false);
 	document.getElementById('choosefile').style.display = 'none';
-	if (wave && wave.isInWaveContainer()) {
-		wave.setStateCallback(stateUpdated);
-		wave.setParticipantCallback(participantIsReady);
+	if isbugged {
+		bugmess = msg.createStaticMessage(spMessage);
+		waitwave = msg.createStaticMessage("waiting for wave");
+		runPerd = setInterval( waitingWave, 500 );
 	}
+
+//	if (wave && wave.isInWaveContainer()) {
+//		wave.setStateCallback(stateUpdated);
+//		wave.setParticipantCallback(participantIsReady);
+//	}
 }
 
 function waitingWave() {
@@ -51,6 +58,8 @@ function waitingWave() {
 }
 
 function stateUpdated() {
+	msg.dismissMessage(waitwave);
+	msg.dismissMessage(bugmess);
 //		if (iCanListen && (myRamdom != prefs.getString("lastRamdom")) && !waitingForCharlau){
 	if (iCanListen && !waitingForCharlau){
 		iframeWin.postMessage('[getlist]~~om~~'+prefs.getString("zfile")+'~~om~~~~om~~~~om~~', 'http://www.charlau.com');
@@ -68,7 +77,7 @@ function participantIsReady() {
 		particiPready = true;
 		document.getElementById('choosefile').style.display = 'block';
 
-		document.getElementById('playdiv').innerHTML += spMessage;
+//		document.getElementById('playdiv').innerHTML += spMessage;
 
 		gadgets.window.adjustHeight();
 	}
@@ -108,9 +117,9 @@ function getReady() {
 		index: 1
 	});
 
-	theNote += spMessage;
+//	theNote += spMessage;
 
-	var therecordpanel = '<div id="rectab" style="font-family:courier, arial, sans-serif; font-size:10px; margin-left:8px; margin-top:3px; margin-right:10px; margin-bottom:10px; float:right;">Recording courtesy of <a href="http://riffly.com/" target="_blank">riffly</a></div><div style="font-family:verdana, arial, sans-serif; font-style:italic; padding-top:3px; padding-left:10px; padding-right:10px;">' + theNote + '</div><div id="recorder_container" style="float:left; width:100%; display:block; margin-left:10px;"></div>' + therecordpanel2;
+	var therecordpanel = '<div id="rectab" style="font-family:courier, arial, sans-serif; font-size:10px; margin-left:8px; margin-top:3px; margin-right:10px; margin-bottom:10px; float:right;">Recording courtesy of <a href="http://riffly.com/" target="_blank">riffly</a></div><div style="font-family:verdana, arial, sans-serif; font-style:italic; padding-top:3px; padding-left:10px; padding-right:10px;">' + theNote + '</div><div id="recorder_container" style="float:left; width:100%; display:block; margin-left:10px; height:500px;"></div>' + therecordpanel2;
 
 	document.getElementById(therectab).innerHTML = therecordpanel;
 
