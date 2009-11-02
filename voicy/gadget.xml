@@ -28,7 +28,6 @@
 	<Content type="html">
 <![CDATA[
 	<link rel="stylesheet" type="text/css" href="http://wave-gadgets.googlecode.com/svn/trunk/voicy/forms.css" media="screen" />
-	<script type="text/javascript" src="http://wave-gadgets.googlecode.com/svn/trunk/voicy/voicy.js"></script>
 	<script type="text/javascript" src="http://free-video-comments-at.riffly.com/static/js/api/1/web.js"></script>
 	<div id="content_div" style="display:none; border-bottom-style:solid; border-bottom-width:1px; margin-bottom:10px;">
 		<iframe id="mainIframe" src="" height="1" frameborder="0" scrolling="no"></iframe>
@@ -51,6 +50,7 @@
 			</div>
 		</div>
 	</div>
+<script type="text/javascript" src="http://wave-gadgets.googlecode.com/svn/trunk/voicy/voicy.js"></script>
     ]]>
   </Content>
 </Module>
