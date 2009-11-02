@@ -31,8 +31,6 @@ function init(){
 	prefs.set("firstrun",false);
 //	document.getElementById('choosefile').style.display = 'none';
 
-	gadgets.window.adjustHeight();
-
 	if (isbugged) {
 		msg.createDismissibleMessage(spMessage);
 		waitwave = msg.createStaticMessage("waiting for wave");
@@ -132,7 +130,9 @@ function getReady() {
 	rifflyShowRecorder('recorder_container', 'audio', 'rifflyFinishedRecording');
 	document.getElementById('recorder_container').firstChild.style.display="none";
 	
-	document.getElementById('content_div').style.display="block";
+//	document.getElementById('content_div').style.display="block";
+	gadgets.window.adjustHeight();
+
 }
 
 function receiver(e) {
