@@ -30,8 +30,6 @@ function init(){
 	}
 	prefs.set("firstrun",false);
 //	document.getElementById('choosefile').style.display = 'none';
-	document.getElementById('mainIframe').src = "http://www.charlau.com/gwave/voicy/comm-google-charlau.html";
-	iframeWin = document.getElementById('mainIframe').contentWindow;
 
 	if (isbugged) {
 		msg.createDismissibleMessage(spMessage);
@@ -72,6 +70,8 @@ function participantIsReady() {
 		myID = wave.getViewer().getId();
 		theHost = wave.getHost().getId();
 		getReady();
+		document.getElementById('mainIframe').src = "http://www.charlau.com/gwave/voicy/comm-google-charlau.html";
+		iframeWin = document.getElementById('mainIframe').contentWindow;
 		window.addEventListener('message', receiver, false);
 		particiPready = true;
 //		document.getElementById('choosefile').style.display = 'block';
