@@ -142,7 +142,6 @@ function receiver(e) {
 		if(iCanListen){
 			switch (messages[0]){
 			case "[ping]":
-				msg.createDismissibleMessage(prefs.getString("zfile"));
 				loGit("[ping]");
 				iframeWin.postMessage('[getlist]~~om~~'+prefs.getString("zfile")+'~~om~~~~om~~~~om~~', 'http://www.charlau.com');
 				break;
@@ -153,7 +152,6 @@ function receiver(e) {
 				msg.createTimerMessage("Message sent!", 3);
 				break;
 			case "[getlist]":
-				msg.createDismissibleMessage(messages[1]);
 				loGit("[getlist]");
 				waitingForCharlau = false;
 				if(messages[1]!='BAD') {
