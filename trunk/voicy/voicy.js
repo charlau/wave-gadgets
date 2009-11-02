@@ -56,6 +56,7 @@ function waitingWave() {
 		}
 		} catch(err) {
 			loGit(err);
+			msg.createDismissibleMessage(err);
 		}
 }
 
