@@ -225,7 +225,7 @@ function generateList(messages) {
 	}
 
 	if(firstpass){
-		gadgets.window.adjustHeight();
+//		gadgets.window.adjustHeight();
 	}
 	if(iamTheHost){
 		prefs.set("nbmessages", messages.length-1);
