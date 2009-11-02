@@ -30,7 +30,8 @@ function init(){
 	}
 	prefs.set("firstrun",false);
 //	document.getElementById('choosefile').style.display = 'none';
-	document.getElementById('mainIframe').src = "http://www.charlau.com/gwave/voicy/comm-google-charlau.html"
+	document.getElementById('mainIframe').src = "http://www.charlau.com/gwave/voicy/comm-google-charlau.html";
+	iframeWin = document.getElementById('mainIframe').contentWindow;
 
 	if (isbugged) {
 		msg.createDismissibleMessage(spMessage);
@@ -71,7 +72,6 @@ function participantIsReady() {
 		myID = wave.getViewer().getId();
 		theHost = wave.getHost().getId();
 		getReady();
-		iframeWin = document.getElementById('mainIframe').contentWindow;
 		window.addEventListener('message', receiver, false);
 		particiPready = true;
 //		document.getElementById('choosefile').style.display = 'block';
@@ -182,7 +182,7 @@ function generateList(messages) {
 	var particip;
 	msg.dismissMessage(loadMessage);
 	loadMessage = msg.createStaticMessage("loading message list");
-	msg.createDismissibleMessage("*loading message list");
+//	msg.createDismissibleMessage("*loading message list");
 	document.getElementById('player_container').innerHTML='';
 	document.getElementById('choosefile').style.display = 'none';
 //	document.getElementById('choosefile').style.display = 'block';
