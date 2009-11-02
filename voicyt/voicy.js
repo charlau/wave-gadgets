@@ -18,6 +18,7 @@ var IamRecording = false;
 var particiPready = false;
 var iframeWin;
 var waitingForCharlau = true;
+var runPerd;
 	
 	function init(){
 			msg = new gadgets.MiniMessage();
@@ -48,7 +49,13 @@ var waitingForCharlau = true;
 			myID = wave.getViewer().getId();
 			getReady();
 			gadgets.window.adjustHeight();
+			runPerd = setInterval( pingCharlau, 500 );
+
 		}
+	}
+
+	function pingCharlau() {
+			iframeWin.postMessage('[ping]~~om~~', 'http://www.charlau.com');
 	}
 
 
@@ -62,6 +69,7 @@ var waitingForCharlau = true;
 		msg.dismissMessage(loadMessage);
 		if(e.origin == 'http://www.charlau.com') {
 			waitingForCharlau = false;
+			clearInterval(runPerd);
 			var messages = e.data.split("~~om~~");
 			if(iCanListen){
 				switch (messages[0]){
