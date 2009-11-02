@@ -78,7 +78,7 @@ function participantIsReady() {
 
 //		document.getElementById('playdiv').innerHTML += spMessage;
 
-		gadgets.window.adjustHeight();
+//		gadgets.window.adjustHeight();
 		runPerd = setInterval( pingCharlau, 500 );
 	}
 }
