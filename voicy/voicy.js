@@ -50,13 +50,13 @@ function waitingWave() {
 		if ((wave) && wave.isInWaveContainer()) {
 			clearInterval(runPerd);
 			msg.dismissMessage(waitwave);
+			msg.createDismissibleMessage("in waitwave");
 			loadMessage = msg.createStaticMessage("loading gadget");
 			wave.setStateCallback(stateUpdated);
 			wave.setParticipantCallback(participantIsReady);
 		}
 		} catch(err) {
 			loGit(err);
-			msg.createDismissibleMessage(err);
 		}
 }
 
