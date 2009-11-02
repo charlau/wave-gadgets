@@ -50,7 +50,7 @@ function waitingWave() {
 		if ((wave) && wave.isInWaveContainer()) {
 			clearInterval(runPerd);
 			msg.dismissMessage(waitwave);
-//			loadMessage = msg.createStaticMessage("loading gadget");
+			loadMessage = msg.createStaticMessage("loading gadget");
 			wave.setStateCallback(stateUpdated);
 			wave.setParticipantCallback(participantIsReady);
 		}
@@ -60,9 +60,6 @@ function waitingWave() {
 }
 
 function stateUpdated() {
-	if (isbugged) {
-		msg.dismissMessage(waitwave);
-	}
 //		if (iCanListen && (myRamdom != prefs.getString("lastRamdom")) && !waitingForCharlau){
 	if (iCanListen && !waitingForCharlau){
 		iframeWin.postMessage('[getlist]~~om~~'+prefs.getString("zfile")+'~~om~~~~om~~~~om~~', 'http://www.charlau.com');
