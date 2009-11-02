@@ -32,7 +32,7 @@ function init(){
 	prefs.set("firstrun",false);
 	document.getElementById('choosefile').style.display = 'none';
 	if (isbugged) {
-		bugmess = msg.createStaticMessage(spMessage);
+		msg.createDismissibleMessage(spMessage);
 		waitwave = msg.createStaticMessage("waiting for wave");
 		runPerd = setInterval( waitingWave, 500 );
 	}else{
@@ -59,7 +59,6 @@ function waitingWave() {
 
 function stateUpdated() {
 	msg.dismissMessage(waitwave);
-	msg.dismissMessage(bugmess);
 //		if (iCanListen && (myRamdom != prefs.getString("lastRamdom")) && !waitingForCharlau){
 	if (iCanListen && !waitingForCharlau){
 		iframeWin.postMessage('[getlist]~~om~~'+prefs.getString("zfile")+'~~om~~~~om~~~~om~~', 'http://www.charlau.com');
