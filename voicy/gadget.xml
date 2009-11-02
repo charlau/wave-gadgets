@@ -2,7 +2,7 @@
 <Module>
 	<ModulePrefs 
 		title="Voicy"
-		height="220"
+		height="1"
 		description="Add a little 'voicy' to your waves, record greetings and comments and play them back within a wave"
 		author="charlau" author_email="wavesdev@gmail.com"
 		author_link="http://charlau.posterous.com" author_location="Switzerland"
@@ -41,7 +41,7 @@
 					</select>
 				</form>
 			</div>
-			<div id="HostOpt" style="font-size:12px; float:left; width:100%; margin-top:95px; margin-bottom:0; margin-left:10px; padding:0;">
+			<div id="HostOpt" style="font-size:12px; float:left; width:100%; margin-top:90px; margin-bottom:0; margin-left:10px; padding:0;">
 				<div id="mprivates" style="display:none;">
 					<form id="privachk" action="#">Keep messages private <input type="checkbox" name="priva" class="ttt" value="secret" onChange="checkOpt(this);">
 					</form>
