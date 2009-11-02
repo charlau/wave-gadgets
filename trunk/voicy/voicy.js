@@ -50,7 +50,6 @@ function waitingWave() {
 		if ((wave) && wave.isInWaveContainer()) {
 			clearInterval(runPerd);
 			msg.dismissMessage(waitwave);
-			msg.createDismissibleMessage("in waitwave");
 			loadMessage = msg.createStaticMessage("loading gadget");
 			wave.setStateCallback(stateUpdated);
 			wave.setParticipantCallback(participantIsReady);
@@ -80,7 +79,12 @@ function participantIsReady() {
 //		document.getElementById('playdiv').innerHTML += spMessage;
 
 		gadgets.window.adjustHeight();
+		runPerd = setInterval( pingCharlau, 500 );
 	}
+}
+
+function pingCharlau() {
+		iframeWin.postMessage('[ping]~~om~~', 'http://www.charlau.com');
 }
 
 function getReady() {
@@ -133,6 +137,7 @@ function receiver(e) {
 	Connected=true;
 	msg.dismissMessage(loadMessage);
 	if(e.origin == 'http://www.charlau.com') {
+		clearInterval(runPerd);
 		var messages = e.data.split("~~om~~");
 		if(iCanListen){
 			switch (messages[0]){
