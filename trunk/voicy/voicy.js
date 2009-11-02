@@ -95,7 +95,7 @@ function getReady() {
 		document.getElementById("mprivates").style.display="block";
 		setOpt();
 	}else{
-		document.getElementById("HostOpt").style.marginTop="97px";
+		document.getElementById("HostOpt").style.marginTop="109px";
 	}
 	var theNote;
 	var therecordpanel2 = "";
@@ -227,8 +227,8 @@ function generateList(messages) {
 	}
 	if(iamTheHost){
 		prefs.set("nbmessages", messages.length-1);
-		firstpass=false;
 	}
+	firstpass=false;
 	
 }
 
