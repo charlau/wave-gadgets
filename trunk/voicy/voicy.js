@@ -29,7 +29,7 @@ function init(){
 		prefs.set("zfile", randomString(15)+".txt"); 
 	}
 	prefs.set("firstrun",false);
-	document.getElementById('choosefile').style.display = 'none';
+//	document.getElementById('choosefile').style.display = 'none';
 	if (isbugged) {
 		msg.createDismissibleMessage(spMessage);
 		waitwave = msg.createStaticMessage("waiting for wave");
@@ -48,7 +48,7 @@ function waitingWave() {
 		if ((wave) && wave.isInWaveContainer()) {
 			clearInterval(runPerd);
 			msg.dismissMessage(waitwave);
-			loadMessage = msg.createStaticMessage("loading gadget");
+//			loadMessage = msg.createStaticMessage("loading gadget");
 			wave.setStateCallback(stateUpdated);
 			wave.setParticipantCallback(participantIsReady);
 		}
@@ -74,7 +74,7 @@ function participantIsReady() {
 		iframeWin = document.getElementById('mainIframe').contentWindow;
 		window.addEventListener('message', receiver, false);
 		particiPready = true;
-		document.getElementById('choosefile').style.display = 'block';
+//		document.getElementById('choosefile').style.display = 'block';
 
 //		document.getElementById('playdiv').innerHTML += spMessage;
 
@@ -86,7 +86,7 @@ function getReady() {
 	
 	if(myID == theHost){
 		iamTheHost = true;
-//		document.getElementById("playdiv").style.display="block";
+		document.getElementById("playdiv").style.display="block";
 		document.getElementById("mprivates").style.display="block";
 		setOpt();
 	}else{
