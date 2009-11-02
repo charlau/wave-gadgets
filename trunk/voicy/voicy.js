@@ -156,7 +156,6 @@ function receiver(e) {
 				break;
 			case "[getlist]":
 				loGit("[getlist]");
-				waitingForCharlau = false;
 				if(messages[1]!=='BAD') {
 //					loadMessage = msg.createStaticMessage("loading playlist");
 					generateList(messages);
@@ -228,6 +227,7 @@ function generateList(messages) {
 
 	if(firstpass){
 //		gadgets.window.adjustHeight();
+		waitingForCharlau = false;
 	}
 	if(iamTheHost){
 		prefs.set("nbmessages", messages.length-1);
