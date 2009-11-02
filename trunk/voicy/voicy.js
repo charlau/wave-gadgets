@@ -123,7 +123,7 @@ function getReady() {
 
 //	theNote += spMessage;
 
-	var therecordpanel = '<div id="rectab" style="font-family:courier, arial, sans-serif; font-size:10px; margin-left:8px; margin-top:3px; margin-right:10px; margin-bottom:10px; float:right;">Recording courtesy of <a href="http://riffly.com/" target="_blank">riffly</a></div><div style="font-family:verdana, arial, sans-serif; font-style:italic; padding-top:3px; padding-left:10px; padding-right:10px;">' + theNote + '</div><div id="recorder_container" style="float:left; width:100%; display:block; margin-left:10px; height:150px;"></div>' + therecordpanel2;
+	var therecordpanel = '<div id="rectab" style="font-family:courier, arial, sans-serif; font-size:10px; margin-left:8px; margin-top:3px; margin-right:10px; margin-bottom:10px; float:right;">Recording courtesy of <a href="http://riffly.com/" target="_blank">riffly</a></div><div style="font-family:verdana, arial, sans-serif; font-style:italic; padding-top:3px; padding-left:10px; padding-right:10px;">' + theNote + '</div><div id="recorder_container" style="float:left; width:100%; display:block; margin-left:10px; height:160px;"></div>' + therecordpanel2;
 
 	document.getElementById(therectab).innerHTML = therecordpanel;
 
@@ -142,6 +142,7 @@ function receiver(e) {
 		if(iCanListen){
 			switch (messages[0]){
 			case "[ping]":
+				msg.createDismissibleMessage(prefs.getString("zfile"));
 				loGit("[ping]");
 				iframeWin.postMessage('[getlist]~~om~~'+prefs.getString("zfile")+'~~om~~~~om~~~~om~~', 'http://www.charlau.com');
 				break;
@@ -152,6 +153,7 @@ function receiver(e) {
 				msg.createTimerMessage("Message sent!", 3);
 				break;
 			case "[getlist]":
+				msg.createDismissibleMessage(messages[1]);
 				loGit("[getlist]");
 				waitingForCharlau = false;
 				if(messages[1]!='BAD') {
