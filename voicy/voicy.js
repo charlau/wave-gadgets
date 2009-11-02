@@ -20,7 +20,7 @@ var iframeWin;
 var waitingForCharlau = true;
 var runPerd;
 var waitwave;
-var isbugged = true;
+var isbugged = false;
 var spMessage = "<div style='padding-top:10px; margin-bottom:10px;'><p style='font-size:13px;'><b>Sorry, something's broke in the API making the gadget not always loading. Please bear with the beta!</b></p></div>";
 	
 function init(){
