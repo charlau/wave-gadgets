@@ -57,7 +57,7 @@ function waitingWave() {
 }
 
 // if updated, most likelly because a message was recorded
-function stateUpdated() {
+function stateUpdated() {	
 	if (iCanListen && !waitingForCharlau){
 		iframeWin.postMessage('[getlist]~~om~~'+prefs.getString("zfile")+'~~om~~~~om~~~~om~~', 'http://www.charlau.com');
 	}
@@ -200,29 +200,15 @@ function generateList(messages) {
 	msg.dismissMessage(loadMessage);
 	document.getElementById('choosefile').style.display = 'block';
 
-	if((iamTheHost) && firstpass && (messages.length-1 > prefs.getInt("nbmessages"))){
-		msg.createTimerMessage("You have new messages!!",3);
-	}else{
-		if (iCanListen && !firstpass){
-			prefs.set("lastRamdom", wave.getState().get('added'));
-			if(myRamdom != prefs.getString("lastRamdom")){
-				if(iamTheHost){
-					msg.createTimerMessage("You have new messages!",3);
-				}else{
-					msg.createTimerMessage("Someone else left a message!",3);				
-				}
-			}
-		}
-	
-	}
-
 	if(firstpass){
 		waitingForCharlau = false;
+		firstpass = false;
+	}else{
+		if((iamTheHost) && (messages.length-1 > prefs.getInt("nbmessages"))){
+			msg.createTimerMessage("You have new messages!!",3);
+			prefs.set("nbmessages", messages.length-1);
+		}
 	}
-	if(iamTheHost){
-		prefs.set("nbmessages", messages.length-1);
-	}
-	firstpass=false;
 	
 }
 
