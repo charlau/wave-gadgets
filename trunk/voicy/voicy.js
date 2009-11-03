@@ -207,11 +207,11 @@ function generateList(messages) {
 	if(firstpass){
 		waitingForCharlau = false;
 		firstpass = false;
-	}else{
-		if((iamTheHost) && (messages.length-1 > prefs.getInt("nbmessages"))){
-			msg.createTimerMessage("You have new messages!!",3);
-			prefs.set("nbmessages", messages.length-1);
-		}
+	}
+
+	if((iamTheHost) && (messages.length-1 > prefs.getInt("nbmessages"))){
+		msg.createTimerMessage("You have new messages!!",3);
+		prefs.set("nbmessages", messages.length-1);
 	}
 	
 }
