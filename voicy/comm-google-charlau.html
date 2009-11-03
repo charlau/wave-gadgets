@@ -22,14 +22,13 @@
 		
 //			runPerd = setInterval("waitingGoogle()", 200);
 
-//			parentWin.postMessage("[ping]~~om~~","https://0-wave-opensocial.googleusercontent.com");
             window.addEventListener("message", function(e){ 
 				if (e.origin.indexOf('googleusercontent.com') !== -1) {
 					waitingForGoogle = false;
-					waveURL = e.origin;
 					var messages = e.data.split("~~om~~");
 					switch (messages[0]){
 					case "[ping]":
+						waveURL = e.origin;
 						parentWin.postMessage("[ping]~~om~~",waveURL);
 						break;
 					case "[getlist]":
