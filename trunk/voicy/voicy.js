@@ -162,6 +162,7 @@ function receiver(e) {
 			switch (messages[0]){
 			case "[getlist]":
 				waitingForCharlau = false;
+				msg.dismissMessage(loadMessage);
 				break;
 			case "[addrec]":
 				msg.createTimerMessage("Message sent!", 3);
