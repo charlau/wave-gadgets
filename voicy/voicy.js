@@ -210,7 +210,7 @@ function generateList(messages) {
 	}
 
 	if((iamTheHost) && (messages.length-1 > prefs.getInt("nbmessages"))){
-		msg.createTimerMessage("You have new messages!!",3);
+		msg.createDismissibleMessage("You have new messages!");
 		prefs.set("nbmessages", messages.length-1);
 	}
 	
