@@ -160,7 +160,7 @@ function receiver(e) {
 			}
 		}else{
 			switch (messages[0]){
-			case "[getlist]":
+			case "[ping]":
 				waitingForCharlau = false;
 				msg.dismissMessage(loadMessage);
 				break;
