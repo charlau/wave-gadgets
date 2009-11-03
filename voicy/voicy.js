@@ -149,7 +149,10 @@ function receiver(e) {
 				break;
 			case "[getlist]":
 				loGit("[getlist]");
-				if(messages[1]!=='BAD') {
+				if(messages[1]=='BAD') { // file does not exist - no messages yet
+					msg.dismissMessage(loadMessage);
+					msg.createTimerMessage("No messages yet... why don't you add one? :)",4);
+				}else{
 					generateList(messages);
 				}
 				break;
