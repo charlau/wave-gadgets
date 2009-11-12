@@ -14,15 +14,21 @@ from waveapi import model
 from waveapi import robot
 import waveapi.document as doc
 
-v='0.011'
+v='0.013'
 
 def OnRobotAdded(properties, context):
 	"""Invoked when the robot has been added."""	
-	
+
 	blip = context.GetRootWavelet().CreateBlip()
 	waveId = blip.GetWaveId()
 	waveletId = blip.GetWaveletId()
-	thisWaveUrl = 'https://wave.google.com/wave/?#restored:wave:' + waveId.replace('!w+', '!w%252B')
+	if waveId.find('wavesandbox.com') != -1:
+		thisWaveUrl = 'https://wave.google.com/a/wavesandbox.com/?#restored:wave:'
+		Notify(context, 'debug: in sandbox')
+	else:
+		thisWaveUrl = 'https://wave.google.com/wave/?#restored:wave:'
+		Notify(context, 'debug: in preview')
+	thisWaveUrl += waveId.replace('!w+', '!w%252B')
 	blip.GetDocument().SetText("\n\nThis wave's ID:\n"+waveId+"\nThis wave's URL:\n"+thisWaveUrl+"\n(Brought to you by your friendly mywaveid@appspot.com frugal robot!)")
 	
 	contents = blip.GetDocument().GetText()
@@ -45,6 +51,10 @@ def OnRobotAdded(properties, context):
 	blip.GetDocument().SetAnnotation(r, "style/fontStyle", "italic")
 	blip.GetDocument().SetAnnotation(r, "style/fontSize", "0.85em")
 
+
+def Notify(context, whatStr):
+  root_wavelet = context.GetRootWavelet()
+  root_wavelet.CreateBlip().GetDocument().SetText(whatStr)
 
 if __name__ == '__main__':
 	myRobot = robot.Robot('mywaveid', 
