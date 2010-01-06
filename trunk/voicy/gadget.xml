@@ -50,7 +50,10 @@
 		</div>
 		<iframe id="mainIframe" src="" height="0" frameborder="0" scrolling="no"></iframe>
 	</div>
+	Today's (jan 6) new API version broke voicy. Voicy disabled until I get this sorted out. Thank you for your patience.
+	<!--
 <script type="text/javascript" src="http://wave-gadgets.googlecode.com/svn/trunk/voicy/voicy.js"></script>
+	-->
     ]]>
   </Content>
 </Module>
