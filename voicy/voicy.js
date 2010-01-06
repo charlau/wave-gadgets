@@ -18,9 +18,10 @@ var waitingForCharlau = true;
 var runPerd;
 var waitwave;
 
-var isbugged = false;
-var spMessage = "Sorry, sometimes the gadget is not always loading. Please bear with the beta!";
-	
+var isbugged = true;
+//var spMessage = "Sorry, sometimes the gadget is not always loading. Please bear with the beta!";
+var spMessage = "Today's (jan 6) new API version broke voicy. Voicy disabled until I get this sorted out. Thank you for your patience.";
+
 function init(){
 	msg = new gadgets.MiniMessage();
 	if (prefs.getString("zfile") == "") {
@@ -31,7 +32,7 @@ function init(){
 	if (isbugged) {
 		msg.createDismissibleMessage(spMessage);
 		waitwave = msg.createStaticMessage("waiting for wave");
-		runPerd = setInterval( waitingWave, 500 );
+//		runPerd = setInterval( waitingWave, 500 );
 	}else{
 		loadMessage = msg.createStaticMessage("loading gadget");
 		if (wave && wave.isInWaveContainer()) {
