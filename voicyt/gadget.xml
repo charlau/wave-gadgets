@@ -45,7 +45,7 @@
 					<form id="privachk" action="#">Keep messages private <input type="checkbox" name="priva" class="ttt" value="secret" onChange="checkOpt(this);">
 					</form>
 				</div>
-				<div style="font-size:10px;">http://wave-gadgets.googlecode.com/svn/trunk/voicy/manifest.xml</div>		
+				<div style="font-size:10px;">THIS IS VOICYt, Debug version</div>		
 			</div>
 		</div>
 		<iframe id="mainIframe" src="" height="0" frameborder="0" scrolling="no"></iframe>
