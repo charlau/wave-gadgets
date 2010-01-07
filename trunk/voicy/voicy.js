@@ -18,7 +18,7 @@ var waitingForCharlau = true;
 var runPerd;
 var waitwave;
 
-var isbugged = true;
+var isbugged = false;
 //var spMessage = "Sorry, sometimes the gadget is not always loading. Please bear with the beta!";
 var spMessage = "Today's (jan 6) new API version broke voicy. Voicy disabled until I get this sorted out. Thank you for your patience.";
 
