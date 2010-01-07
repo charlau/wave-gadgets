@@ -55,7 +55,7 @@ function waitingWave() {
 			wave.setParticipantCallback(participantIsReady);
 		}
 		} catch(err) {
-			loGit(err);
+			loGit("waitingWave error:" + err);
 	}
 }
 
