@@ -29,6 +29,7 @@ function init(){
 	if (prefs.getString("zfile") == "") {
 		prefs.set("zfile", randomString(15)+".txt"); 
 	}
+	loGit("zfile:"+prefs.getString("zfile"));
 	prefs.set("firstrun",false);
 
 	if (isbugged) {
@@ -61,6 +62,7 @@ function waitingWave() {
 
 // if updated, most likelly because a message was recorded
 function stateUpdated() {	
+	loGit("zfile (stateUpdated):"+prefs.getString("zfile"));
 	if (iCanListen && !waitingForCharlau){
 		iframeWin.postMessage('[getlist]~~om~~'+prefs.getString("zfile")+'~~om~~~~om~~~~om~~', 'http://www.charlau.com');
 	}
@@ -86,7 +88,7 @@ function pingCharlau() {
 }
 
 function getReady() {
-	
+	loGit("zfile (getReady):"+prefs.getString("zfile"));
 	if(myID == theHost){
 		iamTheHost = true;
 		document.getElementById("playdiv").style.display="block";
@@ -135,6 +137,7 @@ function receiver(e) {
 	Connected=true;
 	if(e.origin == 'http://www.charlau.com') {
 		clearInterval(runPerd);
+		loGit("zfile (receiver):"+prefs.getString("zfile"));
 		var messages = e.data.split("~~om~~");
 		if(iCanListen){
 			switch (messages[0]){
