@@ -28,8 +28,8 @@ function init(){
 	loGit("zfile:"+prefs.getString("zfile"));
 	if (prefs.getString("zfile") == "") {
 		prefs.set("zfile", randomString(15)+".txt"); 
+		loGit("zfile:"+prefs.getString("zfile"));
 	}
-	loGit("zfile:"+prefs.getString("zfile"));
 	prefs.set("firstrun",false);
 
 	if (isbugged) {
@@ -62,7 +62,6 @@ function waitingWave() {
 
 // if updated, most likelly because a message was recorded
 function stateUpdated() {	
-	loGit("zfile (stateUpdated):"+prefs.getString("zfile"));
 	if (iCanListen && !waitingForCharlau){
 		iframeWin.postMessage('[getlist]~~om~~'+prefs.getString("zfile")+'~~om~~~~om~~~~om~~', 'http://www.charlau.com');
 	}
@@ -137,7 +136,6 @@ function receiver(e) {
 	Connected=true;
 	if(e.origin == 'http://www.charlau.com') {
 		clearInterval(runPerd);
-		loGit("zfile (receiver):"+prefs.getString("zfile"));
 		var messages = e.data.split("~~om~~");
 		if(iCanListen){
 			switch (messages[0]){
@@ -152,6 +150,7 @@ function receiver(e) {
 				myRamdom = randomString(10);
 				wave.getState().submitDelta({'added': myRamdom});
 				msg.createTimerMessage("Message sent!", 3);
+				loGit("zfile (addrec):"+prefs.getString("zfile"));
 				break;
 			case "[getlist]":
 				loGit("[getlist]");
@@ -224,7 +223,6 @@ function generateList(messages) {
 
 // trigger: user clicks on the checkbox for privacy
 function checkOpt(thebox){
-	loGit("checkOpt");
 	if(myID == theHost){
 		if (thebox.checked) {
 			prefs.set("priva", true); 
@@ -238,9 +236,7 @@ function checkOpt(thebox){
 function setOpt(){
 	var mfrm;
 	if(myID == theHost){
-		loGit("setOpt");
 		mfrm = document.getElementsByTagName('form')[1];
-		loGit(mfrm.priva.checked);
 		mfrm.priva.checked = prefs.getBool("priva");
 	}
 }
