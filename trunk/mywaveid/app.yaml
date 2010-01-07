@@ -14,6 +14,9 @@ handlers:
 - url: /icon.gif
   static_files: assets/icon.gif
   upload: assets/icon.gif
+- url: /icon.png
+  static_files: assets/icon.png
+  upload: assets/icon.png
 - url: /.*
   static_files: static/html/index.html
   upload: static/html/index.html
