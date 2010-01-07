@@ -19,10 +19,13 @@ var runPerd;
 var waitwave;
 
 var isbugged = false;
-var spMessage = "Sorry, sometimes the gadget is not always loading. Please bear with the beta!";
-	
+//var spMessage = "Sorry, sometimes the gadget is not always loading. Please bear with the beta!";
+var spMessage = "Today's (jan 6) new API version broke voicy. Voicy disabled until I get this sorted out. Thank you for your patience.";
+
 function init(){
 	msg = new gadgets.MiniMessage();
+	loGit("firstrun:"+prefs.getString("firstrun"));
+	loGit("zfile:"+prefs.getString("zfile"));
 	if (prefs.getString("zfile") == "") {
 		prefs.set("zfile", randomString(15)+".txt"); 
 	}
@@ -57,7 +60,7 @@ function waitingWave() {
 }
 
 // if updated, most likelly because a message was recorded
-function stateUpdated() {
+function stateUpdated() {	
 	if (iCanListen && !waitingForCharlau){
 		iframeWin.postMessage('[getlist]~~om~~'+prefs.getString("zfile")+'~~om~~~~om~~~~om~~', 'http://www.charlau.com');
 	}
@@ -149,7 +152,10 @@ function receiver(e) {
 				break;
 			case "[getlist]":
 				loGit("[getlist]");
-				if(messages[1]!=='BAD') {
+				if(messages[1]=='BAD') { // file does not exist - no messages yet
+					msg.dismissMessage(loadMessage);
+					msg.createTimerMessage("No messages yet... why don't you add one? :)",4);
+				}else{
 					generateList(messages);
 				}
 				break;
@@ -157,8 +163,9 @@ function receiver(e) {
 			}
 		}else{
 			switch (messages[0]){
-			case "[getlist]":
+			case "[ping]":
 				waitingForCharlau = false;
+				msg.dismissMessage(loadMessage);
 				break;
 			case "[addrec]":
 				msg.createTimerMessage("Message sent!", 3);
@@ -200,29 +207,15 @@ function generateList(messages) {
 	msg.dismissMessage(loadMessage);
 	document.getElementById('choosefile').style.display = 'block';
 
-	if((iamTheHost) && firstpass && (messages.length-1 > prefs.getInt("nbmessages"))){
-		msg.createTimerMessage("You have new messages!!",3);
-	}else{
-		if (iCanListen && !firstpass){
-			prefs.set("lastRamdom", wave.getState().get('added'));
-			if(myRamdom != prefs.getString("lastRamdom")){
-				if(iamTheHost){
-					msg.createTimerMessage("You have new messages!",3);
-				}else{
-					msg.createTimerMessage("Someone else left a message!",3);				
-				}
-			}
-		}
-	
-	}
-
 	if(firstpass){
 		waitingForCharlau = false;
+		firstpass = false;
 	}
-	if(iamTheHost){
+
+	if((iamTheHost) && (messages.length-1 > prefs.getInt("nbmessages"))){
+		msg.createDismissibleMessage("You have new messages!");
 		prefs.set("nbmessages", messages.length-1);
 	}
-	firstpass=false;
 	
 }
 
