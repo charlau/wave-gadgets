@@ -29,8 +29,8 @@ function init(){
 		setST("zfile", prefs.getString("zfile"));
 		prefs.set("zfile", ""); 
 	}else{
-		if (getST("zfile") == ""){
-			setST("zfile", randomString(15)+".txt");
+		if (wave.getState().get('zfile') == ""){
+			wave.getState().submitValue('zfile', randomString(15)+".txt");
 		}
 	}
 	loGit(getST("zfile"));
@@ -256,12 +256,11 @@ function checkOpt(thebox){
 	if(myID == theHost){
 		if (thebox.checked) {
 			prefs.set("priva", true); 
-			setST("priva", "true");
+			wave.getState().submitValue("priva", "true");
 		}else{
 			prefs.set("priva", false); 				
-			setST("priva", "false");
+			wave.getState().submitValue("priva", "false");
 		}
-		loGit(getST("priva"));
 	}
 }
 
@@ -269,11 +268,11 @@ function setOpt(){
 	var mfrm;
 	if(myID == theHost){
 		mfrm = document.getElementsByTagName('form')[1];
-		if (getST("priva") == "") {
+		if (wave.getState().get('priva') == "") {
 			mfrm.priva.checked = prefs.getBool("priva");
-			setST("priva", prefs.getBool("priva").toString());
+			wave.getState().submitValue("priva", prefs.getBool("priva").toString());
 		}else{
-			mfrm.priva.checked = (getST("priva") === 'true') ;		
+			mfrm.priva.checked = (wave.getState().get('priva') === 'true') ;		
 		}
 	}
 }
