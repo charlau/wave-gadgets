@@ -1,8 +1,7 @@
 var msg;
 var loadMessage;
 var prefs = new gadgets.Prefs();
-var debugMode = prefs.getBool("debugMode");
-var firstrun = prefs.getBool("firstrun");
+var debugMode = true;
 var firstpass = true;
 var myID;
 var theHost;
@@ -17,22 +16,31 @@ var iframeWin;
 var waitingForCharlau = true;
 var runPerd;
 var waitwave;
-
-var isbugged = true;
+var getlistdone = false;
+var isbugged = false;
+var xmess;
 var spMessage = "";
 //var spMessage = "Sorry, sometimes the gadget is not always loading. Please bear with the beta!";
-//var spMessage = "Today's (jan 6) new API version broke voicy. Voicy disabled until I get this sorted out. Thank you for your patience.";
 
 function init(){
 	msg = new gadgets.MiniMessage();
-	loGit("firstrun:"+prefs.getString("firstrun"));
-	loGit("zfile:"+prefs.getString("zfile"));
-	if (prefs.getString("zfile") == "") {
-		prefs.set("zfile", randomString(15)+".txt"); 
-		loGit("zfile:"+prefs.getString("zfile"));
+	
+	if (prefs.getString("zfile") != "") {
+		setST('zfile', prefs.getString("zfile"));
+		prefs.set("zfile", ""); 
+	}else{
+		if (getST('zfile') == ""){
+			setST('zfile', randomString(15)+".txt");
+		}
 	}
-	prefs.set("firstrun",false);
 
+	if (prefs.getBool("priva") == true) {
+		setST("priva", "true");
+	}else{
+		if (getST("priva") == ""){
+			setST("priva", "false");
+		}
+	}
 	if (isbugged) {
 		msg.createDismissibleMessage(spMessage);
 		waitwave = msg.createStaticMessage("waiting for wave");
@@ -63,8 +71,9 @@ function waitingWave() {
 
 // if updated, most likelly because a message was recorded
 function stateUpdated() {	
-	if (iCanListen && !waitingForCharlau){
-		iframeWin.postMessage('[getlist]~~om~~'+prefs.getString("zfile")+'~~om~~~~om~~~~om~~', 'http://www.charlau.com');
+	if (iCanListen && !waitingForCharlau && !getlistdone){
+		getlistdone = true;
+		iframeWin.postMessage('[getlist]~~om~~'+getST("zfile")+'~~om~~~~om~~~~om~~', 'http://www.charlau.com');
 	}
 }
 
@@ -82,13 +91,21 @@ function participantIsReady() {
 	}
 }
 
+function getST(item) {
+	return wave.getState().get(item);
+}
+
+function setST(item, itemval) {
+	return wave.getState().submitValue(item, itemval);
+}
+
 // keep pinging charlau until we get a response (the setinterval will be cancelled in fnc receiver() when we get pinged from him
 function pingCharlau() {
 	iframeWin.postMessage('[ping]~~om~~', 'http://www.charlau.com');
 }
 
 function getReady() {
-	loGit("zfile (getReady):"+prefs.getString("zfile"));
+	loGit("zfile (getReady):"+getST("zfile"));
 	if(myID == theHost){
 		iamTheHost = true;
 		document.getElementById("playdiv").style.display="block";
@@ -101,7 +118,7 @@ function getReady() {
 	var therecordpanel2 = "";
 	tabs = new gadgets.TabSet("voicy"); 
 	tabs.alignTabs("left", 10);
-	if(iamTheHost || !(prefs.getBool("priva"))){			
+	if(iamTheHost || !(prefs.getBool("priva") || getST("priva")==true)){			
 		iCanListen = true;
 		tabs.addTab("Play messages", {
 			contentContainer: document.getElementById("playdiv"),
@@ -144,14 +161,14 @@ function receiver(e) {
 				loGit("[ping]");
 				msg.dismissMessage(loadMessage);
 				loadMessage = msg.createStaticMessage("loading message list");
-				iframeWin.postMessage('[getlist]~~om~~'+prefs.getString("zfile")+'~~om~~~~om~~~~om~~', 'http://www.charlau.com');
+				iframeWin.postMessage('[getlist]~~om~~'+getST("zfile")+'~~om~~~~om~~~~om~~', 'http://www.charlau.com');
 				break;
 			case "[addrec]":
 				loGit("[addrec]");
 				myRamdom = randomString(10);
 				wave.getState().submitDelta({'added': myRamdom});
 				msg.createTimerMessage("Message sent!", 3);
-				loGit("zfile (addrec):"+prefs.getString("zfile"));
+				loGit("zfile (addrec):"+getST("zfile"));
 				break;
 			case "[getlist]":
 				loGit("[getlist]");
@@ -215,9 +232,10 @@ function generateList(messages) {
 		firstpass = false;
 	}
 
-	if((iamTheHost) && (messages.length-1 > prefs.getInt("nbmessages"))){
+	if((iamTheHost) && (messages.length-1 > parseInt(getST("nbmessages")))){
 		msg.createDismissibleMessage("You have new messages!");
-		prefs.set("nbmessages", messages.length-1);
+		xmess = messages.length-1;
+		setST("nbmessages", xmess.toString());
 	}
 	
 }
@@ -227,10 +245,12 @@ function checkOpt(thebox){
 	if(myID == theHost){
 		if (thebox.checked) {
 			prefs.set("priva", true); 
+			setST("priva", "true");
 		}else{
 			prefs.set("priva", false); 				
+			setST("priva", "false");
 		}
-		loGit(prefs.getBool("priva"));
+		loGit(getST("priva"));
 	}
 }
 
@@ -238,14 +258,19 @@ function setOpt(){
 	var mfrm;
 	if(myID == theHost){
 		mfrm = document.getElementsByTagName('form')[1];
-		mfrm.priva.checked = prefs.getBool("priva");
+		if (getST("priva") == "") {
+			mfrm.priva.checked = prefs.getBool("priva");
+			setST("priva", prefs.getBool("priva").toString());
+		}else{
+			mfrm.priva.checked = (getST("priva") === 'true') ;		
+		}
 	}
 }
 
 // triggered by Riffly's swf
 function rifflyFinishedRecording (riffly_id, riffly_type) {
 
-	iframeWin.postMessage('[addrec]~~om~~'+prefs.getString("zfile")+'~~om~~' + myID + '~~om~~' + riffly_id + '~~om~~', 'http://www.charlau.com');	
+	iframeWin.postMessage('[addrec]~~om~~'+getST("zfile")+'~~om~~' + myID + '~~om~~' + riffly_id + '~~om~~', 'http://www.charlau.com');	
 	if(iCanListen) {
 		IamRecording = false;
 	}else{
