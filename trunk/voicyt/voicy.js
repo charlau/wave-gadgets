@@ -104,7 +104,7 @@ function getST(item) {
 function setST(item, itemval) {
 	loGit("setST: " + item +"  "+itemval);
 	try{
-		wave.getState().submitDelta({item: itemval});
+		wave.getState().submitValue(item, itemval);
 		} catch(err) {
 			loGit("setST error:" + err);
 	}
