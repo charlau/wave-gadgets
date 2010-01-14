@@ -47,7 +47,7 @@ function init2(){
 //		setST("zfile", oldzfile);
 //		prefs.set("zfile", ""); 
 //	}else{
-		if (getST("zfile") == ""){
+		if (!getST("zfile")){
 			setST("zfile", randomString(15)+".txt");
 		}
 //	}
@@ -55,7 +55,7 @@ function init2(){
 	if (prefs.getBool("priva") == true) {
 		setST("priva", "true");
 	}else{
-		if (getST("priva") == ""){
+		if (!getST("priva")){
 			setST("priva", "false");
 		}
 	}
@@ -106,9 +106,10 @@ function getST(item) {
 		} catch(err) {
 			loGit("getST error: " + item + "  " + err);
 	}
-	if (!(valtoret.lenght > 0)) {
-		valtoret = "";
-	}
+	if ( valtoret == null || valtoret.length == 0 )
+		{
+			valtoret = false;
+		}
 	return valtoret;
 }
 
