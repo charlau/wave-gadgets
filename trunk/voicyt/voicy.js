@@ -1,7 +1,7 @@
 var msg;
 var loadMessage;
 var prefs = new gadgets.Prefs();
-var debugMode = true;
+var debugMode = false;
 var myID;
 var theHost;
 var myRamdom = "";
@@ -15,8 +15,7 @@ var iframeWin;
 var waitingForCharlau = true;
 var runPerd;
 var waitwave;
-var getlistdone = false;
-var isbugged = true;
+var isbugged = false;
 var xmess;
 var spMessage = "";
 //var spMessage = "Sorry, sometimes the gadget is not always loading. Please bear with the beta!";
@@ -79,7 +78,6 @@ function waitingWave() {
 // if updated, most likelly because a message was recorded
 function stateUpdated() {	
 	if (iCanListen && !waitingForCharlau){
-		getlistdone = true;
 		iframeWin.postMessage('[getlist]~~om~~'+getST("zfile")+'~~om~~~~om~~~~om~~', 'http://www.charlau.com');
 	}
 }
