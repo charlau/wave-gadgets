@@ -39,9 +39,9 @@ function init(){
 
 function init2(){
 	loGit(prefs.getString("zfile"));
-	var xdumm=randomString(15)+".txt";
-	wave.getState().submitDelta({'zfile': 'xdumm'});
-	loGit(wave.getState().get('zfile'));
+//	var xdumm=randomString(15)+".txt";
+//	wave.getState().submitDelta({'zfile': xdumm});
+	loGit(getST('zfile'));
 	if (prefs.getString("zfile") != "") {
 		setST("zfile", prefs.getString("zfile"));
 		prefs.set("zfile", ""); 
