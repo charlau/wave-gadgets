@@ -39,6 +39,7 @@ function init(){
 
 function init2(){
 
+	var usingStates = getST("usingStates");
 	var oldzfile = prefs.getString("zfile");
 //	loGit(oldzfile);
 	
@@ -281,13 +282,11 @@ function setOpt(){
 	var mfrm;
 	if(myID == theHost){
 		mfrm = document.getElementsByTagName('form')[1];
-		if (!getST("priva")) {
+		if (!getST("usingStates")) {
 			setST("priva", prefs.getBool("priva"));
-			mfrm.priva.checked = getST("priva");
-			
-		}else{
-			mfrm.priva.checked = getST("priva") ;		
+			setST("usingStates", true);
 		}
+			mfrm.priva.checked = getST("priva") ;		
 	}
 }
 
