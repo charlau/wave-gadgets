@@ -114,7 +114,7 @@ function getST(item) {
 }
 
 function setST(item, itemval) {
-	loGit("setST: " + item +"  "+itemval);
+
 	try{
 		wave.getState().submitValue(item, itemval);
 		} catch(err) {
@@ -282,7 +282,7 @@ function setOpt(){
 		mfrm = document.getElementsByTagName('form')[1];
 		loGit(getST("priva"));
 		loGit("using states1: " + getST("usingStates"));
-		if (!getST("usingStates")) {
+		if (getST("usingStates")==false) {
 			setST("priva", prefs.getBool("priva"));
 			setST("usingStates", true);
 		}
