@@ -17,18 +17,30 @@ var waitingForCharlau = true;
 var runPerd;
 var waitwave;
 var getlistdone = false;
-var isbugged = false;
+var isbugged = true;
 var xmess;
 var spMessage = "";
 //var spMessage = "Sorry, sometimes the gadget is not always loading. Please bear with the beta!";
 
 function init(){
 	msg = new gadgets.MiniMessage();
+	if (isbugged) {
+		msg.createDismissibleMessage(spMessage);
+		waitwave = msg.createStaticMessage("waiting for wave");
+		runPerd = setInterval( waitingWave, 500 );
+	}else{
+		loadMessage = msg.createStaticMessage("loading gadget");
+		if (wave && wave.isInWaveContainer()) {
+			wave.setStateCallback(stateUpdated);
+			wave.setParticipantCallback(participantIsReady);
+		}
+	}
+}
+
+function init2(){
 	loGit(prefs.getString("zfile"));
 	var xdumm=randomString(15)+".txt";
-if ((wave) && wave.isInWaveContainer()) {
-		wave.getState().submitDelta({'zfile': 'xdumm'});
-}
+	wave.getState().submitDelta({'zfile': 'xdumm'});
 	loGit(wave.getState().get('zfile'));
 	if (prefs.getString("zfile") != "") {
 		setST("zfile", prefs.getString("zfile"));
@@ -46,18 +58,8 @@ if ((wave) && wave.isInWaveContainer()) {
 			setST("priva", "false");
 		}
 	}
-	if (isbugged) {
-		msg.createDismissibleMessage(spMessage);
-		waitwave = msg.createStaticMessage("waiting for wave");
-		runPerd = setInterval( waitingWave, 500 );
-	}else{
-		loadMessage = msg.createStaticMessage("loading gadget");
-		if (wave && wave.isInWaveContainer()) {
-			wave.setStateCallback(stateUpdated);
-			wave.setParticipantCallback(participantIsReady);
-		}
-	}
 }
+
 
 // used only if isbugged=true in times when waves tend to disapear...
 function waitingWave() {
@@ -121,6 +123,7 @@ function pingCharlau() {
 }
 
 function getReady() {
+	init2();
 	loGit("zfile (getReady):"+getST("zfile"));
 	if(myID == theHost){
 		iamTheHost = true;
