@@ -25,12 +25,14 @@ var spMessage = "";
 function init(){
 	msg = new gadgets.MiniMessage();
 	loGit(prefs.getString("zfile"));
+	wave.getState().submitValue('zfile', randomString(15)+".txt");
+	loGit(wave.getState().get('zfile'));
 	if (prefs.getString("zfile") != "") {
 		setST("zfile", prefs.getString("zfile"));
 		prefs.set("zfile", ""); 
 	}else{
-		if (wave.getState().get('zfile') == ""){
-			wave.getState().submitValue('zfile', randomString(15)+".txt");
+		if (getST("zfile") == ""){
+			setST("zfile", randomString(15)+".txt");
 		}
 	}
 	loGit(getST("zfile"));
@@ -256,11 +258,12 @@ function checkOpt(thebox){
 	if(myID == theHost){
 		if (thebox.checked) {
 			prefs.set("priva", true); 
-			wave.getState().submitValue("priva", "true");
+			setST("priva", "true");
 		}else{
 			prefs.set("priva", false); 				
-			wave.getState().submitValue("priva", "false");
+			setST("priva", "false");
 		}
+		loGit(getST("priva"));
 	}
 }
 
@@ -268,11 +271,11 @@ function setOpt(){
 	var mfrm;
 	if(myID == theHost){
 		mfrm = document.getElementsByTagName('form')[1];
-		if (wave.getState().get('priva') == "") {
+		if (getST("priva") == "") {
 			mfrm.priva.checked = prefs.getBool("priva");
-			wave.getState().submitValue("priva", prefs.getBool("priva").toString());
+			setST("priva", prefs.getBool("priva").toString());
 		}else{
-			mfrm.priva.checked = (wave.getState().get('priva') === 'true') ;		
+			mfrm.priva.checked = (getST("priva") === 'true') ;		
 		}
 	}
 }
