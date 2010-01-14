@@ -100,7 +100,7 @@ function participantIsReady() {
 }
 
 function getST(item) {
-	var valtoret = "";
+	var valtoret;
 	try{
 		valtoret = wave.getState().get(item);
 		} catch(err) {
@@ -268,10 +268,8 @@ function generateList(messages) {
 function checkOpt(thebox){
 	if(myID == theHost){
 		if (thebox.checked) {
-			prefs.set("priva", true); 
 			setST("priva", true);
 		}else{
-			prefs.set("priva", false); 				
 			setST("priva", false);
 		}
 		loGit(getST("priva"));
