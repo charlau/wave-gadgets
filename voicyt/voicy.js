@@ -38,19 +38,18 @@ function init(){
 }
 
 function init2(){
-	loGit(prefs.getString("zfile"));
-//	var xdumm=randomString(15)+".txt";
-//	wave.getState().submitDelta({'zfile': xdumm});
+
 	var oldzfile = prefs.getString("zfile");
-	loGit(oldzfile.length);
-//	if (oldzfile.length != 0) {
-//		setST("zfile", oldzfile);
-//		prefs.set("zfile", ""); 
-//	}else{
+//	loGit(oldzfile);
+	
+	if ( oldzfile == null || oldzfile.length == 0 ) {
 		if (!getST("zfile")){
 			setST("zfile", randomString(15)+".txt");
 		}
-//	}
+	}else{
+		setST("zfile", oldzfile);
+		prefs.set("zfile", ""); 
+	}
 	loGit(getST("zfile"));
 	if (prefs.getBool("priva") == true) {
 		setST("priva", "true");
