@@ -92,11 +92,11 @@ function participantIsReady() {
 }
 
 function getST(item) {
-	return wave.getState().get(item);
+	return wave.State().get(item);
 }
 
 function setST(item, itemval) {
-	return wave.getState().submitValue(item, itemval);
+	return wave.State().submitValue(item, itemval);
 }
 
 // keep pinging charlau until we get a response (the setinterval will be cancelled in fnc receiver() when we get pinged from him
