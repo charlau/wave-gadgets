@@ -105,7 +105,10 @@ function getST(item) {
 		valtoret = wave.getState().get(item);
 		} catch(err) {
 			loGit("getST error: " + item + "  " + err);
-	}	
+	}
+	if !(valtoret.lenght > 0) {
+		valtoret = "";
+	}
 	return valtoret;
 }
 
