@@ -280,11 +280,14 @@ function setOpt(){
 	var mfrm;
 	if(myID == theHost){
 		mfrm = document.getElementsByTagName('form')[1];
+		loGit(getST("priva"));
+		loGit(getST("usingStates"));
 		if (!getST("usingStates")) {
 			setST("priva", prefs.getBool("priva"));
 			setST("usingStates", true);
 		}
-			mfrm.priva.checked = getST("priva") ;		
+		loGit(getST("usingStates"));
+		mfrm.priva.checked = getST("priva") ;		
 	}
 }
 
