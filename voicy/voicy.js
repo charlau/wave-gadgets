@@ -1,38 +1,30 @@
 var msg;
 var loadMessage;
 var prefs = new gadgets.Prefs();
-var debugMode = prefs.getBool("debugMode");
-var firstrun = prefs.getBool("firstrun");
-var firstpass = true;
+var debugMode = false;
 var myID;
 var theHost;
 var myRamdom = "";
 var iCanListen = false;
 var tabs;
 var iamTheHost = false;
-var nbmessages;
 var IamRecording = false;
 var particiPready = false;
 var iframeWin;
 var waitingForCharlau = true;
 var runPerd;
 var waitwave;
-
 var isbugged = false;
+var xmess;
+var spMessage = "";
 //var spMessage = "Sorry, sometimes the gadget is not always loading. Please bear with the beta!";
-var spMessage = "Today's (jan 6) new API version broke voicy. Voicy disabled until I get this sorted out. Thank you for your patience.";
 
 function init(){
 	msg = new gadgets.MiniMessage();
-	if (prefs.getString("zfile") == "") {
-		prefs.set("zfile", randomString(15)+".txt"); 
-	}
-	prefs.set("firstrun",false);
-
 	if (isbugged) {
 		msg.createDismissibleMessage(spMessage);
 		waitwave = msg.createStaticMessage("waiting for wave");
-//		runPerd = setInterval( waitingWave, 500 );
+		runPerd = setInterval( waitingWave, 500 );
 	}else{
 		loadMessage = msg.createStaticMessage("loading gadget");
 		if (wave && wave.isInWaveContainer()) {
@@ -41,6 +33,30 @@ function init(){
 		}
 	}
 }
+
+function init2(){
+
+	var usingStates = getST("usingStates");
+	var oldzfile = prefs.getString("zfile");
+	
+	if ( oldzfile == null || oldzfile.length == 0 ) {
+		if (!getST("zfile")){
+			setST("zfile", randomString(15)+".txt");
+		}
+	}else{
+		setST("zfile", oldzfile);
+		prefs.set("zfile", ""); 
+	}
+	loGit(getST("zfile"));
+	if (prefs.getBool("priva") == true) {
+		setST("priva", "true");
+	}else{
+		if (!getST("priva")){
+			setST("priva", "false");
+		}
+	}
+}
+
 
 // used only if isbugged=true in times when waves tend to disapear...
 function waitingWave() {
@@ -53,14 +69,14 @@ function waitingWave() {
 			wave.setParticipantCallback(participantIsReady);
 		}
 		} catch(err) {
-			loGit(err);
+			loGit("waitingWave error:" + err);
 	}
 }
 
 // if updated, most likelly because a message was recorded
 function stateUpdated() {	
 	if (iCanListen && !waitingForCharlau){
-		iframeWin.postMessage('[getlist]~~om~~'+prefs.getString("zfile")+'~~om~~~~om~~~~om~~', 'http://www.charlau.com');
+		iframeWin.postMessage('[getlist]~~om~~'+getST("zfile")+'~~om~~~~om~~~~om~~', 'http://www.charlau.com');
 	}
 }
 
@@ -78,13 +94,37 @@ function participantIsReady() {
 	}
 }
 
+function getST(item) {
+	var valtoret;
+	try{
+		valtoret = wave.getState().get(item);
+		} catch(err) {
+			loGit("getST error: " + item + "  " + err);
+	}
+	if ( valtoret == null || valtoret.length == 0 )
+		{
+			valtoret = false;
+		}
+	return valtoret;
+}
+
+function setST(item, itemval) {
+
+	try{
+		wave.getState().submitValue(item, itemval);
+		} catch(err) {
+			loGit("setST error: " + item + "  " + itemval + err);
+	}
+}
+
 // keep pinging charlau until we get a response (the setinterval will be cancelled in fnc receiver() when we get pinged from him
 function pingCharlau() {
 	iframeWin.postMessage('[ping]~~om~~', 'http://www.charlau.com');
 }
 
 function getReady() {
-	
+	init2();
+	loGit("zfile (getReady):"+getST("zfile"));
 	if(myID == theHost){
 		iamTheHost = true;
 		document.getElementById("playdiv").style.display="block";
@@ -97,7 +137,7 @@ function getReady() {
 	var therecordpanel2 = "";
 	tabs = new gadgets.TabSet("voicy"); 
 	tabs.alignTabs("left", 10);
-	if(iamTheHost || !(prefs.getBool("priva"))){			
+	if(iamTheHost || !(prefs.getBool("priva") || getST("priva"))){			
 		iCanListen = true;
 		tabs.addTab("Play messages", {
 			contentContainer: document.getElementById("playdiv"),
@@ -138,15 +178,17 @@ function receiver(e) {
 			switch (messages[0]){
 			case "[ping]":
 				loGit("[ping]");
+				waitingForCharlau = false;
 				msg.dismissMessage(loadMessage);
 				loadMessage = msg.createStaticMessage("loading message list");
-				iframeWin.postMessage('[getlist]~~om~~'+prefs.getString("zfile")+'~~om~~~~om~~~~om~~', 'http://www.charlau.com');
+				iframeWin.postMessage('[getlist]~~om~~'+getST("zfile")+'~~om~~~~om~~~~om~~', 'http://www.charlau.com');
 				break;
 			case "[addrec]":
 				loGit("[addrec]");
 				myRamdom = randomString(10);
 				wave.getState().submitDelta({'added': myRamdom});
 				msg.createTimerMessage("Message sent!", 3);
+				loGit("zfile (addrec):"+getST("zfile"));
 				break;
 			case "[getlist]":
 				loGit("[getlist]");
@@ -166,7 +208,7 @@ function receiver(e) {
 				msg.dismissMessage(loadMessage);
 				break;
 			case "[addrec]":
-				msg.createTimerMessage("Message sent!", 3);
+				msg.createTimerMessage("Message sent!!", 3);
 				myRamdom = randomString(10);
 				wave.getState().submitDelta({'added': myRamdom});
 				break;
@@ -205,45 +247,45 @@ function generateList(messages) {
 	msg.dismissMessage(loadMessage);
 	document.getElementById('choosefile').style.display = 'block';
 
-	if(firstpass){
-		waitingForCharlau = false;
-		firstpass = false;
-	}
-
-	if((iamTheHost) && (messages.length-1 > prefs.getInt("nbmessages"))){
+	if((iamTheHost) && (messages.length-1 > parseInt(getST("nbmessages")))){
 		msg.createDismissibleMessage("You have new messages!");
-		prefs.set("nbmessages", messages.length-1);
+		xmess = messages.length-1;
+		setST("nbmessages", xmess.toString());
 	}
 	
 }
 
 // trigger: user clicks on the checkbox for privacy
 function checkOpt(thebox){
-	loGit("checkOpt");
 	if(myID == theHost){
 		if (thebox.checked) {
-			prefs.set("priva", true); 
+			setST("priva", "true");
 		}else{
-			prefs.set("priva", false); 				
+			setST("priva", "false");
 		}
-		loGit(prefs.getBool("priva"));
+		loGit(getST("priva"));
 	}
 }
 
 function setOpt(){
 	var mfrm;
 	if(myID == theHost){
-		loGit("setOpt");
 		mfrm = document.getElementsByTagName('form')[1];
-		loGit(mfrm.priva.checked);
-		mfrm.priva.checked = prefs.getBool("priva");
+		loGit(getST("priva"));
+		loGit("using states1: " + getST("usingStates"));
+		if (!getST("usingStates")) {
+			setST("priva", prefs.getBool("priva"));
+			setST("usingStates", "true");
+		}
+		loGit("using states2: " + getST("usingStates"));
+		mfrm.priva.checked = (getST("priva")==="true") ;		
 	}
 }
 
 // triggered by Riffly's swf
 function rifflyFinishedRecording (riffly_id, riffly_type) {
 
-	iframeWin.postMessage('[addrec]~~om~~'+prefs.getString("zfile")+'~~om~~' + myID + '~~om~~' + riffly_id + '~~om~~', 'http://www.charlau.com');	
+	iframeWin.postMessage('[addrec]~~om~~'+getST("zfile")+'~~om~~' + myID + '~~om~~' + riffly_id + '~~om~~', 'http://www.charlau.com');	
 	if(iCanListen) {
 		IamRecording = false;
 	}else{
@@ -313,7 +355,7 @@ function randomString(length){
 
 function loGit(tolog){
 	if (debugMode) {
-		msg.createDismissibleMessage("*** " + tolog.toString() + " ***");
+		msg.createDismissibleMessage("*** " + tolog + " ***");
 	}
 }
 
