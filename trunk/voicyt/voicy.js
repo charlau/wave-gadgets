@@ -92,7 +92,7 @@ function participantIsReady() {
 }
 
 function getST(item) {
-	return wave.State().get(item);
+	return wave.getState().get(item);
 }
 
 function setST(item, itemval) {
