@@ -92,7 +92,13 @@ function participantIsReady() {
 }
 
 function getST(item) {
-	return wave.getState().get(item);
+	var valtoret = "";
+	try{
+		valtoret = wave.getState().get(item);
+		} catch(err) {
+			loGit("getST error:" + err);
+	}	
+	return valtoret;
 }
 
 function setST(item, itemval) {
