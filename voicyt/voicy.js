@@ -281,12 +281,12 @@ function setOpt(){
 	if(myID == theHost){
 		mfrm = document.getElementsByTagName('form')[1];
 		loGit(getST("priva"));
-		loGit(getST("usingStates"));
+		loGit("using states1: " + getST("usingStates"));
 		if (!getST("usingStates")) {
 			setST("priva", prefs.getBool("priva"));
 			setST("usingStates", true);
 		}
-		loGit(getST("usingStates"));
+		loGit("using states2: " + getST("usingStates"));
 		mfrm.priva.checked = getST("priva") ;		
 	}
 }
