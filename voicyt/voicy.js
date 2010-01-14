@@ -359,7 +359,7 @@ function randomString(length){
 
 function loGit(tolog){
 	if (debugMode) {
-		msg.createDismissibleMessage("*** " + tolog.toString() + " ***");
+		msg.createDismissibleMessage("*** " + tolog + " ***");
 	}
 }
 
