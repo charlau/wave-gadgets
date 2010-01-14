@@ -25,7 +25,8 @@ var spMessage = "";
 function init(){
 	msg = new gadgets.MiniMessage();
 	loGit(prefs.getString("zfile"));
-	wave.getState().submitValue('zfile', randomString(15)+".txt");
+	var xdumm=randomString(15)+".txt";
+	wave.getState().submitValue('zfile', xdumm);
 	loGit(wave.getState().get('zfile'));
 	if (prefs.getString("zfile") != "") {
 		setST("zfile", prefs.getString("zfile"));
