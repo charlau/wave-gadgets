@@ -103,7 +103,7 @@ function getST(item) {
 
 function setST(item, itemval) {
 	loGit("setST: " + item +"  "+itemval);
-	wave.getState().submitValue(item, itemval);
+	wave.getState().submitDelta({item: itemval});
 }
 
 // keep pinging charlau until we get a response (the setinterval will be cancelled in fnc receiver() when we get pinged from him
