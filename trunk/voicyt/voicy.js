@@ -141,7 +141,7 @@ function getReady() {
 	var therecordpanel2 = "";
 	tabs = new gadgets.TabSet("voicy"); 
 	tabs.alignTabs("left", 10);
-	if(iamTheHost || !(prefs.getBool("priva") || getST("priva")==true)){			
+	if(iamTheHost || !(prefs.getBool("priva") || getST("priva"))){			
 		iCanListen = true;
 		tabs.addTab("Play messages", {
 			contentContainer: document.getElementById("playdiv"),
@@ -268,10 +268,10 @@ function checkOpt(thebox){
 	if(myID == theHost){
 		if (thebox.checked) {
 			prefs.set("priva", true); 
-			setST("priva", "true");
+			setST("priva", true);
 		}else{
 			prefs.set("priva", false); 				
-			setST("priva", "false");
+			setST("priva", false);
 		}
 		loGit(getST("priva"));
 	}
@@ -281,11 +281,12 @@ function setOpt(){
 	var mfrm;
 	if(myID == theHost){
 		mfrm = document.getElementsByTagName('form')[1];
-		if (getST("priva") == "") {
-			mfrm.priva.checked = prefs.getBool("priva");
-			setST("priva", prefs.getBool("priva").toString());
+		if (!getST("priva")) {
+			setST("priva", prefs.getBool("priva"));
+			mfrm.priva.checked = getST("priva");
+			
 		}else{
-			mfrm.priva.checked = (getST("priva") === 'true') ;		
+			mfrm.priva.checked = getST("priva") ;		
 		}
 	}
 }
