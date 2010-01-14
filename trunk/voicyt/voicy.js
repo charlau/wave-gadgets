@@ -43,14 +43,14 @@ function init2(){
 //	wave.getState().submitDelta({'zfile': xdumm});
 	var oldzfile = prefs.getString("zfile");
 	loGit(oldzfile.length);
-	if (oldzfile.length != 0) {
-		setST("zfile", oldzfile);
-		prefs.set("zfile", ""); 
-	}else{
-		if (getST("zfile") == ""){
+//	if (oldzfile.length != 0) {
+//		setST("zfile", oldzfile);
+//		prefs.set("zfile", ""); 
+//	}else{
+		if (getST("zfile").lenght == 0){
 			setST("zfile", randomString(15)+".txt");
 		}
-	}
+//	}
 	loGit(getST("zfile"));
 	if (prefs.getBool("priva") == true) {
 		setST("priva", "true");
