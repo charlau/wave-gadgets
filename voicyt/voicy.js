@@ -24,16 +24,16 @@ var spMessage = "";
 
 function init(){
 	msg = new gadgets.MiniMessage();
-	
+	loGit(prefs.getString("zfile"));
 	if (prefs.getString("zfile") != "") {
-		setST('zfile', prefs.getString("zfile"));
+		setST("zfile", prefs.getString("zfile"));
 		prefs.set("zfile", ""); 
 	}else{
-		if (getST('zfile') == ""){
-			setST('zfile', randomString(15)+".txt");
+		if (getST("zfile") == ""){
+			setST("zfile", randomString(15)+".txt");
 		}
 	}
-
+	loGit(getST("zfile"));
 	if (prefs.getBool("priva") == true) {
 		setST("priva", "true");
 	}else{
@@ -96,7 +96,7 @@ function getST(item) {
 }
 
 function setST(item, itemval) {
-	return wave.State().submitValue(item, itemval);
+	wave.State().submitValue(item, itemval);
 }
 
 // keep pinging charlau until we get a response (the setinterval will be cancelled in fnc receiver() when we get pinged from him
