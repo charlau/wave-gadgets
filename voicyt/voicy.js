@@ -41,8 +41,8 @@ function init2(){
 	loGit(prefs.getString("zfile"));
 //	var xdumm=randomString(15)+".txt";
 //	wave.getState().submitDelta({'zfile': xdumm});
-	loGit(getST('zfile'));
-	if (prefs.getString("zfile").length > 0) {
+	loGit(prefs.getString("zfile").length);
+	if (prefs.getString("zfile").length > 15) {
 		setST("zfile", prefs.getString("zfile"));
 		prefs.set("zfile", ""); 
 	}else{
