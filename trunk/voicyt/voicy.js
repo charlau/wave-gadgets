@@ -42,7 +42,7 @@ function init2(){
 //	var xdumm=randomString(15)+".txt";
 //	wave.getState().submitDelta({'zfile': xdumm});
 	loGit(getST('zfile'));
-	if (prefs.getString("zfile").length < 0) {
+	if (prefs.getString("zfile").length > 0) {
 		setST("zfile", prefs.getString("zfile"));
 		prefs.set("zfile", ""); 
 	}else{
