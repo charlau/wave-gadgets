@@ -268,9 +268,9 @@ function generateList(messages) {
 function checkOpt(thebox){
 	if(myID == theHost){
 		if (thebox.checked) {
-			setST("priva", true);
+			setST("priva", "true");
 		}else{
-			setST("priva", false);
+			setST("priva", "false");
 		}
 		loGit(getST("priva"));
 	}
@@ -282,12 +282,12 @@ function setOpt(){
 		mfrm = document.getElementsByTagName('form')[1];
 		loGit(getST("priva"));
 		loGit("using states1: " + getST("usingStates"));
-		if (getST("usingStates")==false) {
+		if (!getST("usingStates")) {
 			setST("priva", prefs.getBool("priva"));
-			setST("usingStates", true);
+			setST("usingStates", "true");
 		}
 		loGit("using states2: " + getST("usingStates"));
-		mfrm.priva.checked = getST("priva") ;		
+		mfrm.priva.checked = (getST("priva")==="true") ;		
 	}
 }
 
