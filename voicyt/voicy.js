@@ -2,7 +2,6 @@ var msg;
 var loadMessage;
 var prefs = new gadgets.Prefs();
 var debugMode = true;
-var firstpass = true;
 var myID;
 var theHost;
 var myRamdom = "";
@@ -79,7 +78,7 @@ function waitingWave() {
 
 // if updated, most likelly because a message was recorded
 function stateUpdated() {	
-	if (iCanListen && !waitingForCharlau && !getlistdone){
+	if (iCanListen && !waitingForCharlau){
 		getlistdone = true;
 		iframeWin.postMessage('[getlist]~~om~~'+getST("zfile")+'~~om~~~~om~~~~om~~', 'http://www.charlau.com');
 	}
@@ -170,7 +169,7 @@ function getReady() {
 	document.getElementById('recorder_container').firstChild.style.display="none";
 	
 	gadgets.window.adjustHeight();
-loGit("zfile (getReady222):"+getST("zfile"));
+
 }
 
 //receives messages from charlau.com
@@ -183,6 +182,7 @@ function receiver(e) {
 			switch (messages[0]){
 			case "[ping]":
 				loGit("[ping]");
+				waitingForCharlau = false;
 				msg.dismissMessage(loadMessage);
 				loadMessage = msg.createStaticMessage("loading message list");
 				iframeWin.postMessage('[getlist]~~om~~'+getST("zfile")+'~~om~~~~om~~~~om~~', 'http://www.charlau.com');
@@ -212,7 +212,7 @@ function receiver(e) {
 				msg.dismissMessage(loadMessage);
 				break;
 			case "[addrec]":
-				msg.createTimerMessage("Message sent!", 3);
+				msg.createTimerMessage("Message sent!!", 3);
 				myRamdom = randomString(10);
 				wave.getState().submitDelta({'added': myRamdom});
 				break;
@@ -250,11 +250,6 @@ function generateList(messages) {
 
 	msg.dismissMessage(loadMessage);
 	document.getElementById('choosefile').style.display = 'block';
-
-	if(firstpass){
-		waitingForCharlau = false;
-		firstpass = false;
-	}
 
 	if((iamTheHost) && (messages.length-1 > parseInt(getST("nbmessages")))){
 		msg.createDismissibleMessage("You have new messages!");
