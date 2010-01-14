@@ -8,7 +8,6 @@ var myRamdom = "";
 var iCanListen = false;
 var tabs;
 var iamTheHost = false;
-var nbmessages;
 var IamRecording = false;
 var particiPready = false;
 var iframeWin;
@@ -39,7 +38,6 @@ function init2(){
 
 	var usingStates = getST("usingStates");
 	var oldzfile = prefs.getString("zfile");
-//	loGit(oldzfile);
 	
 	if ( oldzfile == null || oldzfile.length == 0 ) {
 		if (!getST("zfile")){
