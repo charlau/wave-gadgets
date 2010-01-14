@@ -102,6 +102,7 @@ function getST(item) {
 }
 
 function setST(item, itemval) {
+	loGit("setST: " + item +"  "+itemval);
 	wave.getState().submitValue(item, itemval);
 }
 
