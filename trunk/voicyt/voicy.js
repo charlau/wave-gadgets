@@ -96,7 +96,7 @@ function getST(item) {
 	try{
 		valtoret = wave.getState().get(item);
 		} catch(err) {
-			loGit("getST error:" + err);
+			loGit("getST error: " + item + "  " + err);
 	}	
 	return valtoret;
 }
@@ -106,7 +106,7 @@ function setST(item, itemval) {
 	try{
 		wave.getState().submitValue(item, itemval);
 		} catch(err) {
-			loGit("setST error:" + err);
+			loGit("setST error: " + item + "  " + itemval + err);
 	}
 }
 
