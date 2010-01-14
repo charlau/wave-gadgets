@@ -166,7 +166,7 @@ function getReady() {
 	document.getElementById('recorder_container').firstChild.style.display="none";
 	
 	gadgets.window.adjustHeight();
-loGit(getST("zfile"));
+loGit("zfile (getReady222):"+getST("zfile"));
 }
 
 //receives messages from charlau.com
