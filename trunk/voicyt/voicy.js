@@ -106,7 +106,7 @@ function getST(item) {
 		} catch(err) {
 			loGit("getST error: " + item + "  " + err);
 	}
-	if !(valtoret.lenght > 0) {
+	if (!(valtoret.lenght > 0)) {
 		valtoret = "";
 	}
 	return valtoret;
