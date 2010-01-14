@@ -47,7 +47,7 @@ function init2(){
 //		setST("zfile", oldzfile);
 //		prefs.set("zfile", ""); 
 //	}else{
-		if (getST("zfile").lenght == 0){
+		if (getST("zfile") == ""){
 			setST("zfile", randomString(15)+".txt");
 		}
 //	}
