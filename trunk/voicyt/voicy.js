@@ -22,8 +22,8 @@ var spMessage = "";
 function init(){
 	msg = new gadgets.MiniMessage();
 	if (isbugged) {
-		msg.createDismissibleMessage(spMessage);
-		waitwave = msg.createStaticMessage("waiting for wave");
+//		msg.createDismissibleMessage(spMessage);
+		waitwave = msg.createStaticMessage("loading gadget");
 		runPerd = setInterval( waitingWave, 500 );
 	}else{
 		loadMessage = msg.createStaticMessage("loading gadget");
@@ -34,7 +34,7 @@ function init(){
 	}
 }
 
-function init2(){
+function init2Old(){
 
 	var usingStates = getST("usingStates");
 	loGit("usingStates: " + usingStates);
@@ -58,6 +58,13 @@ function init2(){
 	}
 }
 
+function init2(){
+
+	if (!getST("zfile")){
+		setST("zfile", randomString(15)+".txt");
+	}
+
+}
 
 // used only if isbugged=true in times when waves tend to disapear...
 function waitingWave() {
@@ -134,7 +141,11 @@ function pingCharlau() {
 }
 
 function getReady() {
-	init2();
+	if (getST("usingStates")) {
+		init2();
+	}else{
+		init2Old();
+	}
 //	loGit("zfile (getReady):"+getST("zfile"));
 	if(myID == theHost){
 		iamTheHost = true;
@@ -244,7 +255,7 @@ function generateList(messages) {
 		try{
 			particip = wave.getParticipantById(opt[0]).getDisplayName();
 			} catch(err) {
-//				loGit(err);
+				loGit(err);
 				particip = "unknown user";
 			}
 //			loGit(particip);
