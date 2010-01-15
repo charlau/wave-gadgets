@@ -198,14 +198,14 @@ function receiver(e) {
 //				loGit("[addrec]");
 				myRamdom = randomString(10);
 				wave.getState().submitDelta({'added': myRamdom});
-				msg.createTimerMessage("Message sent!", 3);
+				msg.createTimerMessage("Message sent!", 2);
 				loGit("zfile (addrec):"+getST("zfile"));
 				break;
 			case "[getlist]":
 //				loGit("[getlist]");
 				if(messages[1]=='BAD') { // file does not exist - no messages yet
 					msg.dismissMessage(loadMessage);
-					msg.createTimerMessage("No messages yet... why don't you add one? :)",4);
+					msg.createTimerMessage("No messages yet... why don't you add one? :)",2);
 				}else{
 					generateList(messages);
 				}
@@ -219,7 +219,7 @@ function receiver(e) {
 				msg.dismissMessage(loadMessage);
 				break;
 			case "[addrec]":
-				msg.createTimerMessage("Message sent!!", 3);
+				msg.createTimerMessage("Message sent!!", 2);
 				myRamdom = randomString(10);
 				wave.getState().submitDelta({'added': myRamdom});
 				break;
