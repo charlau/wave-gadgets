@@ -351,7 +351,7 @@ function showPlayer (player_container_id, riffly_id, riffly_type) {
 //					wmode: "transparent"
 //				});
 				
-				document.getElementById('player_container').innerHTML='<embed id="riffyplayerx" src="http://riffly.com/p/' + riffly_id + '" width="190" height="20" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="false"></embed>';
+				player_container.innerHTML='<embed id="riffyplayerx" src="http://riffly.com/p/' + riffly_id + '" width="190" height="20" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="false"></embed>';
 				
 				player_container.style.display = 'block';	
 		}
