@@ -244,7 +244,7 @@ function generateList(messages) {
 		try{
 			particip = wave.getParticipantById(opt[0]).getDisplayName();
 			} catch(err) {
-				loGit(err);
+//				loGit(err);
 				particip = "unknown user";
 			}
 //			loGit(particip);
