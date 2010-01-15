@@ -116,12 +116,12 @@ function getST(item) {
 
 function setST(item, itemval) {
 
-	itemval = itemval.toString();
+	var itemvalx = itemval.toString();
 
 	try{
-		wave.getState().submitValue(item, itemval);
+		wave.getState().submitValue(item, itemvalx);
 		} catch(err) {
-			loGit("setST error: " + item + ", " + itemval + " --> "+ err);
+			loGit("setST error: " + item + ", " + itemvalx + " " + typeOf(itemvalx) + " --> "+ err);
 	}
 }
 
