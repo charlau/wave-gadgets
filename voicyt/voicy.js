@@ -36,8 +36,6 @@ function init(){
 
 function init2Old(){
 
-	var usingStates = getST("usingStates");
-//	loGit("usingStates: " + usingStates);
 	var oldzfile = prefs.getString("zfile");
 
 	if ( oldzfile == null || oldzfile.length == 0 || oldzfile == false) {
@@ -58,11 +56,12 @@ function init2Old(){
 			setST("priva", false);
 		}
 	}
+	
+	setST("usingStates", true);
 }
 
 function init2(){
 
-//loGit("newtype zfile: " + getST("zfile"));
 	if (!getST("zfile")){
 		setST("zfile", randomString(15)+".txt");
 	}
@@ -90,8 +89,6 @@ function stateUpdated() {
 	if (iCanListen && !waitingForCharlau){
 		iframeWin.postMessage('[getlist]~~om~~'+getST("zfile")+'~~om~~~~om~~~~om~~', 'http://www.charlau.com');
 	}
-//	loGit("priva is now: " + getST("priva"));
-//	loGit("zfile: " + getST("zfile"));
 
 }
 
@@ -150,7 +147,7 @@ function getReady() {
 	}else{
 		init2Old();
 	}
-//	loGit("zfile (getReady):"+getST("zfile"));
+
 	if(myID == theHost){
 		iamTheHost = true;
 		document.getElementById("playdiv").style.display="block";
@@ -203,21 +200,17 @@ function receiver(e) {
 		if(iCanListen){
 			switch (messages[0]){
 			case "[ping]":
-//				loGit("[ping]");
 				waitingForCharlau = false;
 				msg.dismissMessage(loadMessage);
 				loadMessage = msg.createStaticMessage("loading message list");
 				iframeWin.postMessage('[getlist]~~om~~'+getST("zfile")+'~~om~~~~om~~~~om~~', 'http://www.charlau.com');
 				break;
 			case "[addrec]":
-//				loGit("[addrec]");
 				myRamdom = randomString(10);
 				wave.getState().submitDelta({'added': myRamdom});
 				msg.createTimerMessage("Message sent!", 2);
-//				loGit("zfile (addrec):"+getST("zfile"));
 				break;
 			case "[getlist]":
-//				loGit("[getlist]");
 				if(messages[1]=='BAD') { // file does not exist - no messages yet
 					msg.dismissMessage(loadMessage);
 					msg.createTimerMessage("No messages yet... why don't you add one? :)",2);
@@ -263,7 +256,6 @@ function generateList(messages) {
 				loGit(err);
 				particip = "unknown user";
 			}
-//			loGit(particip);
 		document.toplay.riffly_id2.options[x]=new Option(particip, opt[1], false, false);
 	}
 
@@ -273,8 +265,6 @@ function generateList(messages) {
 
 	msg.dismissMessage(loadMessage);
 	document.getElementById('choosefile').style.display = 'block';
-
-//loGit("messages.lenght: " + (messages.length-2).toString() + " nbmessages: " + getST("nbmessages"));
 
 	if (!getST("nbmessages")) {
 		setST("nbmessages", (messages.length-2).toString());
@@ -303,10 +293,8 @@ function setOpt(){
 	var mfrm;
 	if(myID == theHost){
 		mfrm = document.getElementsByTagName('form')[1];
-//		loGit("priva is now: " + getST("priva"));
 		if (!getST("usingStates")) {
 			setST("priva", prefs.getBool("priva"));
-//			loGit("using states1: " + getST("usingStates"));
 			setST("usingStates", true);
 		}
 		mfrm.priva.checked = (getST("priva")) ;		
@@ -333,17 +321,6 @@ function showPlayer (player_container_id, riffly_id, riffly_type) {
 	if (!waitingForCharlau) {
 		msg.createTimerMessage("Loading recorded message", 2);
 		if (riffly_type == 'video') {
-
-//			gadgets.flash.embedFlash("http://riffly.com/p/" + riffly_id  + "#video", player_container, {
-//				swf_version: 8,
-//				id: "riffyplayerx",
-//				width: "400",
-//				height: "320",
-//				allowfullscreen: "true",
-//				allowscriptaccess: "always",
-//				wmode: "transparent"
-//			});			
-//			player_container.style.display = 'block';	
 
 		} else if (riffly_type == 'audio') {
 				
@@ -373,7 +350,7 @@ function randomString(length){
 	for(x=0;x<length;x++){
 		i = Math.floor(Math.random() * 62);
 		rSt += chars.charAt(i);
-  	}
+	}
 	return rSt;
 }
 
