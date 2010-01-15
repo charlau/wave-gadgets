@@ -87,7 +87,7 @@ function stateUpdated() {
 		iframeWin.postMessage('[getlist]~~om~~'+getST("zfile")+'~~om~~~~om~~~~om~~', 'http://www.charlau.com');
 	}
 //	loGit("priva is now: " + getST("priva"));
-	loGit("using states2: " + getST("usingStates"));
+	loGit("zfile: " + getST("zfile"));
 
 }
 
