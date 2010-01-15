@@ -32,7 +32,7 @@
 				<form name="toplay" action="#" method="post">
 					<select name="riffly_id2" class="ttt" style="width:190px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #ffffff; background-color: red;" onChange="showPlayer('player_container', document.toplay.riffly_id2.value, 'audio');">
 						<option value="" selected="selected">-------click to play-------</option>
-					</select><span id="xxmessages" style="clear:none; display:inline; color: #ffffff; background-color: red; font-size: 11px; margin-left:3px;"></span>
+					</select><span id="xxmessages" style="clear:none; display:inline; color: #ffffff; background-color: red; font-size: 12px; margin-left:3px;"></span>
 				</form>
 			</div>
 			<div id="HostOpt" style="font-size:12px; float:left; width:100%; margin-top:91px; margin-bottom:0; margin-left:10px; padding:0;">
