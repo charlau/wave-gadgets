@@ -59,7 +59,7 @@ function init2Old(){
 }
 
 function init2(){
-
+loGit("newtype zfile: " + getST("zfile"));
 	if (!getST("zfile")){
 		setST("zfile", randomString(15)+".txt");
 	}
