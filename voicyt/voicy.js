@@ -79,6 +79,8 @@ function stateUpdated() {
 	if (iCanListen && !waitingForCharlau){
 		iframeWin.postMessage('[getlist]~~om~~'+getST("zfile")+'~~om~~~~om~~~~om~~', 'http://www.charlau.com');
 	}
+	loGit("priva is now: " + getST("priva"));
+
 }
 
 // so far, used only on the first participant ready.
