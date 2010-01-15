@@ -106,13 +106,18 @@ function getST(item) {
 		{
 			valtoret = false;
 		}
+	if ( valtoret == "true" )
+		{
+			valtoret = true;
+		}
+
 	return valtoret;
 }
 
 function setST(item, itemval) {
 
 	try{
-		wave.getState().submitValue(item, itemval);
+		wave.getState().submitValue(item, itemval.toString());
 		} catch(err) {
 			loGit("setST error: " + item + "  " + itemval + err);
 	}
