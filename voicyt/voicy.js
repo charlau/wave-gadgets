@@ -37,6 +37,7 @@ function init(){
 function init2(){
 
 	var usingStates = getST("usingStates");
+	logIt("usingStates: " + typeOf(usingStates));
 	var oldzfile = prefs.getString("zfile");
 	
 	if ( oldzfile == null || oldzfile.length == 0 ) {
@@ -97,7 +98,7 @@ function participantIsReady() {
 function getST(item) {
 	var valtoret;
 	try{
-		valtoret = wave.getState().get(item);
+		valtoret = wave.getState().get(item, false);
 		} catch(err) {
 			loGit("getST error: " + item + "  " + err);
 	}
