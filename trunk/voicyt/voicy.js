@@ -248,6 +248,7 @@ function receiver(e) {
 function generateList(messages) {
 	var opt;
 	var particip;
+	var newmess;
 	msg.dismissMessage(loadMessage);
 	loadMessage = msg.createStaticMessage("loading message list");
 	document.getElementById('player_container').innerHTML='';
@@ -278,8 +279,9 @@ function generateList(messages) {
 	if (!getST("nbmessages")) {
 		setST("nbmessages", (messages.length-2).toString());
 	}else{
-		if((iamTheHost) && (messages.length-2 > parseInt(getST("nbmessages")))){
-			msg.createDismissibleMessage("You have new messages!");
+		newmess= (messages.length-2) - parseInt(getST("nbmessages"));
+		if((iamTheHost) && (newmess > 0)){
+			msg.createDismissibleMessage("You have " + newmess.toString() + " new message(s)");
 //			xmess = messages.length-2;
 			setST("nbmessages", (messages.length-2).toString());
 		}
