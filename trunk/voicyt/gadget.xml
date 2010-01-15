@@ -15,6 +15,7 @@
 		<Require feature="minimessage"/>
 		<Require feature="tabs"/>
 		<Require feature="flash"/>
+		<Require feature="locked-domain" />
 	</ModulePrefs>
 	<UserPref name="zfile" default_value="" datatype="hidden" />
 	<UserPref name="priva" display_name="Private recordings?" default_value="false" datatype="bool" />
