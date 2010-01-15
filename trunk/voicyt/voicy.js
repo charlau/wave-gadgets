@@ -100,7 +100,7 @@ function getST(item) {
 	try{
 		valtoret = wave.getState().get(item);
 		} catch(err) {
-			loGit("getST error: " + item + "  " + err);
+			loGit("getST error: " + item + " --> " + err);
 	}
 	if ( valtoret == null || valtoret.length == 0 || valtoret == "false" )
 		{
@@ -119,7 +119,7 @@ function setST(item, itemval) {
 	try{
 		wave.getState().submitValue(item, itemval.toString());
 		} catch(err) {
-			loGit("setST error: " + item + "  " + itemval + err);
+			loGit("setST error: " + item + ", " + itemval + " --> "+ err);
 	}
 }
 
@@ -269,7 +269,7 @@ function checkOpt(thebox){
 		}else{
 			setST("priva", false);
 		}
-		loGit(getST("priva"));
+		loGit("priva is now: " + getST("priva"));
 	}
 }
 
@@ -277,14 +277,14 @@ function setOpt(){
 	var mfrm;
 	if(myID == theHost){
 		mfrm = document.getElementsByTagName('form')[1];
-		loGit(getST("priva"));
+		loGit("priva is now: " + getST("priva"));
 		loGit("using states1: " + getST("usingStates"));
 		if (!getST("usingStates")) {
 			setST("priva", prefs.getBool("priva"));
 			setST("usingStates", true);
 		}
 		loGit("using states2: " + getST("usingStates"));
-		mfrm.priva.checked = (getST("priva")==true) ;		
+		mfrm.priva.checked = (getST("priva")) ;		
 	}
 }
 
