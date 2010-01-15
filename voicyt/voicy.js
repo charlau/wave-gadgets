@@ -272,7 +272,7 @@ function generateList(messages) {
 
 	msg.dismissMessage(loadMessage);
 	document.getElementById('choosefile').style.display = 'block';
-
+loGit("messages.lenght-2: " + messages.length-2.toString() + " nbmessages: " + getST("nbmessages"));
 	if((iamTheHost) && (messages.length-2 > parseInt(getST("nbmessages")))){
 		msg.createDismissibleMessage("You have new messages!");
 		xmess = messages.length-2;
