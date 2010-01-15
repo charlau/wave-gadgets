@@ -121,7 +121,7 @@ function setST(item, itemval) {
 	try{
 		wave.getState().submitValue(item, itemvalx);
 		} catch(err) {
-			loGit("setST error: " + item + ", " + itemvalx + " " + typeOf(itemvalx) + " --> "+ err);
+			loGit("setST error: " + item + ", " + itemvalx + " " + typeof(itemvalx) + " --> "+ err);
 	}
 }
 
