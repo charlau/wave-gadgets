@@ -278,7 +278,7 @@ function generateList(messages) {
 		xmess = messages.length-1;
 		setST("nbmessages", xmess.toString());
 	}
-	document.getElementById('xxmessages').innerHTML = " " + (messages.length-2).toString();
+	document.getElementById('xxmessages').innerHTML = " " + (messages.length-2).toString() + " ";
 }
 
 // trigger: user clicks on the checkbox for privacy
