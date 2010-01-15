@@ -213,7 +213,7 @@ function receiver(e) {
 			case "[getlist]":
 				if(messages[1]=='BAD') { // file does not exist - no messages yet
 					msg.dismissMessage(loadMessage);
-					msg.createTimerMessage("No messages yet...<br />why don't you add one? :)",2);
+					msg.createTimerMessage("No messages yet...<br />why don't you add one? :)",3);
 				}else{
 					generateList(messages);
 				}

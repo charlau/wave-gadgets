@@ -14,7 +14,7 @@ var iframeWin;
 var waitingForCharlau = true;
 var runPerd;
 var waitwave;
-var isbugged = false;
+var isbugged = true;
 var xmess;
 var spMessage = "";
 //var spMessage = "Sorry, sometimes the gadget is not always loading. Please bear with the beta!";
@@ -22,8 +22,8 @@ var spMessage = "";
 function init(){
 	msg = new gadgets.MiniMessage();
 	if (isbugged) {
-		msg.createDismissibleMessage(spMessage);
-		waitwave = msg.createStaticMessage("waiting for wave");
+//		msg.createDismissibleMessage(spMessage);
+		waitwave = msg.createStaticMessage("loading gadget");
 		runPerd = setInterval( waitingWave, 500 );
 	}else{
 		loadMessage = msg.createStaticMessage("loading gadget");
@@ -34,29 +34,39 @@ function init(){
 	}
 }
 
-function init2(){
+function init2Old(){
 
-	var usingStates = getST("usingStates");
 	var oldzfile = prefs.getString("zfile");
-	
-	if ( oldzfile == null || oldzfile.length == 0 ) {
+
+	if ( oldzfile == null || oldzfile.length == 0 || oldzfile == false) {
 		if (!getST("zfile")){
 			setST("zfile", randomString(15)+".txt");
 		}
 	}else{
+//		transfer from prefs to state
 		setST("zfile", oldzfile);
 		prefs.set("zfile", ""); 
 	}
-	loGit(getST("zfile"));
+
+//	transfer from prefs to state
 	if (prefs.getBool("priva") == true) {
-		setST("priva", "true");
+		setST("priva", true);
 	}else{
 		if (!getST("priva")){
-			setST("priva", "false");
+			setST("priva", false);
 		}
 	}
+	
+	setST("usingStates", true);
 }
 
+function init2(){
+
+	if (!getST("zfile")){
+		setST("zfile", randomString(15)+".txt");
+	}
+
+}
 
 // used only if isbugged=true in times when waves tend to disapear...
 function waitingWave() {
@@ -73,11 +83,13 @@ function waitingWave() {
 	}
 }
 
-// if updated, most likelly because a message was recorded
+
 function stateUpdated() {	
+	document.getElementById('player_container').innerHTML='';
 	if (iCanListen && !waitingForCharlau){
 		iframeWin.postMessage('[getlist]~~om~~'+getST("zfile")+'~~om~~~~om~~~~om~~', 'http://www.charlau.com');
 	}
+
 }
 
 // so far, used only on the first participant ready.
@@ -99,21 +111,28 @@ function getST(item) {
 	try{
 		valtoret = wave.getState().get(item);
 		} catch(err) {
-			loGit("getST error: " + item + "  " + err);
+			loGit("getST error: " + item + " --> " + err);
 	}
-	if ( valtoret == null || valtoret.length == 0 )
+	if ( valtoret == null || valtoret.length == 0 || valtoret == "false" )
 		{
 			valtoret = false;
 		}
+	if ( valtoret == "true" )
+		{
+			valtoret = true;
+		}
+
 	return valtoret;
 }
 
 function setST(item, itemval) {
 
+	var itemvalx = itemval.toString();
+
 	try{
-		wave.getState().submitValue(item, itemval);
+		wave.getState().submitValue(item, itemvalx);
 		} catch(err) {
-			loGit("setST error: " + item + "  " + itemval + err);
+			loGit("setST error: " + item + ", " + itemvalx + " " + typeof(itemvalx) + " --> "+ err);
 	}
 }
 
@@ -123,8 +142,12 @@ function pingCharlau() {
 }
 
 function getReady() {
-	init2();
-	loGit("zfile (getReady):"+getST("zfile"));
+	if (getST("usingStates")) {
+		init2();
+	}else{
+		init2Old();
+	}
+
 	if(myID == theHost){
 		iamTheHost = true;
 		document.getElementById("playdiv").style.display="block";
@@ -149,7 +172,7 @@ function getReady() {
 		theNote = "Note: your id will appear with your message only for the owner of the wave";
 		IamRecording = true;
 		document.getElementById("playdiv").innerHTML="";
-		therecordpanel2 = '<div id="byline" style="font-family:courier, arial, sans-serif; font-size:10px; float:left; width:100%; margin-top:10px; margin-bottom:1px; margin-left:10px; padding:0; line-height:14px;">http://wave-gadgets.googlecode.com/svn/trunk/voicy/manifest.xml<br />Gadget by <a href="http://charlau.posterous.com/" target="_blank">charlau</a></div>';
+		therecordpanel2 = '<div id="byline" style="font-family: Courier, \'Courier New\', arial, sans-serif; font-size:10px; float:left; width:100%; margin-top:10px; margin-bottom:1px; margin-left:10px; padding:0; line-height:14px;"><a href="https://wave.google.com/wave/?#minimized:search,restored:wave:googlewave.com!w%252BhsKZwB2sI" target="_blank">feedback wave</a><br />Gadget by <a href="http://charlau.posterous.com/" target="_blank">charlau</a></div>';
 	}
 
 	var therectab = tabs.addTab("Leave a message", {
@@ -157,7 +180,7 @@ function getReady() {
 		index: 1
 	});
 
-	var therecordpanel = '<div id="rectab" style="font-family:courier, arial, sans-serif; font-size:10px; margin-left:8px; margin-top:3px; margin-right:10px; margin-bottom:10px; float:right;">Recording courtesy of <a href="http://riffly.com/" target="_blank">riffly</a></div><div style="font-family:verdana, arial, sans-serif; font-style:italic; padding-top:3px; padding-left:10px; padding-right:10px;">' + theNote + '</div><div id="recorder_container" style="float:left; width:100%; display:block; margin-left:10px; height:160px;"></div>' + therecordpanel2;
+	var therecordpanel = '<div id="rectab" style="font-family:courier, arial, sans-serif; font-size:10px; margin-left:8px; margin-top:3px; margin-right:10px; margin-bottom:10px; float:right;"> </div><div style="font-family:verdana, arial, sans-serif; font-style:italic; padding-top:3px; padding-left:10px; padding-right:10px;">' + theNote + '</div><div id="recorder_container" style="float:left; width:100%; display:block; margin-left:10px; height:160px;"></div>' + therecordpanel2;
 
 	document.getElementById(therectab).innerHTML = therecordpanel;
 
@@ -177,24 +200,20 @@ function receiver(e) {
 		if(iCanListen){
 			switch (messages[0]){
 			case "[ping]":
-				loGit("[ping]");
 				waitingForCharlau = false;
 				msg.dismissMessage(loadMessage);
 				loadMessage = msg.createStaticMessage("loading message list");
 				iframeWin.postMessage('[getlist]~~om~~'+getST("zfile")+'~~om~~~~om~~~~om~~', 'http://www.charlau.com');
 				break;
 			case "[addrec]":
-				loGit("[addrec]");
 				myRamdom = randomString(10);
 				wave.getState().submitDelta({'added': myRamdom});
-				msg.createTimerMessage("Message sent!", 3);
-				loGit("zfile (addrec):"+getST("zfile"));
+				msg.createTimerMessage("Message sent!", 2);
 				break;
 			case "[getlist]":
-				loGit("[getlist]");
 				if(messages[1]=='BAD') { // file does not exist - no messages yet
 					msg.dismissMessage(loadMessage);
-					msg.createTimerMessage("No messages yet... why don't you add one? :)",4);
+					msg.createTimerMessage("No messages yet...<br />why don't you add one? :)",3);
 				}else{
 					generateList(messages);
 				}
@@ -208,7 +227,7 @@ function receiver(e) {
 				msg.dismissMessage(loadMessage);
 				break;
 			case "[addrec]":
-				msg.createTimerMessage("Message sent!!", 3);
+				msg.createTimerMessage("Message sent!!", 2);
 				myRamdom = randomString(10);
 				wave.getState().submitDelta({'added': myRamdom});
 				break;
@@ -222,6 +241,7 @@ function receiver(e) {
 function generateList(messages) {
 	var opt;
 	var particip;
+	var newmess;
 	msg.dismissMessage(loadMessage);
 	loadMessage = msg.createStaticMessage("loading message list");
 	document.getElementById('player_container').innerHTML='';
@@ -236,7 +256,6 @@ function generateList(messages) {
 				loGit(err);
 				particip = "unknown user";
 			}
-			loGit(particip);
 		document.toplay.riffly_id2.options[x]=new Option(particip, opt[1], false, false);
 	}
 
@@ -247,23 +266,26 @@ function generateList(messages) {
 	msg.dismissMessage(loadMessage);
 	document.getElementById('choosefile').style.display = 'block';
 
-	if((iamTheHost) && (messages.length-1 > parseInt(getST("nbmessages")))){
-		msg.createDismissibleMessage("You have new messages!");
-		xmess = messages.length-1;
-		setST("nbmessages", xmess.toString());
+	if (!getST("nbmessages")) {
+		setST("nbmessages", (messages.length-2).toString());
+	}else{
+		newmess= (messages.length-2) - parseInt(getST("nbmessages"));
+		if((iamTheHost) && (newmess > 0)){
+			msg.createDismissibleMessage("You have " + newmess.toString() + " new message(s)");
+			setST("nbmessages", (messages.length-2).toString());
+		}
 	}
-	
+	document.getElementById('xxmessages').innerHTML = "&nbsp;" + (messages.length-2).toString() + "&nbsp;";
 }
 
 // trigger: user clicks on the checkbox for privacy
 function checkOpt(thebox){
 	if(myID == theHost){
 		if (thebox.checked) {
-			setST("priva", "true");
+			setST("priva", true);
 		}else{
-			setST("priva", "false");
+			setST("priva", false);
 		}
-		loGit(getST("priva"));
 	}
 }
 
@@ -271,14 +293,11 @@ function setOpt(){
 	var mfrm;
 	if(myID == theHost){
 		mfrm = document.getElementsByTagName('form')[1];
-		loGit(getST("priva"));
-		loGit("using states1: " + getST("usingStates"));
 		if (!getST("usingStates")) {
 			setST("priva", prefs.getBool("priva"));
-			setST("usingStates", "true");
+			setST("usingStates", true);
 		}
-		loGit("using states2: " + getST("usingStates"));
-		mfrm.priva.checked = (getST("priva")==="true") ;		
+		mfrm.priva.checked = (getST("priva")) ;		
 	}
 }
 
@@ -303,27 +322,9 @@ function showPlayer (player_container_id, riffly_id, riffly_type) {
 		msg.createTimerMessage("Loading recorded message", 2);
 		if (riffly_type == 'video') {
 
-			gadgets.flash.embedFlash("http://riffly.com/p/" + riffly_id , player_container, {
-				swf_version: 8,
-				id: "riffyplayerx",
-				width: "400",
-				height: "320",
-				allowfullscreen: "true",
-				allowscriptaccess: "never"
-			});
-			
-			player_container.style.display = 'block';	
-
 		} else if (riffly_type == 'audio') {
-	
-				gadgets.flash.embedFlash("http://riffly.com/p/" + riffly_id , player_container, {
-					swf_version: 8,
-					id: "riffyplayerx",
-					width: "190",
-					height: "20",
-					allowfullscreen: "false",
-					allowscriptaccess: "never"
-				});
+				
+				document.getElementById('player_container').innerHTML='<embed id="riffyplayerx" src="http://riffly.com/p/' + riffly_id + '" width="190" height="20" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="false"></embed>';
 				
 				player_container.style.display = 'block';	
 		}
@@ -349,7 +350,7 @@ function randomString(length){
 	for(x=0;x<length;x++){
 		i = Math.floor(Math.random() * 62);
 		rSt += chars.charAt(i);
-  	}
+	}
 	return rSt;
 }
 
