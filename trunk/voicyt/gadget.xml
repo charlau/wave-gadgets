@@ -7,7 +7,7 @@
 		author_link="http://charlau.posterous.com" author_location="Switzerland"
 		author_aboutme=""
 		author_quote=""
-		thumbnail=""
+		thumbnail="http://wave-gadgets.googlecode.com/svn/trunk/voicy/images/voicy-screen.png"
 		screenshot="http://wave-gadgets.googlecode.com/svn/trunk/voicy/images/voicy-screen.png">
 		<Require feature="wave-preview"/>
 		<Require feature="dynamic-height"/>
@@ -24,6 +24,9 @@
 <![CDATA[
 	<link rel="stylesheet" type="text/css" href="http://wave-gadgets.googlecode.com/svn/trunk/voicy/forms.css" media="screen" />
 	<script type="text/javascript" src="http://free-video-comments-at.riffly.com/static/js/api/1/web.js"></script>
+<!--	
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
+-->
 	<div id="content_div" style="border-bottom-style:solid; border-bottom-width:1px; margin-bottom:5px;">
 		<div id="playdiv" style="float:left; width:100%; padding:0; margin:0; display:none;">
 			<div style="float:right; font-size:10px; font-family:Courier, Arial, Helvetica, sans-serif; margin-top:3px; margin-right:10px;">Gadget by <a href="http://charlau.posterous.com/" target="_blank">charlau</a></div>
