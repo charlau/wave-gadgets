@@ -28,13 +28,13 @@
 		<div id="playdiv" style="float:left; width:100%; padding:0; margin:0; display:none;">
 			<div style="float:right; font-size:10px; font-family:Courier, Arial, Helvetica, sans-serif; margin-top:3px; margin-right:10px;">Gadget by <a href="http://charlau.posterous.com/" target="_blank">charlau</a></div>
 			<div id="player_container" style="height:20px; width:190px; margin-top:30px; margin-left:10px;"></div>
-			<div id="xxmessages" style="clear:none; display:inline;">?</div><div id="choosefile" style="margin-left:10px;">
+			<div id="choosefile" style="margin-left:10px; clear:none; display:inline;">
 				<form name="toplay" action="#" method="post">
 					<select name="riffly_id2" class="ttt" style="width:190px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #ffffff; background-color: red;" onChange="showPlayer('player_container', document.toplay.riffly_id2.value, 'audio');">
 						<option value="" selected="selected">-------click to play-------</option>
 					</select>
 				</form>
-			</div>
+			</div><div id="xxmessages" style="clear:none; display:inline;"></div>
 			<div id="HostOpt" style="font-size:12px; float:left; width:100%; margin-top:91px; margin-bottom:0; margin-left:10px; padding:0;">
 				<div id="mprivates" style="display:none;">
 					<form id="privachk" action="#">Keep messages private <input type="checkbox" name="priva" class="ttt" value="secret" onChange="checkOpt(this);">
