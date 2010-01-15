@@ -1,7 +1,7 @@
 var msg;
 var loadMessage;
 var prefs = new gadgets.Prefs();
-var debugMode = false;
+var debugMode = true;
 var myID;
 var theHost;
 var myRamdom = "";
