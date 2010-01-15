@@ -98,7 +98,7 @@ function participantIsReady() {
 function getST(item) {
 	var valtoret;
 	try{
-		valtoret = wave.getState().get(item, "false");
+		valtoret = wave.State().get(item, false);
 		} catch(err) {
 			loGit("getST error: " + item + "  " + err);
 	}
