@@ -332,7 +332,8 @@ function showPlayer (player_container_id, riffly_id, riffly_type) {
 				width: "400",
 				height: "320",
 				allowfullscreen: "true",
-				allowscriptaccess: "never"
+				allowscriptaccess: "always",
+				wmode: "transparent"
 			});
 			
 			player_container.style.display = 'block';	
@@ -345,7 +346,8 @@ function showPlayer (player_container_id, riffly_id, riffly_type) {
 					width: "190",
 					height: "20",
 					allowfullscreen: "false",
-					allowscriptaccess: "never"
+					allowscriptaccess: "always",
+					wmode: "transparent"
 				});
 				
 				player_container.style.display = 'block';	
