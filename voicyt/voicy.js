@@ -340,15 +340,18 @@ function showPlayer (player_container_id, riffly_id, riffly_type) {
 
 		} else if (riffly_type == 'audio') {
 	
-				gadgets.flash.embedFlash("http://riffly.com/p/" + riffly_id + "#audio" , player_container, {
-					swf_version: 8,
-					id: "riffyplayerx",
-					width: "190",
-					height: "25",
-					allowfullscreen: "false",
-					allowscriptaccess: "always",
-					wmode: "transparent"
-				});
+//				gadgets.flash.embedFlash("http://riffly.com/p/" + riffly_id + "#audio" , player_container, {
+//					swf_version: 8,
+//					id: "riffyplayerx",
+//					width: "190",
+//					height: "25",
+//					allowfullscreen: "false",
+//					allowscriptaccess: "always",
+//					wmode: "transparent"
+//				});
+				
+				document.getElementById('player_container').innerHTML='<embed src="http://riffly.com/p/<RIFFLY_ID>"  
+width="190" height="25" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="false"></embed>';
 				
 				player_container.style.display = 'block';	
 		}
