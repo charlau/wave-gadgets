@@ -199,7 +199,7 @@ function receiver(e) {
 				myRamdom = randomString(10);
 				wave.getState().submitDelta({'added': myRamdom});
 				msg.createTimerMessage("Message sent!", 2);
-				loGit("zfile (addrec):"+getST("zfile"));
+//				loGit("zfile (addrec):"+getST("zfile"));
 				break;
 			case "[getlist]":
 //				loGit("[getlist]");
