@@ -344,7 +344,7 @@ function showPlayer (player_container_id, riffly_id, riffly_type) {
 					swf_version: 8,
 					id: "riffyplayerx",
 					width: "190",
-					height: "20",
+					height: "25",
 					allowfullscreen: "false",
 					allowscriptaccess: "always",
 					wmode: "transparent"
