@@ -119,7 +119,7 @@ function setST(item, itemval) {
 	itemval = itemval.toString();
 
 	try{
-		wave.getState().submitValue(item, itemval.toString());
+		wave.getState().submitValue(item, itemval);
 		} catch(err) {
 			loGit("setST error: " + item + ", " + itemval + " --> "+ err);
 	}
