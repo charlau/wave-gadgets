@@ -282,7 +282,6 @@ function generateList(messages) {
 		newmess= (messages.length-2) - parseInt(getST("nbmessages"));
 		if((iamTheHost) && (newmess > 0)){
 			msg.createDismissibleMessage("You have " + newmess.toString() + " new message(s)");
-//			xmess = messages.length-2;
 			setST("nbmessages", (messages.length-2).toString());
 		}
 	}
@@ -335,29 +334,18 @@ function showPlayer (player_container_id, riffly_id, riffly_type) {
 		msg.createTimerMessage("Loading recorded message", 2);
 		if (riffly_type == 'video') {
 
-			gadgets.flash.embedFlash("http://riffly.com/p/" + riffly_id  + "#video", player_container, {
-				swf_version: 8,
-				id: "riffyplayerx",
-				width: "400",
-				height: "320",
-				allowfullscreen: "true",
-				allowscriptaccess: "always",
-				wmode: "transparent"
-			});
-			
-			player_container.style.display = 'block';	
+//			gadgets.flash.embedFlash("http://riffly.com/p/" + riffly_id  + "#video", player_container, {
+//				swf_version: 8,
+//				id: "riffyplayerx",
+//				width: "400",
+//				height: "320",
+//				allowfullscreen: "true",
+//				allowscriptaccess: "always",
+//				wmode: "transparent"
+//			});			
+//			player_container.style.display = 'block';	
 
 		} else if (riffly_type == 'audio') {
-	
-//				gadgets.flash.embedFlash("http://riffly.com/p/" + riffly_id + "#audio" , player_container, {
-//					swf_version: 8,
-//					id: "riffyplayerx",
-//					width: "190",
-//					height: "25",
-//					allowfullscreen: "false",
-//					allowscriptaccess: "always",
-//					wmode: "transparent"
-//				});
 				
 				document.getElementById('player_container').innerHTML='<embed id="riffyplayerx" src="http://riffly.com/p/' + riffly_id + '" width="190" height="20" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="false"></embed>';
 				
