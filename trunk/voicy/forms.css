@@ -6,14 +6,16 @@ div, p {font-family:courier, arial, sans-serif; font-size:10px; line-height:14px
 .mmlib_table {
    background-color: #FAFBC7;
    color: #000000;
-   font-size:12px;
-   width:300px;
-   height:20px;
+   font-size:10px;
+   width:450px;
+   height:43px;
    left:10px;
    position:absolute;
    top:25px;
    padding:2px;
-   text-align:center;
+   text-align:left;
+	font-family: Courier, 'Courier New', Verdana, Arial, Helvetica, sans-serif;
+
  }
 
 .tablib_selected {
