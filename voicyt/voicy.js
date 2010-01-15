@@ -37,18 +37,20 @@ function init(){
 function init2Old(){
 
 	var usingStates = getST("usingStates");
-	loGit("usingStates: " + usingStates);
+//	loGit("usingStates: " + usingStates);
 	var oldzfile = prefs.getString("zfile");
-//	loGit("oldzfile: " + oldzfile);
+
 	if ( oldzfile == null || oldzfile.length == 0 || oldzfile == false) {
 		if (!getST("zfile")){
 			setST("zfile", randomString(15)+".txt");
 		}
 	}else{
+//		transfer from prefs to state
 		setST("zfile", oldzfile);
 		prefs.set("zfile", ""); 
 	}
-//	loGit(getST("zfile"));
+
+//	transfer from prefs to state
 	if (prefs.getBool("priva") == true) {
 		setST("priva", true);
 	}else{
@@ -59,7 +61,8 @@ function init2Old(){
 }
 
 function init2(){
-loGit("newtype zfile: " + getST("zfile"));
+
+//loGit("newtype zfile: " + getST("zfile"));
 	if (!getST("zfile")){
 		setST("zfile", randomString(15)+".txt");
 	}
@@ -87,7 +90,7 @@ function stateUpdated() {
 		iframeWin.postMessage('[getlist]~~om~~'+getST("zfile")+'~~om~~~~om~~~~om~~', 'http://www.charlau.com');
 	}
 //	loGit("priva is now: " + getST("priva"));
-	loGit("zfile: " + getST("zfile"));
+//	loGit("zfile: " + getST("zfile"));
 
 }
 
