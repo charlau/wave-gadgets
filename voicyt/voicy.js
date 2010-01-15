@@ -174,7 +174,7 @@ function getReady() {
 		theNote = "Note: your id will appear with your message only for the owner of the wave";
 		IamRecording = true;
 		document.getElementById("playdiv").innerHTML="";
-		therecordpanel2 = '<div id="byline" style="font-family: Courier, 'Courier New', arial, sans-serif; font-size:10px; float:left; width:100%; margin-top:10px; margin-bottom:1px; margin-left:10px; padding:0; line-height:14px;"><a href="https://wave.google.com/wave/?#minimized:search,restored:wave:googlewave.com!w%252BhsKZwB2sI" target="_blank">feedback wave</a><br />Gadget by <a href="http://charlau.posterous.com/" target="_blank">charlau</a></div>';
+		therecordpanel2 = '<div id="byline" style="font-family: Courier, \'Courier New\', arial, sans-serif; font-size:10px; float:left; width:100%; margin-top:10px; margin-bottom:1px; margin-left:10px; padding:0; line-height:14px;"><a href="https://wave.google.com/wave/?#minimized:search,restored:wave:googlewave.com!w%252BhsKZwB2sI" target="_blank">feedback wave</a><br />Gadget by <a href="http://charlau.posterous.com/" target="_blank">charlau</a></div>';
 	}
 
 	var therectab = tabs.addTab("Leave a message", {
