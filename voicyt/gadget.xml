@@ -40,7 +40,7 @@
 					<form id="privachk" action="#">Keep messages private <input type="checkbox" name="priva" class="ttt" value="secret" onChange="checkOpt(this);">
 					</form>
 				</div>
-								<div style="font-size:10px; margin-top:3px;"><a href="https://wave.google.com/wave/?#minimized:search,restored:wave:googlewave.com!w%252BhsKZwB2sI" target="_blank">feedback wave</a></div>
+								<div style="font-size:10px;"><a href="https://wave.google.com/wave/?#minimized:search,restored:wave:googlewave.com!w%252BhsKZwB2sI" target="_blank">feedback wave</a></div>
 		
 			</div>
 		</div>
