@@ -37,10 +37,10 @@ function init(){
 function init2(){
 
 	var usingStates = getST("usingStates");
-	loGit("usingStates: " + typeOf(usingStates));
+//	loGit("usingStates: " + typeOf(usingStates));
 	var oldzfile = prefs.getString("zfile");
-	
-	if ( oldzfile == null || oldzfile.length == 0 ) {
+	loGit("oldzfile: " + oldzfile);
+	if ( oldzfile == null || oldzfile.length == 0 || oldzfile == false) {
 		if (!getST("zfile")){
 			setST("zfile", randomString(15)+".txt");
 		}
@@ -50,10 +50,10 @@ function init2(){
 	}
 	loGit(getST("zfile"));
 	if (prefs.getBool("priva") == true) {
-		setST("priva", "true");
+		setST("priva", true);
 	}else{
 		if (!getST("priva")){
-			setST("priva", "false");
+			setST("priva", false);
 		}
 	}
 }
@@ -98,11 +98,11 @@ function participantIsReady() {
 function getST(item) {
 	var valtoret;
 	try{
-		valtoret = wave.State().get(item, false);
+		valtoret = wave.getState().get(item);
 		} catch(err) {
 			loGit("getST error: " + item + "  " + err);
 	}
-	if ( valtoret == null || valtoret.length == 0 )
+	if ( valtoret == null || valtoret.length == 0 || valtoret == "false" )
 		{
 			valtoret = false;
 		}
@@ -260,9 +260,9 @@ function generateList(messages) {
 function checkOpt(thebox){
 	if(myID == theHost){
 		if (thebox.checked) {
-			setST("priva", "true");
+			setST("priva", true);
 		}else{
-			setST("priva", "false");
+			setST("priva", false);
 		}
 		loGit(getST("priva"));
 	}
@@ -276,10 +276,10 @@ function setOpt(){
 		loGit("using states1: " + getST("usingStates"));
 		if (!getST("usingStates")) {
 			setST("priva", prefs.getBool("priva"));
-			setST("usingStates", "true");
+			setST("usingStates", true);
 		}
 		loGit("using states2: " + getST("usingStates"));
-		mfrm.priva.checked = (getST("priva")==="true") ;		
+		mfrm.priva.checked = (getST("priva")==true) ;		
 	}
 }
 
