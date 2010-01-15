@@ -7,7 +7,7 @@
 		author_link="http://charlau.posterous.com" author_location="Switzerland"
 		author_aboutme=""
 		author_quote=""
-		thumbnail=""
+		thumbnail="http://wave-gadgets.googlecode.com/svn/trunk/voicy/images/voicy-screen.png"
 		screenshot="http://wave-gadgets.googlecode.com/svn/trunk/voicy/images/voicy-screen.png">
 		<Require feature="wave-preview"/>
 		<Require feature="dynamic-height"/>
@@ -15,6 +15,7 @@
 		<Require feature="minimessage"/>
 		<Require feature="tabs"/>
 		<Require feature="flash"/>
+		<Require feature="locked-domain" />
 	</ModulePrefs>
 	<UserPref name="zfile" default_value="" datatype="hidden" />
 	<UserPref name="priva" display_name="Private recordings?" default_value="false" datatype="bool" />
@@ -23,6 +24,9 @@
 <![CDATA[
 	<link rel="stylesheet" type="text/css" href="http://wave-gadgets.googlecode.com/svn/trunk/voicy/forms.css" media="screen" />
 	<script type="text/javascript" src="http://free-video-comments-at.riffly.com/static/js/api/1/web.js"></script>
+<!--	
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
+-->
 	<div id="content_div" style="border-bottom-style:solid; border-bottom-width:1px; margin-bottom:5px;">
 		<div id="playdiv" style="float:left; width:100%; padding:0; margin:0; display:none;">
 			<div style="float:right; font-size:10px; font-family:Courier, Arial, Helvetica, sans-serif; margin-top:3px; margin-right:10px;">Gadget by <a href="http://charlau.posterous.com/" target="_blank">charlau</a></div>
@@ -31,7 +35,7 @@
 				<form name="toplay" action="#" method="post">
 					<select name="riffly_id2" class="ttt" style="width:190px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; color: #ffffff; background-color: red;" onChange="showPlayer('player_container', document.toplay.riffly_id2.value, 'audio');">
 						<option value="" selected="selected">-------click to play-------</option>
-					</select>
+					</select><span id="xxmessages" style="clear:none; display:inline; color: #ffffff; background-color: red; font-size: 12px; margin-left:3px;"></span>
 				</form>
 			</div>
 			<div id="HostOpt" style="font-size:12px; float:left; width:100%; margin-top:91px; margin-bottom:0; margin-left:10px; padding:0;">
@@ -39,17 +43,15 @@
 					<form id="privachk" action="#">Keep messages private <input type="checkbox" name="priva" class="ttt" value="secret" onChange="checkOpt(this);">
 					</form>
 				</div>
-				<div style="font-size:10px;">http://wave-gadgets.googlecode.com/svn/trunk/voicy/manifest.xml</div>		
+								<div style="font-size:10px;"><a href="https://wave.google.com/wave/?#minimized:search,restored:wave:googlewave.com!w%252BhsKZwB2sI" target="_blank">feedback wave</a></div>
+		
 			</div>
 		</div>
 		<iframe id="mainIframe" src="" height="0" frameborder="0" scrolling="no"></iframe>
 	</div>
-	Today's (jan 6) new API version broke voicy. Voicy disabled until I get this sorted out. Thank you for your patience.
-	
-	Information on the status will be posted <a href="https://wave.google.com/wave/?#restored:wave:googlewave.com!w%252BhsKZwB2sI" target="_top">in this wave</a>
-	<!--
+
 <script type="text/javascript" src="http://wave-gadgets.googlecode.com/svn/trunk/voicy/voicy.js"></script>
-	-->
+	
     ]]>
   </Content>
 </Module>
