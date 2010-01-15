@@ -116,6 +116,8 @@ function getST(item) {
 
 function setST(item, itemval) {
 
+	itemval = itemval.toString();
+
 	try{
 		wave.getState().submitValue(item, itemval.toString());
 		} catch(err) {
