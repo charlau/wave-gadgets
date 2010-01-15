@@ -326,7 +326,7 @@ function showPlayer (player_container_id, riffly_id, riffly_type) {
 		msg.createTimerMessage("Loading recorded message", 2);
 		if (riffly_type == 'video') {
 
-			gadgets.flash.embedFlash("http://riffly.com/p/" + riffly_id , player_container, {
+			gadgets.flash.embedFlash("http://riffly.com/p/" + riffly_id  + "#video", player_container, {
 				swf_version: 8,
 				id: "riffyplayerx",
 				width: "400",
@@ -340,7 +340,7 @@ function showPlayer (player_container_id, riffly_id, riffly_type) {
 
 		} else if (riffly_type == 'audio') {
 	
-				gadgets.flash.embedFlash("http://riffly.com/p/" + riffly_id , player_container, {
+				gadgets.flash.embedFlash("http://riffly.com/p/" + riffly_id + "#audio" , player_container, {
 					swf_version: 8,
 					id: "riffyplayerx",
 					width: "190",
