@@ -39,7 +39,7 @@ function init2(){
 	var usingStates = getST("usingStates");
 //	loGit("usingStates: " + typeOf(usingStates));
 	var oldzfile = prefs.getString("zfile");
-	loGit("oldzfile: " + oldzfile);
+//	loGit("oldzfile: " + oldzfile);
 	if ( oldzfile == null || oldzfile.length == 0 || oldzfile == false) {
 		if (!getST("zfile")){
 			setST("zfile", randomString(15)+".txt");
@@ -48,7 +48,7 @@ function init2(){
 		setST("zfile", oldzfile);
 		prefs.set("zfile", ""); 
 	}
-	loGit(getST("zfile"));
+//	loGit(getST("zfile"));
 	if (prefs.getBool("priva") == true) {
 		setST("priva", true);
 	}else{
@@ -132,7 +132,7 @@ function pingCharlau() {
 
 function getReady() {
 	init2();
-	loGit("zfile (getReady):"+getST("zfile"));
+//	loGit("zfile (getReady):"+getST("zfile"));
 	if(myID == theHost){
 		iamTheHost = true;
 		document.getElementById("playdiv").style.display="block";
@@ -185,21 +185,21 @@ function receiver(e) {
 		if(iCanListen){
 			switch (messages[0]){
 			case "[ping]":
-				loGit("[ping]");
+//				loGit("[ping]");
 				waitingForCharlau = false;
 				msg.dismissMessage(loadMessage);
 				loadMessage = msg.createStaticMessage("loading message list");
 				iframeWin.postMessage('[getlist]~~om~~'+getST("zfile")+'~~om~~~~om~~~~om~~', 'http://www.charlau.com');
 				break;
 			case "[addrec]":
-				loGit("[addrec]");
+//				loGit("[addrec]");
 				myRamdom = randomString(10);
 				wave.getState().submitDelta({'added': myRamdom});
 				msg.createTimerMessage("Message sent!", 3);
 				loGit("zfile (addrec):"+getST("zfile"));
 				break;
 			case "[getlist]":
-				loGit("[getlist]");
+//				loGit("[getlist]");
 				if(messages[1]=='BAD') { // file does not exist - no messages yet
 					msg.dismissMessage(loadMessage);
 					msg.createTimerMessage("No messages yet... why don't you add one? :)",4);
@@ -244,7 +244,7 @@ function generateList(messages) {
 				loGit(err);
 				particip = "unknown user";
 			}
-			loGit(particip);
+//			loGit(particip);
 		document.toplay.riffly_id2.options[x]=new Option(particip, opt[1], false, false);
 	}
 
@@ -279,13 +279,13 @@ function setOpt(){
 	var mfrm;
 	if(myID == theHost){
 		mfrm = document.getElementsByTagName('form')[1];
-		loGit("priva is now: " + getST("priva"));
-		loGit("using states1: " + getST("usingStates"));
+//		loGit("priva is now: " + getST("priva"));
 		if (!getST("usingStates")) {
 			setST("priva", prefs.getBool("priva"));
+			loGit("using states1: " + getST("usingStates"));
 			setST("usingStates", true);
+			loGit("using states2: " + getST("usingStates"));
 		}
-		loGit("using states2: " + getST("usingStates"));
 		mfrm.priva.checked = (getST("priva")) ;		
 	}
 }
