@@ -74,12 +74,13 @@ function waitingWave() {
 	}
 }
 
-// if updated, most likelly because a message was recorded
+
 function stateUpdated() {	
 	if (iCanListen && !waitingForCharlau){
 		iframeWin.postMessage('[getlist]~~om~~'+getST("zfile")+'~~om~~~~om~~~~om~~', 'http://www.charlau.com');
 	}
-	loGit("priva is now: " + getST("priva"));
+//	loGit("priva is now: " + getST("priva"));
+	loGit("using states2: " + getST("usingStates"));
 
 }
 
@@ -273,7 +274,6 @@ function checkOpt(thebox){
 		}else{
 			setST("priva", false);
 		}
-		loGit("priva is now: " + getST("priva"));
 	}
 }
 
@@ -284,9 +284,8 @@ function setOpt(){
 //		loGit("priva is now: " + getST("priva"));
 		if (!getST("usingStates")) {
 			setST("priva", prefs.getBool("priva"));
-			loGit("using states1: " + getST("usingStates"));
+//			loGit("using states1: " + getST("usingStates"));
 			setST("usingStates", true);
-			loGit("using states2: " + getST("usingStates"));
 		}
 		mfrm.priva.checked = (getST("priva")) ;		
 	}
