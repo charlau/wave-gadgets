@@ -37,7 +37,7 @@ function init(){
 function init2(){
 
 	var usingStates = getST("usingStates");
-	logIt("usingStates: " + typeOf(usingStates));
+	loGit("usingStates: " + typeOf(usingStates));
 	var oldzfile = prefs.getString("zfile");
 	
 	if ( oldzfile == null || oldzfile.length == 0 ) {
