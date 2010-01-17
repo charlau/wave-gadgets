@@ -185,7 +185,7 @@ function getReady() {
 	document.getElementById(therectab).innerHTML = therecordpanel;
 
 	rifflyShowRecorder('recorder_container', 'audio', 'rifflyFinishedRecording');
-	document.getElementById('recorder_container').firstChild.style.display="none";
+//	document.getElementById('recorder_container').firstChild.style.display="none";
 	
 	gadgets.window.adjustHeight();
 
@@ -309,7 +309,7 @@ function rifflyFinishedRecording (riffly_id, riffly_type) {
 		IamRecording = false;
 	}else{
 		rifflyShowRecorder('recorder_container', 'audio', 'rifflyFinishedRecording');
-		document.getElementById('recorder_container').firstChild.style.display="none";
+//		document.getElementById('recorder_container').firstChild.style.display="none";
 	}
 }
 
@@ -359,5 +359,20 @@ function loGit(tolog){
 		msg.createDismissibleMessage("*** " + tolog + " ***");
 	}
 }
+
+/* Riffly.com Web API */
+
+function rifflyShowRecorder (recorder_window_id, recorder_type, callback) {
+	var recorder_window = document.getElementById(recorder_window_id);
+	recorder_window.style.display = 'block';
+
+	if (recorder_type == 'audio') {
+		recorder_window.innerHTML = '<embed id="riffly_recorder_object" src="http://riffly.com/static/flash/rifflyrecorder.swf" quality="high" bgcolor="#ffffff" name="riffly_recorder_object" allowscriptaccess="always" scale="noscale" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" align="middle" width="320" height="138" flashvars="callback=' + encodeURIComponent(callback) + '&mode=audio&url=' + encodeURIComponent(location.href) + '&post_title=' + encodeURIComponent(document.title) + '"></embed>';
+	} else {
+		recorder_window.innerHTML = '<embed id="riffly_recorder_object" src="http://riffly.com/static/flash/rifflyrecorder.swf" quality="high" bgcolor="#ffffff" name="riffly_recorder_object" allowscriptaccess="always" scale="noscale" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" align="middle" width="320" height="260" flashvars="callback=' + encodeURIComponent(callback) + '&mode=video&url=' + encodeURIComponent(location.href) + '&post_title=' + encodeURIComponent(document.title) + '"></embed>';
+	}
+
+}
+
 
 gadgets.util.registerOnLoadHandler(init);    
