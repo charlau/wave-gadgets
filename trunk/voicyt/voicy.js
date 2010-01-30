@@ -18,6 +18,7 @@ var isbugged = true;
 var xmess;
 var spMessage = "";
 //var spMessage = "Sorry, sometimes the gadget is not always loading. Please bear with the beta!";
+var gadd='<div style="float:right; clear:none;"><script type="text/javascript"><!--	google_ad_client ="pub-5574306595268675"; /* gwave */ google_ad_slot = "7991926088"; google_ad_width = 234; google_ad_height = 60; //--> </script><script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js" /></div>';
 
 function init(){
 	msg = new gadgets.MiniMessage();
@@ -180,7 +181,7 @@ function getReady() {
 		index: 1
 	});
 
-	var therecordpanel = '<div id="rectab" style="font-family:courier, arial, sans-serif; font-size:10px; margin-left:8px; margin-top:3px; margin-right:10px; margin-bottom:10px; float:right;"> </div><div style="font-family:verdana, arial, sans-serif; font-style:italic; padding-top:3px; padding-left:10px; padding-right:10px;">' + theNote + '</div><div id="recorder_container" style="float:left; width:100%; display:block; margin-left:10px; height:160px;"></div>' + therecordpanel2;
+	var therecordpanel = '<div id="rectab" style="font-family:courier, arial, sans-serif; font-size:10px; margin-left:8px; margin-top:3px; margin-right:10px; margin-bottom:10px; float:right;"> </div><div style="font-family:verdana, arial, sans-serif; font-style:italic; padding-top:3px; padding-left:10px; padding-right:10px;">' + theNote + '</div><div id="recorder_container" style="float:left; width:100%; display:block; margin-left:10px; height:160px;"></div>' + therecordpanel2 + gadd;
 
 	document.getElementById(therectab).innerHTML = therecordpanel;
 
