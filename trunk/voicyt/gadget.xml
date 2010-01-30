@@ -28,19 +28,18 @@
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
 -->
 	<div id="content_div" style="border-bottom-style:solid; border-bottom-width:1px; margin-bottom:5px;">
-		<div style="float:right; clear:none;">
-			<script type="text/javascript"><!--
-				google_ad_client = "pub-5574306595268675";
-				/* gwave */
-				google_ad_slot = "7991926088";
-				google_ad_width = 234;
-				google_ad_height = 60;
-				//-->
-			</script>
-			<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
-		</div>
-		<div id="playdiv" style="float:left; padding:0; margin:0; display:none;">
-			<div style="float:right; font-size:10px; font-family:Courier, Arial, Helvetica, sans-serif; margin-top:3px; margin-right:10px;">Gadget by <a href="http://charlau.posterous.com/" target="_blank">charlau</a></div>
+		<div id="playdiv" style="float:left; width:100%; padding:0; margin:0; display:none;">
+			<div style="float:right; font-size:10px; font-family:Courier, Arial, Helvetica, sans-serif; margin-top:3px; margin-right:10px;">Gadget by <a href="http://charlau.posterous.com/" target="_blank">charlau</a>
+				<script type="text/javascript"><!--
+					google_ad_client = "pub-5574306595268675";
+					/* gwave */
+					google_ad_slot = "7991926088";
+					google_ad_width = 234;
+					google_ad_height = 60;
+					//-->
+				</script>
+				<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>			
+			</div>
 			<div id="player_container" style="height:20px; width:190px; margin-top:30px; margin-left:10px;"></div>
 			<div id="choosefile" style="margin-left:10px;">
 				<form name="toplay" action="#" method="post">

@@ -173,7 +173,7 @@ function getReady() {
 		theNote = "Note: your id will appear with your message only for the owner of the wave";
 		IamRecording = true;
 		document.getElementById("playdiv").innerHTML="";
-		therecordpanel2 = '<div id="byline" style="font-family: Courier, \'Courier New\', arial, sans-serif; font-size:10px; float:left; width:100%; margin-top:10px; margin-bottom:1px; margin-left:10px; padding:0; line-height:14px;"><a href="https://wave.google.com/wave/?#minimized:search,restored:wave:googlewave.com!w%252BhsKZwB2sI" target="_blank">feedback wave</a><br />Gadget by <a href="http://charlau.posterous.com/" target="_blank">charlau</a></div>';
+		therecordpanel2 = '<div id="byline" style="font-family: Courier, \'Courier New\', arial, sans-serif; font-size:10px; float:left; width:100%; margin-top:10px; margin-bottom:1px; margin-left:10px; padding:0; line-height:14px;"><a href="https://wave.google.com/wave/?#minimized:search,restored:wave:googlewave.com!w%252BhsKZwB2sI" target="_blank">feedback wave</a><br />Gadget by <a href="http://charlau.posterous.com/" target="_blank">charlau</a>'+gadd+'</div>';
 	}
 
 	var therectab = tabs.addTab("Leave a message", {
@@ -181,7 +181,7 @@ function getReady() {
 		index: 1
 	});
 
-	var therecordpanel = '<div id="rectab" style="font-family:courier, arial, sans-serif; font-size:10px; margin-left:8px; margin-top:3px; margin-right:10px; margin-bottom:10px; float:right;"> </div><div style="font-family:verdana, arial, sans-serif; font-style:italic; padding-top:3px; padding-left:10px; padding-right:10px;">' + theNote + '</div><div id="recorder_container" style="float:left; display:block; margin-left:10px; height:160px;"></div>' + therecordpanel2 + gadd;
+	var therecordpanel = '<div id="rectab" style="font-family:courier, arial, sans-serif; font-size:10px; margin-left:8px; margin-top:3px; margin-right:10px; margin-bottom:10px; float:right;"> </div><div style="font-family:verdana, arial, sans-serif; font-style:italic; padding-top:3px; padding-left:10px; padding-right:10px;">' + theNote + '</div><div id="recorder_container" style="float:left; display:block; margin-left:10px; height:160px;"></div>' + therecordpanel2;
 
 	document.getElementById(therectab).innerHTML = therecordpanel;
 
