@@ -18,7 +18,7 @@ var isbugged = true;
 var xmess;
 var spMessage = "";
 //var spMessage = "Sorry, sometimes the gadget is not always loading. Please bear with the beta!";
-var gadd='<div style="float:right; clear:none;"><script type="text/javascript"><!--	google_ad_client ="pub-5574306595268675"; /* gwave */ google_ad_slot = "7991926088"; google_ad_width = 234; google_ad_height = 60; //--> </script><script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js" /></div>';
+var gadd='<div style="float:right; clear:none;"><script type="text/javascript"><!--	google_ad_client ="pub-5574306595268675"; /* gwave */ google_ad_slot = "7991926088"; google_ad_width = 234; google_ad_height = 60; //--> </script><script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script></div>';
 
 function init(){
 	msg = new gadgets.MiniMessage();
