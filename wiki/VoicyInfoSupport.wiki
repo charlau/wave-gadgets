@@ -1,0 +1,5 @@
+#summary Here is embeded the official Voicy wave
+
+= Details =
+
+<wiki:gadget url="http://hosting.gmodules.com/ig/gadgets/file/102816022445188405566/wave-embed.xml" up_waveID="googlewave.com!w+hsKZwB2sI" up_wavePath="https://wave.google.com/wave/" up_bgcolor="white" width="600" height="800" border="0" /> 
