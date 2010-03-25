@@ -15,8 +15,6 @@ from waveapi import appengine_robot_runner
 from waveapi import wavelet
 #import logging
 
-v='live-7'
-
 def OnRobotAdded(event, wavelet):
 	"""Invoked when the robot has been added."""	
 
@@ -28,9 +26,11 @@ def OnRobotAdded(event, wavelet):
 	else:
 		xthisWaveUrl = 'https://wave.google.com/wave/?#restored:wave:'
 		voicyWaveID = 'googlewave.com!w+hsKZwB2sI'
-		
+	
 	thisWaveUrl = xthisWaveUrl + waveId.replace('!w+', '!w%252B')
-	thisBlip = wavelet.reply("\n\nThis wave's ID:\n"+waveId+"\nThis wave's URL:\n"+thisWaveUrl+"\nBrought to you by your friendly mywaveid@appspot.com frugal robot!\n-- now updated to V2 of the robot API --\nHey, why not check out my little friend, Voicy?")
+	thisBlip = wavelet.reply("\n\nThis wave's ID:\n"+waveId+"\nThis wave's URL:\n"+thisWaveUrl+ \
+				"\nBrought to you by your friendly mywaveid@appspot.com frugal robot!\n-- " + \
+				"now updated to V2 of the robot API --\nHey, why not check out my little friend, Voicy?")
 	
  	rStart = thisBlip.text.find("ID:") + 4
  	rEnd = thisBlip.text.find("This wave's URL:") - 1
@@ -56,6 +56,7 @@ def OnRobotAdded(event, wavelet):
  	thisBlip.range(rStart, rEnd).annotate("link/wave", voicyWaveID)
 
 if __name__ == '__main__':
-	myRobot = robot.Robot('mywaveid', profile_url='http://mywaveid.appspot.com/', image_url='http://mywaveid.appspot.com/assets/icon.gif')
+	myRobot = robot.Robot('mywaveid', profile_url='http://mywaveid.appspot.com/', \
+				image_url='http://mywaveid.appspot.com/assets/icon.gif')
 	myRobot.register_handler(events.WaveletSelfAdded, OnRobotAdded)
 	appengine_robot_runner.run(myRobot)
