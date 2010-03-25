@@ -1,5 +1,5 @@
 application: mywaveid
-version: newlive
+version: v2live
 runtime: python
 api_version: 1
 
