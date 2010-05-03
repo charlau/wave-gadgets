@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python2.4
 #
 # Copyright (C) 2009 Google Inc.
 #
@@ -61,6 +61,19 @@ class TestUtils(unittest.TestCase):
     self.assertFalse(util.is_user_defined_new_style_class(42))
     self.assertFalse(util.is_user_defined_new_style_class('instance?'))
 
+  def testLowerCamelCase(self):
+    self.assertEquals('foo', util.lower_camel_case('foo'))
+    self.assertEquals('fooBar', util.lower_camel_case('foo_bar'))
+    self.assertEquals('fooBar', util.lower_camel_case('fooBar'))
+    self.assertEquals('blipId', util.lower_camel_case('blip_id'))
+    self.assertEquals('fooBar', util.lower_camel_case('foo__bar'))
+    self.assertEquals('fooBarBaz', util.lower_camel_case('foo_bar_baz'))
+    self.assertEquals('f', util.lower_camel_case('f'))
+    self.assertEquals('f', util.lower_camel_case('f_'))
+    self.assertEquals('', util.lower_camel_case(''))
+    self.assertEquals('', util.lower_camel_case('_'))
+    self.assertEquals('aBCDEF', util.lower_camel_case('_a_b_c_d_e_f_'))
+
   def assertListsEqual(self, a, b):
     self.assertEquals(len(a), len(b))
     for i in range(len(a)):
@@ -78,8 +91,9 @@ class TestUtils(unittest.TestCase):
 
   def testSerializeDict(self):
     data = {'key': 'value', 'under_score': 'value2'}
+    expected = {'key': 'value', 'underScore': 'value2'}
     output = util.serialize(data)
-    self.assertDictsEqual(data, output)
+    self.assertDictsEqual(expected, output)
 
   def testNonNoneDict(self):
     a = {'a': 1, 'b': 1}
@@ -88,11 +102,13 @@ class TestUtils(unittest.TestCase):
     b['c'] = None
     self.assertDictsEqual(a, util.non_none_dict(b))
 
-  def testForceString(self):
-    self.assertEquals("aaa", util.force_string("aaa"))
-    self.assertEquals("12", util.force_string(12))
+  def testForceUnicode(self):
+    self.assertEquals(u"aaa", util.force_unicode("aaa"))
+    self.assertEquals(u"12", util.force_unicode(12))
+    self.assertEquals(u"\u0430\u0431\u0432",
+                      util.force_unicode("\xd0\xb0\xd0\xb1\xd0\xb2"))
     self.assertEquals(u'\u30e6\u30cb\u30b3\u30fc\u30c9',
-                      util.force_string(u'\u30e6\u30cb\u30b3\u30fc\u30c9'))
+                      util.force_unicode(u'\u30e6\u30cb\u30b3\u30fc\u30c9'))
 
   def testSerializeAttributes(self):
 

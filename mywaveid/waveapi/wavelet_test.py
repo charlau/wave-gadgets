@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python2.4
 #
 # Copyright (C) 2009 Google Inc.
 #
@@ -33,6 +33,7 @@ TEST_WAVELET_DATA = {
     'creationTime': 100,
     'lastModifiedTime': 101,
     'participants': [ROBOT_NAME],
+    'participantsRoles': {ROBOT_NAME: wavelet.Participants.ROLE_FULL},
     'rootBlipId': 'blip-1',
     'title': 'Title',
     'waveId': 'test.com!w+g3h3im',
@@ -95,6 +96,9 @@ class TestWavelet(unittest.TestCase):
     self.wavelet.data_documents['key'] = 'value'
     self.assert_('key' in w.data_documents)
     self.assertEquals(1, len(w.data_documents))
+    for key in w.data_documents:
+      self.assertEquals(key, 'key')
+    self.assertEquals(1, len(w.data_documents.keys()))
     self.wavelet.data_documents['key'] = None
     self.assertEquals(0, len(w.data_documents))
     num_participants = len(w.participants)
@@ -109,11 +113,12 @@ class TestWavelet(unittest.TestCase):
 
   def testSetTitle(self):
     self.blip._content = '\nOld title\n\nContent'
-    self.wavelet.title = 'New title'
+    self.wavelet.title = 'New title \xd0\xb0\xd0\xb1\xd0\xb2'
     self.assertEquals(1, len(self.operation_queue))
     self.assertEquals('wavelet.setTitle',
                       self.operation_queue.serialize()[1]['method'])
-    self.assertEquals('\nNew title\n\nContent', self.blip._content)
+    self.assertEquals(u'\nNew title \u0430\u0431\u0432\n\nContent',
+                      self.blip._content)
 
   def testSetTitleAdjustRootBlipWithOneLineProperly(self):
     self.blip._content = '\nOld title'
@@ -141,6 +146,14 @@ class TestWavelet(unittest.TestCase):
     w.tags.remove('tag1')
     self.assertEquals(2, len(w.tags))
     self.assertEquals('tag2', w.tags[0])
+
+  def testParticipantRoles(self):
+    w = self.wavelet
+    self.assertEquals(wavelet.Participants.ROLE_FULL,
+                      w.participants.get_role(ROBOT_NAME))
+    w.participants.set_role(ROBOT_NAME, wavelet.Participants.ROLE_READ_ONLY)
+    self.assertEquals(wavelet.Participants.ROLE_READ_ONLY,
+                      w.participants.get_role(ROBOT_NAME))
 
   def testSerialize(self):
     self.blip.append(element.Gadget('http://test.com', {'a': 3}))

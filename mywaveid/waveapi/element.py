@@ -38,6 +38,10 @@ class Element(object):
   should not be instantiated by robots, but rather rely on the derived classes.
   """
 
+  # INLINE_BLIP_TYPE is not a separate type since it shouldn't be instantiated,
+  # only be used for introspection
+  INLINE_BLIP_TYPE = "INLINE_BLIP"
+
   def __init__(self, element_type, **properties):
     """Initializes self with the specified type and any properties.
 
@@ -81,13 +85,14 @@ class Element(object):
   def get(self, key, default=None):
     """Standard get interface."""
     return self._properties.get(key, default)
-  
+
   def __getattr__(self, key):
     return self._properties[key]
 
   def serialize(self):
     """Custom serializer for Elements."""
-    return {'properties': util.non_none_dict(self._properties), 'type': self._type}
+    return util.serialize({'properties': util.non_none_dict(self._properties),
+                           'type': self._type})
 
 
 class Input(Element):
@@ -103,7 +108,7 @@ class Input(Element):
 
   @classmethod
   def from_props(cls, props):
-    return Input(name=props['name'], value=props['value'])
+    return Input(name=props.get('name'), value=props.get('value'))
 
 
 class Check(Element):
@@ -117,7 +122,7 @@ class Check(Element):
 
   @classmethod
   def from_props(cls, props):
-    return Check(name=props['name'], value=props['value'])
+    return Check(name=props.get('name'), value=props.get('value'))
 
 
 class Button(Element):
@@ -125,13 +130,13 @@ class Button(Element):
 
   class_type = 'BUTTON'
 
-  def __init__(self, name, caption):
+  def __init__(self, name, value):
     super(Button, self).__init__(Button.class_type,
-                                 name=name, value=caption)
+                                 name=name, value=value)
 
   @classmethod
   def from_props(cls, props):
-    return Button(name=props['name'], caption=props['value'])
+    return Button(name=props.get('name'), value=props.get('value'))
 
 
 class Label(Element):
@@ -145,7 +150,7 @@ class Label(Element):
 
   @classmethod
   def from_props(cls, props):
-    return Label(label_for=props['name'], caption=props['value'])
+    return Label(label_for=props.get('name'), caption=props.get('value'))
 
 
 class RadioButton(Element):
@@ -159,7 +164,7 @@ class RadioButton(Element):
 
   @classmethod
   def from_props(cls, props):
-    return RadioButton(name=props['name'], group=props['value'])
+    return RadioButton(name=props.get('name'), group=props.get('value'))
 
 
 class RadioButtonGroup(Element):
@@ -173,7 +178,7 @@ class RadioButtonGroup(Element):
 
   @classmethod
   def from_props(cls, props):
-    return RadioButtonGroup(name=props['name'], value=props['value'])
+    return RadioButtonGroup(name=props.get('name'), value=props.get('value'))
 
 
 class Password(Element):
@@ -187,7 +192,7 @@ class Password(Element):
 
   @classmethod
   def from_props(cls, props):
-    return Password(name=props['name'], value=props['value'])
+    return Password(name=props.get('name'), value=props.get('value'))
 
 
 class TextArea(Element):
@@ -201,7 +206,7 @@ class TextArea(Element):
 
   @classmethod
   def from_props(cls, props):
-    return TextArea(name=props['name'], value=props['value'])
+    return TextArea(name=props.get('name'), value=props.get('value'))
 
 
 class Line(Element):
