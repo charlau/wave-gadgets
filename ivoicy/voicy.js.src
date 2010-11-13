@@ -370,7 +370,7 @@ function loGit(tolog){
 
 /* Riffly.com Web API */
 
-function rifflyShowRecorderx (recorder_window_id, recorder_type, callback) {
+function rifflyShowRecorder (recorder_window_id, recorder_type, callback) {
 	var recorder_window = document.getElementById(recorder_window_id);
 	recorder_window.style.display = 'block';
 
