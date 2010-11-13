@@ -22,8 +22,10 @@
 	<Content type="html">
 <![CDATA[
 	<link rel="stylesheet" type="text/css" href="http://wave-gadgets.googlecode.com/svn/trunk/ivoicy/forms.css" media="screen" />
-<!--	
+	
 <script type="text/javascript" src="http://www.riffly.com/static/js/api/1/web.js"></script>
+
+<!--
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
 -->
 	<div id="content_div" style="border-bottom-style:solid; border-bottom-width:1px; margin-bottom:5px;">
