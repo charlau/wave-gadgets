@@ -47,7 +47,7 @@
 		<iframe id="mainIframe" src="" height="0" frameborder="0" scrolling="no"></iframe>
 	</div>
 
-<script type="text/javascript" src="http://wave-gadgets.googlecode.com/svn/trunk/voicy/ivoicy/voicy.js.src"></script>
+<script type="text/javascript" src="http://wave-gadgets.googlecode.com/svn/trunk/voicy/iVoicy/voicy.js.src"></script>
 	
     ]]>
   </Content>
