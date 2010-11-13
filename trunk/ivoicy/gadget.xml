@@ -21,7 +21,7 @@
 
 	<Content type="html">
 <![CDATA[
-	<link rel="stylesheet" type="text/css" href="http://wave-gadgets.googlecode.com/svn/trunk/voicy/forms.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="http://wave-gadgets.googlecode.com/svn/trunk/ivoicy/forms.css" media="screen" />
 <!--	
 <script type="text/javascript" src="http://www.riffly.com/static/js/api/1/web.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
@@ -47,7 +47,7 @@
 		<iframe id="mainIframe" src="" height="0" frameborder="0" scrolling="no"></iframe>
 	</div>
 
-<script type="text/javascript" src="http://wave-gadgets.googlecode.com/svn/trunk/voicy/iVoicy/voicy.js.src"></script>
+<script type="text/javascript" src="http://wave-gadgets.googlecode.com/svn/trunk/ivoicy/voicy.js.src"></script>
 	
     ]]>
   </Content>
