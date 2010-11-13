@@ -29,11 +29,12 @@ function init(){
 		loadMessage = msg.createStaticMessage("loading gadget");
 
 		getReady();
-		document.getElementById('mainIframe').src = "http://www.charlau.com/gwave/voicy/comm-google-charlau.html";
+		document.getElementById('mainIframe').src = "http://www.charlau.com/gwave/ivoicy/comm-google-charlau.html";
 		iframeWin = document.getElementById('mainIframe').contentWindow;
 		window.addEventListener('message', receiver, false);
 		
 		runPerd = setInterval( pingCharlau, 500 );
+		
 //		if (wave && wave.isInWaveContainer()) {
 //			wave.setStateCallback(stateUpdated);
 //			wave.setParticipantCallback(participantIsReady);
@@ -105,7 +106,7 @@ function participantIsReady() {
 		myID = wave.getViewer().getId();
 		theHost = wave.getHost().getId();
 		getReady();
-		document.getElementById('mainIframe').src = "http://www.charlau.com/gwave/voicy/comm-google-charlau.html";
+		document.getElementById('mainIframe').src = "http://www.charlau.com/gwave/ivoicy/comm-google-charlau.html";
 		iframeWin = document.getElementById('mainIframe').contentWindow;
 		window.addEventListener('message', receiver, false);
 		particiPready = true;

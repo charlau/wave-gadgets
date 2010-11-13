@@ -23,7 +23,7 @@
 //			runPerd = setInterval("waitingGoogle()", 200);
 
             window.addEventListener("message", function(e){ 
-				if (e.origin.indexOf('googleusercontent.com') !== -1) {
+				if (e.origin.indexOf('ig.gmodules.com') !== -1) {
 					waitingForGoogle = false;
 					var messages = e.data.split("~~om~~");
 					switch (messages[0]){
@@ -47,7 +47,7 @@
 		if(!waitingForGoogle){
 			clearInterval(runPerd);
 		}else{
-			parentWin.postMessage("[ping]~~om~~","https://0-wave-opensocial.googleusercontent.com");
+			parentWin.postMessage("[ping]~~om~~","");
 		}
 	}
 
