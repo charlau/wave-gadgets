@@ -27,6 +27,12 @@ function init(){
 		runPerd = setInterval( waitingWave, 500 );
 	}else{
 		loadMessage = msg.createStaticMessage("loading gadget");
+
+		getReady();
+		document.getElementById('mainIframe').src = "http://www.charlau.com/gwave/voicy/comm-google-charlau.html";
+		iframeWin = document.getElementById('mainIframe').contentWindow;
+		window.addEventListener('message', receiver, false);
+		
 		runPerd = setInterval( pingCharlau, 500 );
 //		if (wave && wave.isInWaveContainer()) {
 //			wave.setStateCallback(stateUpdated);
